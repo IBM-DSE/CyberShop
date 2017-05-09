@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Build Status](https://travis.ibm.com/ACAT/cyber-world.svg?token=Lsphg5poC1bTwtG8aZmF&branch=master)](https://travis.ibm.com/ACAT/cyber-world)
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+* Ruby version: 2.4.0
 
-* System dependencies
+* `gem install bundler`
 
-* Configuration
+* `bundle install`
 
-* Database creation
+[//]: # (* Configuration)
 
-* Database initialization
+[//]: # (* Database creation)
 
-* How to run the test suite
+[//]: # (* Database initialization)
 
-* Services (job queues, cache servers, search engines, etc.)
+* To run the test suite: `bundle exec rake`
 
-* Deployment instructions
+[//]: # (* Services job queues, cache servers, search engines, etc.)
 
-* ...
+[//]: # (* Deployment instructions)
