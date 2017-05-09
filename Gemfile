@@ -55,5 +55,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Front-End
-gem 'jquery-rails'
 gem 'bootstrap-sass'
+gem 'jquery-rails'
+
+# Back-End
+gem 'activeadmin'
+gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'master'
