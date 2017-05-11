@@ -2,9 +2,17 @@ ActiveAdmin.register MachineLearningService do
   permit_params :username, :password
 
   show do
-    default_main_content do
-      row :deployments do
-        # machine_learning_service.get_deps
+    attributes_table do
+      row :username
+      row :password
+    end
+    machine_learning_service.deployments.each do |deployment|
+      panel "Deployment #{deployment.id}" do
+        attributes_table_for deployment do
+          Deployment.display_columns.each do |attr|
+            row attr
+          end
+        end
       end
     end
   end
