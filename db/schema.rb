@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511142724) do
+ActiveRecord::Schema.define(version: 20170511170700) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20170511142724) do
     t.integer "prefix"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "machine_learning_service_id"
+    t.index ["machine_learning_service_id"], name: "index_deployments_on_machine_learning_service_id"
   end
 
   create_table "machine_learning_services", force: :cascade do |t|
