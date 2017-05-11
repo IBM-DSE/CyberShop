@@ -23,4 +23,9 @@ class MachineLearningService < ApplicationRecord
     end
   end
 
+  def get_model deployment_id
+    @service = IBM::MachineLearning::Watson.new username, password
+    @service.get_model deployment_id
+  end
+
 end

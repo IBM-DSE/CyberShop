@@ -8,11 +8,26 @@ ActiveAdmin.register MachineLearningService do
     end
     machine_learning_service.deployments.each do |deployment|
       panel "Deployment #{deployment.id}" do
+
         attributes_table_for deployment do
           Deployment.display_columns.each do |attr|
             row attr
           end
         end
+
+        form do |f|
+          fieldset class: 'inputs' do
+            ol do
+              deployment.get_input_schema.each do |param|
+                li do
+                  label param['name']
+                  input param.slice('type', 'name')
+                end
+              end
+            end
+          end
+        end
+
       end
     end
   end
