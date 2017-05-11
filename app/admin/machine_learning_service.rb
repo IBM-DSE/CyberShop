@@ -15,7 +15,7 @@ ActiveAdmin.register MachineLearningService do
           end
         end
 
-        form do |f|
+        form action: admin_scoring_score_path, method: 'post' do
           fieldset class: 'inputs' do
             ol do
               deployment.get_input_schema.each do |param|
@@ -26,6 +26,7 @@ ActiveAdmin.register MachineLearningService do
               end
             end
           end
+          input 'Get Score', type: 'submit'
         end
 
       end
