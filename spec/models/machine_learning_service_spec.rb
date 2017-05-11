@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe MachineLearningService, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'fails if username & password are invalid' do
+    expect {
+      MachineLearningService.create username: 'foo', password: 'bar'
+    }.to raise_error RuntimeError, 'Net::HTTPUnauthorized'
+  end
 end

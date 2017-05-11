@@ -10,6 +10,13 @@ GIT
       responders
       warden (~> 1.2.3)
 
+GIT
+  remote: https://github.ibm.com/ACAT/ibm-machine_learning.git
+  revision: 9a5be1ec69ddf787f14a12194d9e9f1596730313
+  branch: master
+  specs:
+    ibm-machine_learning (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -276,6 +283,7 @@ DEPENDENCIES
   capybara (~> 2.13.0)
   coffee-rails (~> 4.2)
   devise!
+  ibm-machine_learning!
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
