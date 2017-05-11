@@ -1,0 +1,2 @@
+class MachineLearningService < ApplicationRecord
+end
