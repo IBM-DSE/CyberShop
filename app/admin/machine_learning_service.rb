@@ -16,6 +16,7 @@ ActiveAdmin.register MachineLearningService do
         end
 
         render partial: 'admin/scoring/form', locals: {
+          deployment_id: deployment.id,
           input_schema: deployment.get_input_schema
         }
 

@@ -7,12 +7,12 @@ class MachineLearningService < ApplicationRecord
     begin
       deployments_list = @service.get_deployments
       deployments_list.each do |deployment|
-        url = deployment['entity']['scoringHref']
+        url    = deployment['entity']['scoringHref']
         prefix = url[36..url.index('/', 36) - 1]
-        deployments.build id:     deployment['metadata']['guid'],
-                          name:   deployment['entity']['name'],
-                          status: deployment['entity']['status'],
-                          prefix: prefix,
+        deployments.build id:         deployment['metadata']['guid'],
+                          name:       deployment['entity']['name'],
+                          status:     deployment['entity']['status'],
+                          prefix:     prefix,
                           created_at: deployment['metadata']['createdAt'],
                           updated_at: deployment['metadata']['modifiedAt']
       end
@@ -26,6 +26,11 @@ class MachineLearningService < ApplicationRecord
   def get_model deployment_id
     @service = IBM::MachineLearning::Watson.new username, password
     @service.get_model deployment_id
+  end
+
+  def get_score prefix, deployment_id, record
+    @service = IBM::MachineLearning::Watson.new username, password
+    @service.get_score prefix, deployment_id, record
   end
 
 end

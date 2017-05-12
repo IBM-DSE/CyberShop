@@ -1,10 +1,11 @@
 <%= form_tag admin_scoring_score_path, method: 'post' do %>
+  <%= hidden_field_tag :deployment_id, deployment_id %>
   <%= content_tag :fieldset, class: 'inputs' do %>
     <%= content_tag :ol do %>
       <% input_schema.each do |param| %>
         <%= content_tag :li do %>
           <%= label_tag param['name'] %>
-          <%= text_field_tag param['name'] %>
+          <%= text_field_tag param['name'], nil, type: type(param['type']) %>
         <% end %>
       <% end %>
     <% end %>
