@@ -1,0 +1,13 @@
+<%= form_tag admin_scoring_score_path, method: 'post' do %>
+  <%= content_tag :fieldset, class: 'inputs' do %>
+    <%= content_tag :ol do %>
+      <% input_schema.each do |param| %>
+        <%= content_tag :li do %>
+          <%= label_tag param['name'] %>
+          <%= text_field_tag param['name'] %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= submit_tag 'Get Score' %>
+<% end %>

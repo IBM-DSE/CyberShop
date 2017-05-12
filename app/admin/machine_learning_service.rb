@@ -15,19 +15,9 @@ ActiveAdmin.register MachineLearningService do
           end
         end
 
-        form action: admin_scoring_score_path, method: 'post' do
-          fieldset class: 'inputs' do
-            ol do
-              deployment.get_input_schema.each do |param|
-                li do
-                  label param['name']
-                  input param.slice('type', 'name')
-                end
-              end
-            end
-          end
-          input 'Get Score', type: 'submit'
-        end
+        render partial: 'admin/scoring/form', locals: {
+          input_schema: deployment.get_input_schema
+        }
 
       end
     end
