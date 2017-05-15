@@ -1,10 +1,13 @@
 ActiveAdmin.register MlScoringParam do
   permit_params :name, ml_scoring_param_options_attributes: [:id, :value, :_destroy]
 
-  sidebar 'Values', only: [:show] do
-    ul do
-      ml_scoring_param.ml_scoring_param_options.each do |option|
-        li option.value
+  show do
+    attributes_table do
+      row :name
+      row :options do
+        table_for ml_scoring_param.ml_scoring_param_options do
+          column :value
+        end
       end
     end
   end
