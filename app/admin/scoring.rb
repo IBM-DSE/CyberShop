@@ -4,10 +4,10 @@ ActiveAdmin.register_page 'Scoring' do
 
     def score
 
-      @deployment     = Deployment.find(params[:deployment_id])
+      deployment     = Deployment.find(params[:deployment_id])
 
       # get a mapping of input schema param name to type
-      schema_params   = @deployment.get_input_schema.map do |param|
+      schema_params   = deployment.get_input_schema.map do |param|
         [param['name'], param['type']]
       end.to_h
 
@@ -21,7 +21,10 @@ ActiveAdmin.register_page 'Scoring' do
 
 
       # get the score
-      @score          = @deployment.get_score cleansed_values
+      score          = deployment.get_score cleansed_values
+
+      @input = valid_params.to_h
+      @output = score.except(*@input.keys)
 
     end
 

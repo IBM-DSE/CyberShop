@@ -1,2 +1,37 @@
 <h1>Scoring Result</h1>
-<p><%= @score %></p>
+<table>
+  <thead>
+  <tr>
+    <th>
+      Input Values
+    </th>
+    <th>
+      Output
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>
+      <div class="attributes_table">
+        <table>
+        <% @input.each do |k,v| %>
+          <tr class="row">
+            <th><%= k %></th><td><%= v %></td>
+          </tr>
+        <% end %>
+        </table>
+      </div>
+    </td>
+    <td>
+      <div class="attributes_table">
+        <table>
+          <tr class="row"><th>PREDICTION</th><td><%= @output['prediction'] %></td></tr>
+          <tr class="row"><th>PROBABILITY</th><td><%= @output['probability']['values'][1] %></td></tr>
+        </table>
+      </div>
+      <pre><code><%= JSON.pretty_generate(@output).strip %></code></pre>
+    </td>
+  </tr>
+  </tbody>
+</table>
