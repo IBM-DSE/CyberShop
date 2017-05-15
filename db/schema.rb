@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511170700) do
+ActiveRecord::Schema.define(version: 20170515190624) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -58,6 +58,11 @@ ActiveRecord::Schema.define(version: 20170511170700) do
     t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ml_scoring_params", force: :cascade do |t|
+    t.string "name"
+    t.index ["name"], name: "index_ml_scoring_params_on_name"
   end
 
 end
