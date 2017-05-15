@@ -28,10 +28,10 @@
         <table>
           <tr class="row"><th>PREDICTION</th><td><%= @output['prediction'] %></td></tr>
           <tr class="row"><th>PROBABILITY</th><td><%= @output['probability']['values'][1] %></td></tr>
+          <tr class="row"><th>RAW OUTPUT</th>
+            <td><pre><code><%= JSON.pretty_generate(@output).strip %></code></pre></td></tr>
         </table>
       </div>
-      <h4>Raw Output:</h4>
-      <pre><code><%= JSON.pretty_generate(@output).strip %></code></pre>
     </td>
   </tr>
   </tbody>
