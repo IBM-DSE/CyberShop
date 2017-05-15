@@ -1,10 +1,18 @@
 ActiveAdmin.register MachineLearningService do
   permit_params :username, :password
-
+  
+  index do
+    id_column
+    column :username
+    column :created_at
+    column :updated_at
+    actions
+  end
+  
   show do
     attributes_table do
       row :username
-      row :password
+      row :password { '******' }
     end
     machine_learning_service.deployments.each do |deployment|
       panel "Deployment #{deployment.id}" do
