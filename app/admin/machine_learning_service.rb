@@ -25,6 +25,10 @@ ActiveAdmin.register MachineLearningService do
                 deployment_id: deployment.id,
                 input_schema:  deployment.get_input_schema
               }
+              if defined? score
+                h3 'Scoring Result'
+                score
+              end
             end
           end
         end
