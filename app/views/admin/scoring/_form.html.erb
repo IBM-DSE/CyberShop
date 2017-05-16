@@ -5,7 +5,7 @@
       <% input_schema.each do |param| %>
         <%= content_tag :li do %>
           <%= label_tag param['name'] %>
-          <%= text_field_tag param['name'], nil, type: type(param['type']) %>
+          <%= scoring_input param %>
         <% end %>
       <% end %>
     <% end %>
