@@ -5,7 +5,7 @@ class MachineLearningService < ApplicationRecord
   def get_deployments
     @service = IBM::MachineLearning::Watson.new username, password
     begin
-      deployments_list = @service.get_deployments
+      deployments_list = @service.get_deployments['resources']
       deployments_list.each do |deployment|
         url    = deployment['entity']['scoringHref']
         prefix = url[36..url.index('/', 36) - 1]
