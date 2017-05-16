@@ -2,6 +2,7 @@ ActiveAdmin.register MlScoringParam do
   permit_params :file, :name, ml_scoring_param_options_attributes: [:id, :value, :_destroy]
 
   index do
+    selectable_column
     column :name
     column :ml_scoring_param_options
     actions
