@@ -1,8 +1,8 @@
 ActiveAdmin.register MachineLearningService do
-  permit_params :username, :password
+  permit_params :name, :username, :password
   
   index do
-    id_column
+    column :name
     column :username
     column :created_at
     column :updated_at

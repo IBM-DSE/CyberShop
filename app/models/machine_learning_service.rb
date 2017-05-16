@@ -1,5 +1,7 @@
 class MachineLearningService < ApplicationRecord
-  has_many :deployments
+  has_many :deployments, dependent: :destroy
+  validates :username, presence: true
+  validates :password, presence: true
   validate :get_deployments
 
   def get_deployments
@@ -7,14 +9,13 @@ class MachineLearningService < ApplicationRecord
     begin
       deployments_list = @service.get_deployments['resources']
       deployments_list.each do |deployment|
-        url    = deployment['entity']['scoringHref']
-        prefix = url[36..url.index('/', 36) - 1]
-        deployments.build id:         deployment['metadata']['guid'],
-                          name:       deployment['entity']['name'],
-                          status:     deployment['entity']['status'],
-                          prefix:     prefix,
-                          created_at: deployment['metadata']['createdAt'],
-                          updated_at: deployment['metadata']['modifiedAt']
+        deployments.find_or_initialize_by id: deployment['metadata']['guid'] do |d|
+          d.name       = deployment['entity']['name']
+          d.status     = deployment['entity']['status']
+          d.prefix     = deployment['entity']['scoringHref'][36..url.index('/', 36) - 1]
+          d.created_at = deployment['metadata']['createdAt']
+          d.updated_at = deployment['metadata']['modifiedAt']
+        end
       end
     rescue RuntimeError => e
       message = e.message == 'Net::HTTPUnauthorized' ? 'Authorization failure' : e.message
