@@ -15,11 +15,11 @@
     <td>
       <div class="attributes_table">
         <table>
-        <% @input.each do |k,v| %>
-          <tr class="row">
-            <th><%= k %></th><td><%= v %></td>
-          </tr>
-        <% end %>
+          <% @input.each do |k,v| %>
+              <tr class="row">
+                <th><%= k %></th><td><%= v %></td>
+              </tr>
+          <% end %>
         </table>
       </div>
     </td>
@@ -28,7 +28,7 @@
         <table>
           <tr class="row"><th>PREDICTION</th><td><%= @output['prediction'] %></td></tr>
           <% if @output['probability'] %>
-          <tr class="row"><th>PROBABILITY</th><td><%= @output['probability']['values'][1] %></td></tr>
+              <tr class="row"><th>PROBABILITY</th><td><%= @output['probability']['values'][1] %></td></tr>
           <% end %>
           <tr class="row"><th>RAW OUTPUT</th>
             <td><pre><code><%= JSON.pretty_generate(@output).strip %></code></pre></td></tr>

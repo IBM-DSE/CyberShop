@@ -1,4 +1,4 @@
-module ScoringHelper
+module Admin::ScoringHelper
   def type in_type
     {
       'string'  => 'text',

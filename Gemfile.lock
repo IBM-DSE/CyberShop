@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dtom90/ibm-machine_learning.git
-  revision: b40cb64ac7189bccd97bc5dccf4cb9b312a72ad1
+  revision: 11122f740c40961eee644b4bfbfb6022d9d0faeb
   branch: master
   specs:
     ibm-machine_learning (0.1.0)
@@ -76,7 +76,7 @@ GEM
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (8.0.0)
-    autoprefixer-rails (7.1.0)
+    autoprefixer-rails (7.1.1)
       execjs
     bcrypt (3.1.11)
     bindex (0.5.0)
@@ -167,7 +167,7 @@ GEM
       activerecord (>= 3.0)
     public_suffix (2.0.5)
     puma (3.8.2)
-    rack (2.0.2)
+    rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.1.1)
@@ -299,6 +299,9 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+
+RUBY VERSION
+   ruby 2.4.0p0
 
 BUNDLED WITH
    1.14.6
