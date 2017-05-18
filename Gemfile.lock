@@ -1,11 +1,4 @@
 GIT
-  remote: git@github.ibm.com:ACAT/ibm-machine_learning.git
-  revision: b40cb64ac7189bccd97bc5dccf4cb9b312a72ad1
-  branch: master
-  specs:
-    ibm-machine_learning (0.1.0)
-
-GIT
   remote: https://github.com/plataformatec/devise.git
   revision: 079ed3b6f8b671acde2dd630d28d21adb010fb3a
   branch: master
@@ -16,6 +9,13 @@ GIT
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+
+GIT
+  remote: https://github.ibm.com/ACAT/ibm-machine_learning.git
+  revision: b40cb64ac7189bccd97bc5dccf4cb9b312a72ad1
+  branch: master
+  specs:
+    ibm-machine_learning (0.1.0)
 
 GEM
   remote: https://rubygems.org/
