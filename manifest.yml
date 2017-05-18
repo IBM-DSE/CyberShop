@@ -1,0 +1,6 @@
+---
+applications:
+- name: cyber-mart
+  buildpack: ruby_buildpack
+  memory: 256MB
+  command: bundle exec rake db:setup && bundle exec rails s -p $PORT
