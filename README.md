@@ -1,6 +1,6 @@
 # README
 
-[![Build Status](https://travis.ibm.com/ACAT/cyber-world.svg?token=Lsphg5poC1bTwtG8aZmF&branch=master)](https://travis.ibm.com/ACAT/cyber-world)
+[![Build Status](https://travis.ibm.com/ACAT/cyber-mart.svg?token=Lsphg5poC1bTwtG8aZmF&branch=master)](https://travis.ibm.com/ACAT/cyber-mart)
 
 ## Installation
 

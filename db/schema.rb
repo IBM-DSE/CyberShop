@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170509175637) do
+ActiveRecord::Schema.define(version: 20170516205612) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -41,6 +41,35 @@ ActiveRecord::Schema.define(version: 20170509175637) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "deployments", force: :cascade do |t|
+    t.string "name"
+    t.string "status"
+    t.integer "prefix"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "machine_learning_service_id"
+    t.index ["machine_learning_service_id"], name: "index_deployments_on_machine_learning_service_id"
+  end
+
+  create_table "machine_learning_services", force: :cascade do |t|
+    t.string "name"
+    t.string "username"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ml_scoring_param_options", force: :cascade do |t|
+    t.integer "ml_scoring_param_id"
+    t.string "value"
+    t.index ["ml_scoring_param_id"], name: "index_ml_scoring_param_options_on_ml_scoring_param_id"
+  end
+
+  create_table "ml_scoring_params", force: :cascade do |t|
+    t.string "name"
+    t.index ["name"], name: "index_ml_scoring_params_on_name"
   end
 
 end

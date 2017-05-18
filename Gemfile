@@ -61,3 +61,6 @@ gem 'jquery-rails'
 # Back-End
 gem 'activeadmin'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'master'
+
+# APIs
+gem 'ibm-machine_learning', git: 'git@github.ibm.com:ACAT/ibm-machine_learning.git', branch: 'master'
