@@ -1,6 +1,6 @@
 ActiveAdmin.register MachineLearningService do
   permit_params :name, :username, :password
-  
+
   index do
     column 'Service' do |service|
       link_to service.name || service.id, admin_machine_learning_service_path(service)
@@ -10,11 +10,13 @@ ActiveAdmin.register MachineLearningService do
     column :updated_at
     actions
   end
-  
+
   show do
     attributes_table do
       row :username
-      row :password { '******' }
+      row :password do
+        '******'
+      end
     end
     machine_learning_service.deployments.each do |deployment|
       panel "Deployment #{deployment.id}" do
