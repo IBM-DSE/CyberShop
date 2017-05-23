@@ -18,7 +18,7 @@ RSpec.feature 'Admin', type: :feature do
     click_button 'Login'
 
     expect(page).to have_selector('#site_title')
-    expect(find('#site_title')).to have_text app_name
+    expect(find('#site_title')).to have_link app_name, href: '/'
     expect(find('#tabs')).to have_text 'Dashboard'
     expect(find('#tabs')).to have_text 'Admin Users'
     expect(find('#tabs')).to have_text 'Machine Learning Services'
