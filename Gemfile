@@ -40,7 +40,9 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13.0'
   gem 'factory_girl_rails'
-  gem 'guard'
+  gem 'guard-livereload'
+  gem 'guard-rspec'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'rspec-rails'
   gem 'selenium-webdriver'
 end
