@@ -16,6 +16,7 @@ RSpec.feature 'Admin', type: :feature do
     page.fill_in 'Password*', with: 'factorygirl'
     click_button 'Login'
 
+    expect(page).to have_selector('#site_title')
     expect(find('#site_title')).to have_text 'Cyber World'
     expect(find('#tabs')).to have_text 'Dashboard'
     expect(find('#tabs')).to have_text 'Admin Users'
