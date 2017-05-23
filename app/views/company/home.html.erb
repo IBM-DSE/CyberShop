@@ -2,7 +2,15 @@
 <p>The World's Smartest Consumer Electronics Retail Store</p>
 <br>
 <ul id="nav" class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#">Categories</a></li>
-  <li role="presentation"><a href="#">Brands</a></li>
+  <!--<li role="presentation" class="active"><a href="#"></a></li>-->
+  <li role="presentation" class="dropdown" id="categories">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li><a href="#">Category 1</a></li>
+      <li><a href="#">Category 2</a></li>
+      <li><a href="#">Category 3</a></li>
+    </ul>
+  </li>
+  <li role="presentation" id="brands"><a href="#">Brands</a></li>
   <li role="presentation"><a href="#">Deals</a></li>
 </ul>
