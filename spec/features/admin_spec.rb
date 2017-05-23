@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature 'Admin', type: :feature do
+
+  before do
+    FactoryGirl.create(:admin_user)
+  end
+
   scenario 'administrator visits the admin dashboard' do
     visit '/admin'
 
@@ -8,7 +13,7 @@ RSpec.feature 'Admin', type: :feature do
     expect(page).to have_text 'Cyber World Login'
 
     page.fill_in 'Email*', with: 'admin@example.com'
-    page.fill_in 'Password*', with: 'password'
+    page.fill_in 'Password*', with: 'factorygirl'
     click_button 'Login'
 
     expect(find('#site_title')).to have_text 'Cyber World'
