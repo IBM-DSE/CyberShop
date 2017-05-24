@@ -6,7 +6,6 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
   scenario 'anonymous visitor sees the expected homepage content' do
     visit root_path
     expect(page).to have_text app_name
-    expect(page).to have_text "The World's Smartest Consumer Electronics Retail Store"
 
     within('#nav.nav.nav-tabs') do
 
