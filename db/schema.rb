@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523192434) do
+ActiveRecord::Schema.define(version: 20170524134330) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 20170523192434) do
   create_table "ml_scoring_params", force: :cascade do |t|
     t.string "name"
     t.index ["name"], name: "index_ml_scoring_params_on_name"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.integer "category_id"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
 end
