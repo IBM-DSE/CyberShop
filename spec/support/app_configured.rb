@@ -9,7 +9,13 @@ RSpec.configure do |rspec|
 end
 
 RSpec.shared_context 'app configured', shared_context: :metadata do
-  # before { @some_var = :some_value }
+
+  before do
+    FactoryGirl.create :admin_user
+    FactoryGirl.create :category, name: 'Smarphones'
+    FactoryGirl.create :category, name: 'Laptops'
+    FactoryGirl.create :category, name: 'Desktops'
+  end
 
   def app_name
     Rails.application.class.parent_name

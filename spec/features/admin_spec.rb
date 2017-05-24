@@ -3,10 +3,6 @@ require 'rails_helper'
 RSpec.feature 'Admin', type: :feature do
   include_context 'app configured'
 
-  before do
-    FactoryGirl.create(:admin_user)
-  end
-
   scenario 'administrator visits the admin dashboard' do
     visit '/admin'
 
