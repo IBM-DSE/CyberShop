@@ -12,9 +12,8 @@ RSpec.shared_context 'app configured', shared_context: :metadata do
 
   before do
     FactoryGirl.create :admin_user
-    FactoryGirl.create :category, name: 'Smarphones'
-    FactoryGirl.create :category, name: 'Laptops'
-    FactoryGirl.create :category, name: 'Desktops'
+    %w(Smartphones Laptops Desktops).each { |name| FactoryGirl.create :category, name: name }
+    %w(Apricot Gazillion Smithsong).each { |name| FactoryGirl.create :brand, name: name }
   end
 
   def app_name

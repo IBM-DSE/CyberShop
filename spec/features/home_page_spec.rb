@@ -9,17 +9,28 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
 
     within('#nav.nav.nav-tabs') do
 
-      within('li#categories.dropdown') do
+      within('li#categories') do
         expect(page).to have_link 'Categories', href: '#'
         expect(page).to have_selector 'ul.dropdown-menu'
         within('ul.dropdown-menu') do
           Category.all.each do |category|
-            expect(page).to have_link category.name, href: '#'
+            p category
+            expect(page).to have_link category.name, href: '/categories/'+category.name
           end
         end
       end
 
-      expect(page).to have_link 'Brands', href: '#'
+      within('li#brands') do
+        expect(page).to have_link 'Brands', href: '#'
+        expect(page).to have_selector 'ul.dropdown-menu'
+        within('ul.dropdown-menu') do
+          Brand.all.each do |brand|
+            p brand
+            expect(page).to have_link brand.name, href: '/brands/'+brand.name
+          end
+        end
+      end
+
       expect(page).to have_link 'Deals', href: '#'
     end
 
