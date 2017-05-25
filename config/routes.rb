@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get '/about', to: 'company#about'
 
-  resources :categories, only: :show
+  resources :categories, only: :show, param: :name
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

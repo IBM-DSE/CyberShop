@@ -10,12 +10,14 @@
 
   <body>
 
-  <%= render 'company/navbar' unless home_page %>
+  <%= render 'application/navbar' unless home_page %>
   
   <div class="container">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+    <%= flash_messages %>
+    
     <%= yield %>
+    
   </div>
   
   </body>
