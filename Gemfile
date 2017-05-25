@@ -42,7 +42,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'guard-livereload'
   gem 'guard-rspec'
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'rspec-rails'
   gem 'selenium-webdriver'
 end

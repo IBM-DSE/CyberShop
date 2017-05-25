@@ -349,7 +349,6 @@ DEPENDENCIES
   paperclip (~> 5.0.0)
   puma (~> 3.7)
   rails (~> 5.1.0)
-  rb-fsevent
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
