@@ -6,4 +6,8 @@ module ApplicationHelper
   def company_description
     "The World's Smartest Devices"
   end
+
+  def home_page
+    controller_name == 'company' && action_name == 'home'
+  end
 end
