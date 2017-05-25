@@ -7,7 +7,7 @@
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
     <ul class="dropdown-menu">
       <% Category.all.each do |category| %>
-        <li><a href="<%= category_path(category) %>"><%= category.name %></a></li>
+        <li><%= link_to category.name, category_path(category) %></li>
       <% end %>
     </ul>
   </li>
@@ -15,7 +15,7 @@
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brands <span class="caret"></span></a>
     <ul class="dropdown-menu">
       <% Brand.all.each do |brand| %>
-          <li><a href="#"><%= brand.name %></a></li>
+          <li><%= link_to brand.name, brand_path(brand) %></li>
       <% end %>
     </ul>
   </li>

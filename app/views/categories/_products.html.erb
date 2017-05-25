@@ -1,19 +1,5 @@
 <div class="row">
   <% category.products.each do |product| %>
-      <% unless product.preorder %>
-          <div class="col-sm-6 col-md-4">
-            <div class="thumbnail product">
-              <%= content_tag :div, (image_tag product.image.url), class: 'product-image' %>
-              <div class="caption">
-                <h3><%= product.name %></h3>
-                <p><%= 'by '+product.brand.name if product.brand %></p>
-                <div class="offer-buttons">
-                  <p><a href="#" class="btn btn-success" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add To Cart</a>
-                    <a href="#" class="btn btn-primary" role="button">Details</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-      <% end %>
+      <%= render product unless product.preorder %>
   <% end %>
 </div>
