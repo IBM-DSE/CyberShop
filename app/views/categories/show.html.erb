@@ -1,2 +1,2 @@
 <h1><%= @category.name %></h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<%= render partial: 'products', locals: {category: @category} %>
