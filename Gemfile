@@ -39,6 +39,9 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13.0'
+  gem 'factory_girl_rails'
+  gem 'guard-livereload'
+  gem 'guard-rspec'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
 end
@@ -62,6 +65,7 @@ gem 'jquery-rails'
 # Back-End
 gem 'activeadmin'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'master'
+gem 'paperclip', '~> 5.0.0'
 
 # APIs
 gem 'ibm-machine_learning', git: 'https://github.com/dtom90/ibm-machine_learning.git', branch: 'master'

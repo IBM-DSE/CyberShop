@@ -8,3 +8,4 @@ RSpec.describe MachineLearningService, type: :model do
     expect(foo_bar.errors[:password]).to eq(['Authorization failure'])
   end
 end
+# TODO: move this to a feature spec

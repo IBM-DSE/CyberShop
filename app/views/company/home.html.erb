@@ -1,2 +1,63 @@
 <h1><%= company_name %></h1>
-<p>Description of this store</p>
+<h4><%= company_description %></h4>
+<br>
+<ul id="nav" class="nav nav-tabs">
+  <!--<li role="presentation" class="active"><a href="#"></a></li>-->
+  <li role="presentation" id="categories">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <% Category.all.each do |category| %>
+        <li><%= link_to category.name, category_path(category) %></li>
+      <% end %>
+    </ul>
+  </li>
+  <li role="presentation" id="brands">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brands <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <% Brand.all.each do |brand| %>
+          <li><%= link_to brand.name, brand_path(brand) %></li>
+      <% end %>
+    </ul>
+  </li>
+  <li role="presentation"><a href="#">Deals</a></li>
+</ul>
+
+<!-- Carousel from https://getbootstrap.com/examples/carousel/
+    ================================================== -->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <% (0..@preorders.length).each do |i| %>
+    <li data-target="#myCarousel" data-slide-to="<%= i %>" <%= 'class="active"' if i == 0 %>></li>
+    <% end %>
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <% @preorders.each do |product| %>
+    <div class="item active">
+      <%= image_tag product.image.url %>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1><%= product.name %></h1>
+          <p>Description of the offer</p>
+          <p>
+            <a href="#" class="btn btn-lg btn-success" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Pre-Order</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div><!-- /.carousel -->
+
+<% Category.all.each do |category| %>
+<h3><%= category.name %></h3>
+<%= render partial: 'categories/products', locals: {category: category} %>
+<% end %>

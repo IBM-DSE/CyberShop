@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516205612) do
+ActiveRecord::Schema.define(version: 20170524183859) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 20170516205612) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "brands", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "deployments", force: :cascade do |t|
     t.string "name"
     t.string "status"
@@ -70,6 +78,21 @@ ActiveRecord::Schema.define(version: 20170516205612) do
   create_table "ml_scoring_params", force: :cascade do |t|
     t.string "name"
     t.index ["name"], name: "index_ml_scoring_params_on_name"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer "brand_id"
+    t.boolean "preorder"
+    t.index ["brand_id"], name: "index_products_on_brand_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
 end
