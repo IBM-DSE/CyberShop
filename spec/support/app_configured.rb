@@ -17,7 +17,7 @@ RSpec.shared_context 'app configured', shared_context: :metadata do
   end
 
   def app_name
-    Rails.application.class.parent_name
+    Rails.application.class.parent_name.titleize
   end
 
   # let(:shared_let) { {'arbitrary' => 'object'} }
