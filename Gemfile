@@ -65,6 +65,7 @@ gem 'jquery-rails'
 # Back-End
 gem 'activeadmin'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'master'
+gem 'friendly_id'
 gem 'paperclip', '~> 5.0.0'
 
 # APIs

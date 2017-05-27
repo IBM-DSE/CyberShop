@@ -1,7 +1,5 @@
 class Category < ApplicationRecord
   has_many :products
-
-  def to_param
-    name
-  end
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 end

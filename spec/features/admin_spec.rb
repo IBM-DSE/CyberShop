@@ -25,6 +25,28 @@ RSpec.feature 'Admin', type: :feature do
     expect(find('#tabs')).to have_text 'Scoring'
   end
 
+  scenario 'Categories' do
+
+    within '#header' do
+      within '#tabs' do
+        expect(page).to have_link 'Categories', href: '/admin/categories'
+      end
+    end
+
+    click_link 'Categories'
+    within 'h2' do
+      expect(page).to have_content 'Categories'
+    end
+    within 'table' do
+      Category.all.each do |category|
+        expect(page).to have_text category.name
+        find('tr', text: category.name).click_link 'View'
+        expect(page).to have_text category.name
+      end
+    end
+
+  end
+
   scenario 'Brands' do
 
     within '#header' do

@@ -14,7 +14,7 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
         expect(page).to have_selector 'ul.dropdown-menu'
         within('ul.dropdown-menu') do
           Category.all.each do |category|
-            expect(page).to have_link category.name, href: '/categories/'+category.name
+            expect(page).to have_link category.name, href: '/categories/'+category.slug
           end
         end
       end

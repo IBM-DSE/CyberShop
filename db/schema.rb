@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170527151351) do
+ActiveRecord::Schema.define(version: 20170527204049) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20170527151351) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.string "slug"
+    t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
   create_table "deals", force: :cascade do |t|
@@ -67,6 +69,18 @@ ActiveRecord::Schema.define(version: 20170527151351) do
     t.datetime "updated_at", null: false
     t.integer "machine_learning_service_id"
     t.index ["machine_learning_service_id"], name: "index_deployments_on_machine_learning_service_id"
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
   create_table "machine_learning_services", force: :cascade do |t|
