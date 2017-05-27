@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170527204049) do
+ActiveRecord::Schema.define(version: 20170527232221) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20170527204049) do
 
   create_table "brands", force: :cascade do |t|
     t.string "name"
+    t.string "slug"
+    t.index ["slug"], name: "index_brands_on_slug", unique: true
   end
 
   create_table "categories", force: :cascade do |t|

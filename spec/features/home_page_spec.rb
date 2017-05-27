@@ -24,7 +24,7 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
         expect(page).to have_selector 'ul.dropdown-menu'
         within('ul.dropdown-menu') do
           Brand.all.each do |brand|
-            expect(page).to have_link brand.name, href: '/brands/'+brand.name
+            expect(page).to have_link brand.name, href: '/brands/'+brand.slug
           end
         end
       end
