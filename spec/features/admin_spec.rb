@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'Admin', type: :feature do
   include_context 'app configured'
 
-  scenario 'administrator visits the admin dashboard' do
+  before do
     visit '/admin'
 
     expect(page).to have_text 'You need to sign in or sign up before continuing.'
@@ -12,6 +12,9 @@ RSpec.feature 'Admin', type: :feature do
     page.fill_in 'Email*', with: 'admin@example.com'
     page.fill_in 'Password*', with: 'factorygirl'
     click_button 'Login'
+  end
+
+  scenario 'Dashboard' do
 
     expect(page).to have_selector('#site_title')
     expect(find('#site_title')).to have_link app_name, href: '/'
@@ -21,4 +24,27 @@ RSpec.feature 'Admin', type: :feature do
     expect(find('#tabs')).to have_text 'Ml Scoring Params'
     expect(find('#tabs')).to have_text 'Scoring'
   end
+
+  scenario 'Brands' do
+
+    within '#header' do
+      within '#tabs' do
+        expect(page).to have_link 'Brands', href: '/admin/brands'
+      end
+    end
+
+    click_link 'Brands'
+    within 'h2' do
+      expect(page).to have_content 'Brands'
+    end
+    within 'table' do
+      Brand.all.each do |brand|
+        expect(page).to have_text brand.name
+        find('tr', text: brand.name).click_link 'View'
+        expect(page).to have_text brand.name
+      end
+    end
+
+  end
+
 end
