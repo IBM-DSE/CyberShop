@@ -6,7 +6,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module CyberMart
+require_relative 'company'
+module CyberShop
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
@@ -19,6 +20,7 @@ module CyberMart
       g.controller_specs false
       g.view_specs false
       g.helper_specs false
+      g.model_specs false
     end
   end
 end

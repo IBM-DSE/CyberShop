@@ -12,12 +12,23 @@ RSpec.shared_context 'app configured', shared_context: :metadata do
 
   before do
     FactoryGirl.create :admin_user
-    %w(Smartphones Laptops Desktops).each { |name| FactoryGirl.create :category, name: name }
-    %w(Apricot Gazillion Smithsong).each { |name| FactoryGirl.create :brand, name: name }
+    @category = FactoryGirl.create :category, name: 'Smartphones'
+    %w(Laptops Desktops).each do |name|
+      FactoryGirl.create :category, name: name
+    end
+
+    @brand = FactoryGirl.create :brand, name: 'Apricot'
+    %w(Gazillion Smithsong).each do |name|
+      FactoryGirl.create :brand, name: name
+    end
+    @nodeal_product = FactoryGirl.create :product, name: 'X-Phone', category: @category, brand: @brand
+
+    @product = FactoryGirl.create :product, name: 'A-Phone 8', category: @category, brand: @brand
+    @deal    = FactoryGirl.create :deal, description: 'Get $100 off of this product!', product: @product
   end
 
   def app_name
-    Rails.application.class.parent_name
+    Rails.application.class.parent_name.titleize
   end
 
   # let(:shared_let) { {'arbitrary' => 'object'} }
