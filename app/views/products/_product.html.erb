@@ -11,7 +11,7 @@
       <div class="offer-buttons">
         <p>
           <%= render partial: 'products/button', locals: {product: product} %>
-          <a href="" class="btn btn-lg btn-primary" role="button">Details</a>
+          <a href="<%= product_path(product) %>" class="btn btn-lg btn-primary" role="button">Details</a>
         </p>
       </div>
     </div>
