@@ -6,7 +6,7 @@
       <p><%= 'by '+product.brand.name if product.brand %></p>
       <div class="offer-buttons">
         <p><a href="#" class="btn btn-success" role="button"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add To Cart</a>
-          <a href="#" class="btn btn-primary" role="button">Details</a></p>
+          <a href="<%= product_path(product) %>" class="btn btn-primary" role="button">Details</a></p>
       </div>
     </div>
   </div>

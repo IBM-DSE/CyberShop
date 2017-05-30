@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :categories, only: :show
   resources :brands, only: :show
-  resources :products, only: :show, param: :name
+  resources :products, only: :show
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
