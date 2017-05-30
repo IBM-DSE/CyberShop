@@ -40,5 +40,15 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
       end
     end
 
+    Product.all.each do |product|
+      expect(page).to have_link product.name, href: "/products/#{product.id}"
+      click_link product.name
+      expect(page).to have_text product.name
+      expect(page).to have_text "by #{product.brand.name}"
+      expect(page).to have_text product.deal.description if product.deal
+      expect(page).to have_link product.preorder ? 'Pre-Order' : 'Add To Cart'
+      click_link app_name
+    end
+
   end
 end

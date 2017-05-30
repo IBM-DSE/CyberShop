@@ -3,5 +3,5 @@
 
 <%= content_tag :p, image_tag(@product.image.url) %>
 <br>
-<%= content_tag :h4, @product.deal.description %>
+<%= content_tag :h4, @product.deal.description if @product.deal %>
 <%= render partial: 'button', locals: {product: @product} %>

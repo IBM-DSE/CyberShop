@@ -3,13 +3,13 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    <% (0..Deal.all.length).each do |i| %>
-        <li data-target="#myCarousel" data-slide-to="<%= i %>" <%= 'class="active"' if i == 0 %>></li>
+    <% (1..Deal.all.length).each do |i| %>
+        <li data-target="#myCarousel" data-slide-to="<%= i %>" <%= 'class="active"'.html_safe if i == 1 %>></li>
     <% end %>
   </ol>
   <div class="carousel-inner" role="listbox">
     <% Deal.all.each do |deal| %>
-        <div class="item active">
+        <div class="item <%= 'active' if deal.id == 1 %>">
           <%= image_tag deal.product.image.url %>
           <div class="container">
             <div class="carousel-caption">
