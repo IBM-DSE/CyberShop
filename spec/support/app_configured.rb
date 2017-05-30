@@ -21,7 +21,7 @@ RSpec.shared_context 'app configured', shared_context: :metadata do
     apricot = FactoryGirl.create :brand, name: 'Apricot'
     aphone = FactoryGirl.create :product, name: 'A-Phone 8', brand: apricot
 
-    FactoryGirl.create :deal, description: 'Get $100 off of this product!', product: aphone
+    @deal = FactoryGirl.create :deal, description: 'Get $100 off of this product!', product: aphone
   end
 
   def app_name
