@@ -7,14 +7,16 @@ RSpec.feature 'Scenario 1', type: :feature do
     visit root_path
 
     within('#myCarousel') do
-      expect(page).to have_text @deal.product.name
+      expect(page).to have_text @product.name
       expect(page).to have_text @deal.description
-      expect(page).to have_link 'Details', href: "/products/#{@deal.product.id}"
+      expect(page).to have_link 'Details', href: "/products/#{@product.id}"
       click_link 'Details'
     end
 
-    expect(page).to have_text @deal.product.name
-    expect(page).to have_text "by #{@deal.product.brand.name}"
+    expect(page).to have_text @product.name
+    expect(page).to have_text "by #{@brand.name}"
+    expect(page).to have_text @deal.description
+    expect(page).to have_link 'Add To Cart'
 
   end
 

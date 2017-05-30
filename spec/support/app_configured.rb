@@ -18,10 +18,10 @@ RSpec.shared_context 'app configured', shared_context: :metadata do
     %w(Gazillion Smithsong).each do |name|
       FactoryGirl.create :brand, name: name
     end
-    apricot = FactoryGirl.create :brand, name: 'Apricot'
-    aphone = FactoryGirl.create :product, name: 'A-Phone 8', brand: apricot
+    @brand = FactoryGirl.create :brand, name: 'Apricot'
+    @product = FactoryGirl.create :product, name: 'A-Phone 8', brand: @brand
 
-    @deal = FactoryGirl.create :deal, description: 'Get $100 off of this product!', product: aphone
+    @deal = FactoryGirl.create :deal, description: 'Get $100 off of this product!', product: @product
   end
 
   def app_name
