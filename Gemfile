@@ -58,6 +58,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# Config
+gem 'dotenv-rails'
+
 # Front-End
 gem 'bootstrap-sass'
 gem 'jquery-rails'
@@ -66,6 +69,7 @@ gem 'jquery-rails'
 gem 'activeadmin'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'master'
 gem 'friendly_id'
+gem 'ibm_db', '3.0.4'
 gem 'paperclip', '~> 5.0.0'
 
 # APIs
