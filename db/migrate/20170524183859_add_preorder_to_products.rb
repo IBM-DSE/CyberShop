@@ -1,4 +1,4 @@
-class AddPreorderToProducts < ActiveRecord::Migration[5.1]
+class AddPreorderToProducts < ActiveRecord::Migration
   def change
     add_column :products, :preorder, :boolean
   end

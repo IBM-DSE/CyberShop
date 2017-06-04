@@ -1,4 +1,4 @@
-class AddMachineLearningServiceToDeployments < ActiveRecord::Migration[5.1]
+class AddMachineLearningServiceToDeployments < ActiveRecord::Migration
   def change
     add_reference :deployments, :machine_learning_service, foreign_key: true
   end

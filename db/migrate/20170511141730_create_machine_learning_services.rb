@@ -1,4 +1,4 @@
-class CreateMachineLearningServices < ActiveRecord::Migration[5.1]
+class CreateMachineLearningServices < ActiveRecord::Migration
   def change
     create_table :machine_learning_services do |t|
       t.string :username

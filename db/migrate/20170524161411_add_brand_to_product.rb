@@ -1,4 +1,4 @@
-class AddBrandToProduct < ActiveRecord::Migration[5.1]
+class AddBrandToProduct < ActiveRecord::Migration
   def change
     add_reference :products, :brand, foreign_key: true
   end
