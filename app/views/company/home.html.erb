@@ -1,0 +1,11 @@
+<h1><%= Company.name %></h1>
+<h4><%= Company.description %></h4>
+<br>
+<%= render 'navtabs' %>
+
+<%= render 'deals/carousel' %>
+
+<% Category.all.each do |category| %>
+<h3><%= category.name %></h3>
+<%= render partial: 'categories/products', locals: {category: category} %>
+<% end %>

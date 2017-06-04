@@ -34,7 +34,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '~> 2.13.0'
+  gem 'factory_girl_rails'
+  gem 'guard-livereload'
+  gem 'guard-rspec'
+  gem 'rspec-rails'
+  gem 'selenium-webdriver'
 end
 
 group :development do
@@ -43,6 +50,25 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Config
+gem 'dotenv-rails'
+
+# Front-End
+gem 'bootstrap-sass'
+gem 'jquery-rails'
+
+# Back-End
+gem 'activeadmin'
+gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'master'
+gem 'friendly_id'
+gem 'ibm_db', '3.0.4'
 gem 'paperclip', '~> 5.0.0'
+
+# APIs
+gem 'ibm-machine_learning', git: 'https://github.com/dtom90/ibm-machine_learning.git', branch: 'master'
