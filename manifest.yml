@@ -3,4 +3,4 @@ applications:
 - name: cyber-mart-dev
   buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
   memory: 256MB
-  command: bundle exec rake db:setup && bundle exec rails s -p $PORT
+  command: bundle exec rails s -p $PORT
