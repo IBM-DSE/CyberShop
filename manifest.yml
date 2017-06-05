@@ -1,6 +1,6 @@
 ---
 applications:
-- name: cyber-mart-dev
+- name: CyberShop-dev
   buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
   memory: 256MB
   command: bundle exec rails s -p $PORT
