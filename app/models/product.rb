@@ -1,4 +1,4 @@
-class Product < ApplicationRecord
+class Product < ActiveRecord::Base
   belongs_to :category
   belongs_to :brand
   has_one :deal

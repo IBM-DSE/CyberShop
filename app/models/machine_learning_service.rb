@@ -1,4 +1,4 @@
-class MachineLearningService < ApplicationRecord
+class MachineLearningService < ActiveRecord::Base
   has_many :deployments, dependent: :destroy
   validates :username, presence: true
   validates :password, presence: true
