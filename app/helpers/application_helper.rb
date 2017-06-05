@@ -22,4 +22,10 @@ module ApplicationHelper
     end
     nil
   end
+
+  # Returns the current logged-in user (if any).
+  def current_customer
+    Customer.find 1
+  end
+  
 end

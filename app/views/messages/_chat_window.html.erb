@@ -1,0 +1,26 @@
+<div id="chat-zone">
+  
+  <div id="chat-window">
+    <div id="chat-flow">
+      <div id="chat-messages">
+        <%= render current_customer.messages %>
+      </div>
+    </div>
+
+    <div id="chat-input-container">
+      <%= render 'messages/input' %>
+    </div>
+  </div>
+
+  <div id="chat-button">
+    <%= image_tag 'watson-logo-round.png', id: 'watson-button' %>
+    <div id="close-button">
+      <span id="close-icon">X</span>
+      <div class="gradient"></div>
+    </div>
+  </div>
+  
+</div>
+
+<%= render 'messages/user_message' %>
+<%= javascript_include_tag 'chat_window' %>

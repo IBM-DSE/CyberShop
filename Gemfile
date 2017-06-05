@@ -69,6 +69,7 @@ gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'maste
 gem 'friendly_id'
 gem 'ibm_db', '3.0.4'
 gem 'paperclip', '~> 5.0.0'
+gem 'rest-client'
 
 # APIs
 gem 'ibm-machine_learning', git: 'https://github.com/dtom90/ibm-machine_learning.git', branch: 'master'
