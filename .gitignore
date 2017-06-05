@@ -16,5 +16,7 @@
 !/log/.keep
 /tmp
 
+/public/assets
+
 # IDE files
 .idea
