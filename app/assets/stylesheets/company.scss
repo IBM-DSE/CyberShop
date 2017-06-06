@@ -16,8 +16,11 @@
 }
 
 .product-image {
-  //height: calc(100% - 130px);
   line-height: 100%;
+}
+
+.product-image img {
+  max-height: 400px;
 }
 
 .product-buttons {
