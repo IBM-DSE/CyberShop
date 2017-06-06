@@ -1,0 +1,5 @@
+<% @messages.each do |message| %>
+    $("#chat-messages").append("<%= j render partial: 'watson_message', locals: {content: message} %>");
+<% end %>
+$("#message_context").val("<%== j @context  %>");
+$("#chat-messages img").load(function(){ ChatWindow.received_message(); });

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170527232221) do
+ActiveRecord::Schema.define(version: 20170605184120) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -58,6 +58,12 @@ ActiveRecord::Schema.define(version: 20170527232221) do
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true
 
+  create_table "customers", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "deals", force: :cascade do |t|
     t.integer  "product_id"
     t.string   "description", limit: 255
@@ -97,6 +103,16 @@ ActiveRecord::Schema.define(version: 20170527232221) do
     t.string   "name",       limit: 255
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string   "content",         limit: 255
+    t.boolean  "watson_response"
+    t.integer  "customer_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "messages", ["customer_id"], name: "index_messages_on_customer_id"
+
   create_table "ml_scoring_param_options", force: :cascade do |t|
     t.integer "ml_scoring_param_id"
     t.string  "value",               limit: 255
@@ -125,6 +141,7 @@ ActiveRecord::Schema.define(version: 20170527232221) do
 
   add_foreign_key "DEALS", "DEALS", column: "PRODUCT_ID", primary_key: "ID", name: "FK_RAILS_C665F8C861", on_update: :noaction, on_delete: :noaction
   add_foreign_key "DEPLOYMENTS", "DEPLOYMENTS", column: "MACHINE_LEARNING_SERVICE_ID", primary_key: "ID", name: "FK_RAILS_0C91EA28A1", on_update: :noaction, on_delete: :noaction
+  add_foreign_key "MESSAGES", "MESSAGES", column: "CUSTOMER_ID", primary_key: "ID", name: "FK_RAILS_5B6593A5B8", on_update: :noaction, on_delete: :noaction
   add_foreign_key "ML_SCORING_PARAM_OPTIONS", "ML_SCORING_PARAM_OPTIONS", column: "ML_SCORING_PARAM_ID", primary_key: "ID", name: "FK_RAILS_73FB8B32A4", on_update: :noaction, on_delete: :noaction
   add_foreign_key "PRODUCTS", "PRODUCTS", column: "BRAND_ID", primary_key: "ID", name: "FK_RAILS_F3B4D49CAA", on_update: :noaction, on_delete: :noaction
   add_foreign_key "PRODUCTS", "PRODUCTS", column: "CATEGORY_ID", primary_key: "ID", name: "FK_RAILS_FB915499A4", on_update: :noaction, on_delete: :noaction

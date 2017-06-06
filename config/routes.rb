@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'messages', to: 'messages#start'
+  post 'messages', to: 'messages#create'
+
   root 'company#home'
 
   get '/about', to: 'company#about'
