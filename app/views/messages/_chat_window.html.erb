@@ -23,3 +23,6 @@
 </div>
 
 <%= render 'messages/user_message' %>
+
+<%= hidden_field_tag 'chat_window_delay', ENV['CHAT_WINDOW_DELAY'] || 1 %>
+<%= javascript_include_tag 'auto_chat' %>
