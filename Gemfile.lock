@@ -162,8 +162,6 @@ GEM
       domain_name (~> 0.5)
     http_parser.rb (0.6.0)
     i18n (0.8.4)
-    ibm_db (3.0.4)
-      activerecord (>= 4.2.0)
     inherited_resources (1.7.2)
       actionpack (>= 3.2, < 5.2.x)
       has_scope (~> 0.6)
@@ -366,7 +364,6 @@ DEPENDENCIES
   guard-livereload
   guard-rspec
   ibm-machine_learning!
-  ibm_db (= 3.0.4)
   jbuilder (~> 2.0)
   jquery-rails
   paperclip (~> 5.0.0)
