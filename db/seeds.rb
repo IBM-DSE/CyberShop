@@ -28,7 +28,7 @@ fujiBook = Product.create! name: 'FujiBook',
                 brand: Brand.find_by_name('Apricot'),
                 image: File.new(Rails.root.join('public', 'images', 'FujiBook.jpg'), 'r')
 
-Product.create! name: 'sPhone 8',
+sPhone8 = Product.create! name: 'sPhone 8',
                 category: Category.find_by_name('Smartphones'),
                 brand: Brand.find_by_name('Singsong'),
                 image: File.new(Rails.root.join('public', 'images', 'sPhone8.jpg'), 'r')
@@ -38,3 +38,6 @@ Deal.create! product: fujiBook,
 
 Deal.create! product: aPhone10,
              description: 'Pre-Order the upcoming aPhone 10 for just €100!'
+
+Deal.create! product: sPhone8,
+             description: "Singsong's all-new sPhone8 has a voice assistant Boxy that can sing for you!"

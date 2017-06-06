@@ -41,6 +41,11 @@ from https://getbootstrap.com/examples/carousel/
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   z-index: 10;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 1);
+}
+
+.carousel-caption p {
+  font-size: 18px;
 }
 
 /* Declare heights because of positioning of img element */
