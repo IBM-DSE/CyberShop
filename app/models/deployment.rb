@@ -1,4 +1,4 @@
-class Deployment < ApplicationRecord
+class Deployment < ActiveRecord::Base
   belongs_to :machine_learning_service
 
   def self.display_columns

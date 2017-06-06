@@ -1,4 +1,4 @@
-class MlScoringParam < ApplicationRecord
+class MlScoringParam < ActiveRecord::Base
   has_many :ml_scoring_param_options, dependent: :destroy
   accepts_nested_attributes_for :ml_scoring_param_options, allow_destroy: true
   validates :name, presence: true
