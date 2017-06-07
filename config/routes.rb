@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :categories, only: :show
   resources :brands, only: :show
   resources :products, only: :show
+  get '/products/:id/order', to: 'products#add_to_cart', as: :order_product
+  get '/cart', to: 'products#cart', as: :cart
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
