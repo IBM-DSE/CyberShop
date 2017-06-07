@@ -1,5 +1,20 @@
 <%= content_tag :h1, 'Shopping Cart' %>
 <br>
+<% if @special_deal and not @cart.include? @special_deal.product %>
+<div class="jumbotron">
+  <h4>
+    <%= @special_deal.description %>
+  </h4>
+  <p>
+    <%= image_tag @special_deal.product.image.url, style: 'float: left; height: 7em; margin-right: 1em;' %>
+    <h3><%= @special_deal.product.name %></h3>
+    <p>
+      by <%= @special_deal.product.brand.name %>
+    </p>
+    <%= render partial: 'products/details_cart_buttons', locals: {product: @special_deal.product} %>
+  </p>
+</div>
+<% end %>
 <table class='shopping-cart'>
 <% @cart.each do |product| %>
   <tr>

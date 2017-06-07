@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   def cart
     init_cart_if_empty
     @cart = Product.find session[:cart]
+    @special_deal = @cart.collect(&:special_deal).compact[0]
   end
   
   private
