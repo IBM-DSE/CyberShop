@@ -8,7 +8,7 @@
     <% end %>
   </ol>
   <div class="carousel-inner" role="listbox">
-    <% Deal.all.each do |deal| %>
+    <% @public_deals.each do |deal| %>
         <div class="item <%= 'active' if deal.id == 1 %>">
           <%= image_tag deal.product.image.url %>
           <div class="container">
