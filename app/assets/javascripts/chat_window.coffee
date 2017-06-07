@@ -32,6 +32,11 @@ ChatWindow.received_message = ->
   ready_input()
 
 $(document).ready ->
+
+  $(window).bind "pageshow", ->
+    form = $('form')
+    form[0].reset()
+    
   $('#chat-button').click ->
     toggle()
     

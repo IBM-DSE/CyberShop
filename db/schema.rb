@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170605184120) do
+ActiveRecord::Schema.define(version: 20170606234715) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -66,9 +66,13 @@ ActiveRecord::Schema.define(version: 20170605184120) do
 
   create_table "deals", force: :cascade do |t|
     t.integer  "product_id"
-    t.string   "description", limit: 255
+    t.string   "description",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "deals", ["product_id"], name: "index_deals_on_product_id"
@@ -139,10 +143,4 @@ ActiveRecord::Schema.define(version: 20170605184120) do
 
   add_index "products", ["category_id"], name: "index_products_on_category_id"
 
-  add_foreign_key "DEALS", "DEALS", column: "PRODUCT_ID", primary_key: "ID", name: "FK_RAILS_C665F8C861", on_update: :noaction, on_delete: :noaction
-  add_foreign_key "DEPLOYMENTS", "DEPLOYMENTS", column: "MACHINE_LEARNING_SERVICE_ID", primary_key: "ID", name: "FK_RAILS_0C91EA28A1", on_update: :noaction, on_delete: :noaction
-  add_foreign_key "MESSAGES", "MESSAGES", column: "CUSTOMER_ID", primary_key: "ID", name: "FK_RAILS_5B6593A5B8", on_update: :noaction, on_delete: :noaction
-  add_foreign_key "ML_SCORING_PARAM_OPTIONS", "ML_SCORING_PARAM_OPTIONS", column: "ML_SCORING_PARAM_ID", primary_key: "ID", name: "FK_RAILS_73FB8B32A4", on_update: :noaction, on_delete: :noaction
-  add_foreign_key "PRODUCTS", "PRODUCTS", column: "BRAND_ID", primary_key: "ID", name: "FK_RAILS_F3B4D49CAA", on_update: :noaction, on_delete: :noaction
-  add_foreign_key "PRODUCTS", "PRODUCTS", column: "CATEGORY_ID", primary_key: "ID", name: "FK_RAILS_FB915499A4", on_update: :noaction, on_delete: :noaction
 end
