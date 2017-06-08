@@ -2,12 +2,19 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find params[:id]
     @deals = (@product.trigger_deals.where(special: false) << @product.deal).compact
+    @in_cart = session[:cart].include? @product.id
   end
   
   def add_to_cart
     @product = Product.find params[:id]
     init_cart_if_empty
     session[:cart] << @product.id
+    redirect_to action: 'cart'
+  end
+
+  def remove_from_cart
+    init_cart_if_empty
+    session[:cart].delete params[:id].to_i
     redirect_to action: 'cart'
   end
   

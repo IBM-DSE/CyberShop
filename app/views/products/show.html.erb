@@ -8,5 +8,9 @@
   <%= price @product %>
 </p>
 <p>
-  <%= render partial: 'cart_button', locals: { product: @product} %>
+  <% if @in_cart %>
+    <%= link_to 'View in your Cart >', cart_path, class: 'btn btn-lg btn-primary' %>
+  <% else %>
+    <%= render partial: 'cart_button', locals: { product: @product} %>
+  <% end %>
 </p>

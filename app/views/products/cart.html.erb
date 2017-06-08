@@ -18,6 +18,9 @@
       </div>
       <%= price product %>
     </td>
+    <td>
+      <%= link_to 'Remove', remove_product_path(product) %>
+    </td>
   </tr>
 <% end %>
 </table>
