@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def show
     @product = Product.find params[:id]
-    @deals = @product.trigger_deals.where special: false
+    @deals = (@product.trigger_deals.where(special: false) << @product.deal).compact
   end
   
   def add_to_cart

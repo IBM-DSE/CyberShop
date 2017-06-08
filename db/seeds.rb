@@ -38,7 +38,7 @@ aHeadphones = Product.create! name:     'Sounds by Sir Simon',
                               price:    299.00
 
 Deal.create! product:     aHeadphones,
-             description: 'Get a FREE set of headphones when you purchase Honeycrisp Pro by Apricot!',
+             description: 'Get a FREE pair of Sounds by Sir Simon headphones when you purchase Honeycrisp Pro by Apricot!',
              trigger_product: honeycrisp,
              price:    0.00
 

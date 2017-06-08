@@ -2,12 +2,16 @@
   <h4>
     <%= deal.description %>
   </h4>
-  <p>
-    <%= image_tag deal.product.image.url, style: 'float: left; height: 7em; margin-right: 1em;' %>
-  <h3><%= deal.product.name %></h3>
-  <p>
-    by <%= deal.product.brand.name %>
-  </p>
-  <%= render partial: 'products/details_cart_buttons', locals: {product: deal.product} %>
+  <% product_page = current_page?(action: 'show', id: deal.product.id) %>
+  <% if deal.trigger_product %>
+    <% src = product_page ? deal.trigger_product : deal.product %>
+    <p>
+      <%= image_tag src.image.url, style: 'float: left; height: 7em; margin-right: 1em;' %>
+    <h3><%= src.name %></h3>
+    <p>
+      by <%= src.brand.name %>
+    </p>
+    <%= render partial: "products/details#{'_cart' if action_name == 'cart'}_button", locals: {product: src} %>
+  <% end %>
   </p>
 </div>

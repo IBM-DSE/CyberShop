@@ -9,7 +9,7 @@
       <h3><%= link_to product.name, product_path(product) %></h3>
       <p><%= 'by '+product.brand.name if product.brand %></p>
       <div class="offer-buttons">
-        <%= render partial: 'products/details_cart_buttons', locals: {product: product} %>
+        <%= render partial: 'products/details_cart_button', locals: { product: product} %>
       </div>
     </div>
   </div>
