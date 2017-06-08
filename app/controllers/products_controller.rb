@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
 
   def remove_from_cart
     init_cart_if_empty
-    session[:cart].delete params[:id].to_i
+    session[:cart].delete params[:id]
     redirect_to action: 'cart'
   end
   

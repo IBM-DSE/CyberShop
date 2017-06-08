@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608104004) do
+ActiveRecord::Schema.define(version: 20170608141740) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -144,8 +144,10 @@ ActiveRecord::Schema.define(version: 20170608104004) do
     t.integer  "brand_id"
     t.boolean  "preorder"
     t.decimal  "price"
+    t.string   "slug"
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id"
+  add_index "products", ["slug"], name: "index_products_on_slug", unique: true
 
 end

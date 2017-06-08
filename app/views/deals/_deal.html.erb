@@ -2,7 +2,7 @@
   <h4>
     <%= deal.description %>
   </h4>
-  <% product_page = current_page?(action: 'show', id: deal.product.id) %>
+  <% product_page = current_page?(action: 'show', id: deal.product.friendly_id) %>
   <% if deal.trigger_product %>
     <% src = product_page ? deal.trigger_product : deal.product %>
     <p>

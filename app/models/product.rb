@@ -8,4 +8,7 @@ class Product < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
   
   attr_accessor :discount_price
+  
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 end
