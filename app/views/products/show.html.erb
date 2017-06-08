@@ -7,5 +7,8 @@
 <%= render @deals %>
 
 <p>
-<%= render partial: 'cart_button', locals: { product: @product} %>
+  <%= price @product %>
+</p>
+<p>
+  <%= render partial: 'cart_button', locals: { product: @product} %>
 </p>

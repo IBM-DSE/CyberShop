@@ -1,10 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
 AdminUser.create! email: 'admin@example.com', password: 'password', password_confirmation: 'password'
 
 %w(Smartphones Laptops Headphones).each {|name| Category.create! name: name}
@@ -22,7 +16,7 @@ aPhone8 = Product.create! name:     'aPhone 8',
                           category: Category.find_by_name('Smartphones'),
                           brand:    Brand.find_by_name('Apricot'),
                           image:    File.new(Rails.root.join('public', 'images', 'aPhone10-wide.jpg'), 'r'),
-                          price:    799.00,
+                          price:    100.00,
                           preorder: true
 
 sPhone8 = Product.create! name:     'sPhone 8',
@@ -45,7 +39,8 @@ aHeadphones = Product.create! name:     'Sounds by Sir Simon',
 
 Deal.create! product:     aHeadphones,
              description: 'Get a FREE set of headphones when you purchase Honeycrisp Pro by Apricot!',
-             trigger_product: honeycrisp
+             trigger_product: honeycrisp,
+             price:    0.00
 
 Deal.create! product:     aPhone8,
              description: 'Pre-Order the upcoming aPhone 8 for just €100!'
@@ -56,4 +51,5 @@ Deal.create! product:     sPhone8,
 Deal.create! product:         aPhone8,
              description:     'Good news! Because you are a loyal customer of the Apricot line and are about to purchase the Honeycrisp Book, we offer to waive the regular €100 Pre-Order. Add it to your cart right now for free!',
              special:         true,
-             trigger_product: honeycrisp
+             trigger_product: honeycrisp,
+             price:    0.00

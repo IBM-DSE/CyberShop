@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607235513) do
+ActiveRecord::Schema.define(version: 20170608104004) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20170607235513) do
     t.datetime "image_updated_at"
     t.boolean  "special"
     t.integer  "trigger_product_id"
+    t.decimal  "price"
   end
 
   add_index "deals", ["product_id"], name: "index_deals_on_product_id"
