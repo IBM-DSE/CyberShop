@@ -1,6 +1,6 @@
 class CompanyController < ApplicationController
   def home
-    @public_deals = Deal.where special: nil
+    @public_deals = Deal.where special: false
   end
 
   def about

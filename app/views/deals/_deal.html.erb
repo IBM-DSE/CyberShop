@@ -1,0 +1,13 @@
+<div class="jumbotron">
+  <h4>
+    <%= deal.description %>
+  </h4>
+  <p>
+    <%= image_tag deal.product.image.url, style: 'float: left; height: 7em; margin-right: 1em;' %>
+  <h3><%= deal.product.name %></h3>
+  <p>
+    by <%= deal.product.brand.name %>
+  </p>
+  <%= render partial: 'products/details_cart_buttons', locals: {product: deal.product} %>
+  </p>
+</div>

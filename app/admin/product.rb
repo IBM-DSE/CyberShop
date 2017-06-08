@@ -3,7 +3,7 @@ ActiveAdmin.register Product do
 
   form do |f|
     f.semantic_errors
-    f.inputs :name, :category, :brand, :image, :preorder
+    f.inputs :name, :category, :brand, :image, :price, :preorder
     f.actions
   end
 

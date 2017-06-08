@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   def show
     @product = Product.find params[:id]
+    @deals = @product.trigger_deals.where special: false
   end
   
   def add_to_cart
@@ -13,7 +14,8 @@ class ProductsController < ApplicationController
   def cart
     init_cart_if_empty
     @cart = Product.find session[:cart]
-    @special_deal = @cart.collect(&:special_deal).compact[0]
+    trigger_deals = @cart.collect(&:trigger_deals).flatten
+    @special_deal = trigger_deals.map { |d| d unless @cart.include? d.product }.compact[0]
   end
   
   private

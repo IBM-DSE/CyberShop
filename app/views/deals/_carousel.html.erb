@@ -3,20 +3,21 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    <% (1..Deal.all.length).each do |i| %>
+    <% (1..@public_deals.length).each do |i| %>
         <li data-target="#myCarousel" data-slide-to="<%= i %>" <%= 'class="active"'.html_safe if i == 1 %>></li>
     <% end %>
   </ol>
   <div class="carousel-inner" role="listbox">
     <% @public_deals.each do |deal| %>
         <div class="item <%= 'active' if deal.id == 1 %>">
-          <%= image_tag deal.product.image.url %>
+          <% src = deal.trigger_product ? deal.trigger_product : deal.product %>
+          <%= image_tag src.image.url %>
           <div class="container">
             <div class="carousel-caption">
-              <h1><%= deal.product.name %></h1>
+              <h1><%= src.name %></h1>
               <p><%= deal.description %></p>
               <p>
-                <a href="<%= product_path deal.product %>" class="btn btn-lg btn-primary" role="button">Details</a>
+                <%= render partial: 'products/details_button', locals: {product: src} %>
               </p>
             </div>
           </div>

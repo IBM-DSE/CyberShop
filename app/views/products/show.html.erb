@@ -2,13 +2,10 @@
 <h4>by <%= @product.brand.name %></h4>
 <%= content_tag :p, image_tag(@product.image.url) %>
 
-<% if @product.deal %>
-<p>
-<%= content_tag :h4, @product.deal.description %>
-<%= image_tag @product.deal.image if @product.deal.image_file_name %>
-</p>
-<% end %>
+<%= @product.deal if @product.deal %>
+
+<%= render @deals %>
 
 <p>
-<%= render partial: 'button', locals: {product: @product} %>
+<%= render partial: 'cart_button', locals: { product: @product} %>
 </p>

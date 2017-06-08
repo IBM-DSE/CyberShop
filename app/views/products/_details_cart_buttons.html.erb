@@ -1,4 +1,4 @@
 <p>
-  <a href="<%= product_path(product) %>" class="btn btn-lg btn-primary" role="button">Details</a>
-  <%= render partial: 'products/button', locals: {product: product} %>
+  <%= render partial: 'products/details_button', locals: {product: product} %>
+  <%= render partial: 'products/cart_button', locals: { product: product} %>
 </p>
