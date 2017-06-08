@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   def add_to_cart
     @product = Product.find params[:id]
     init_cart_if_empty
-    session[:cart] << @product.id
+    session[:cart] << @product.friendly_id
     redirect_to action: 'cart'
   end
 
@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
   
   def cart
     init_cart_if_empty
-    @cart = Product.find session[:cart]
+    @cart = session[:cart].map { |id| Product.find id } 
     trigger_deals = @cart.collect(&:trigger_deals).flatten.compact
     offered_deals = []
     trigger_deals.each do |deal|
