@@ -1,6 +1,6 @@
 class CompanyController < ApplicationController
   def home
-    @preorders = Product.where preorder: true
+    @public_deals = Deal.where special: false
   end
 
   def about

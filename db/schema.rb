@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170606234715) do
+ActiveRecord::Schema.define(version: 20170608144012) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -73,9 +73,13 @@ ActiveRecord::Schema.define(version: 20170606234715) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.boolean  "special"
+    t.integer  "trigger_product_id"
+    t.decimal  "price"
   end
 
   add_index "deals", ["product_id"], name: "index_deals_on_product_id"
+  add_index "deals", ["trigger_product_id"], name: "index_deals_on_trigger_product_id"
 
   create_table "deployments", force: :cascade do |t|
     t.string   "name",                        limit: 255
@@ -139,8 +143,20 @@ ActiveRecord::Schema.define(version: 20170606234715) do
     t.datetime "image_updated_at"
     t.integer  "brand_id"
     t.boolean  "preorder"
+    t.decimal  "price"
+    t.string   "slug"
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id"
+  add_index "products", ["slug"], name: "index_products_on_slug", unique: true
+
+  create_table "trending_topics", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "trending_topics", ["product_id"], name: "index_trending_topics_on_product_id"
 
 end

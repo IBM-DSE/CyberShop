@@ -9,7 +9,7 @@ RSpec.feature 'Scenario 1', type: :feature do
     within('#myCarousel') do
       expect(page).to have_text @product.name
       expect(page).to have_text @deal.description
-      expect(page).to have_link 'Details', href: "/products/#{@product.id}"
+      expect(page).to have_link 'Details', href: "/products/#{@product.friendly_id}"
       click_link 'Details'
     end
 

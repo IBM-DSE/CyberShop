@@ -1,0 +1,17 @@
+<div class="jumbotron">
+  <h4>
+    <%= deal.description %>
+  </h4>
+  <% product_page = current_page?(action: 'show', id: deal.product.friendly_id) %>
+  <% if deal.trigger_product %>
+    <% src = product_page ? deal.trigger_product : deal.product %>
+    <p>
+      <%= image_tag src.image.url, style: 'float: left; height: 7em; margin-right: 1em;' %>
+    <h3><%= src.name %></h3>
+    <p>
+      by <%= src.brand.name %>
+    </p>
+    <%= render partial: "products/details#{'_cart' if action_name == 'cart'}_button", locals: {product: src} %>
+  <% end %>
+  </p>
+</div>

@@ -1,0 +1,3 @@
+<%= link_to order_product_path(product), class: "btn btn-lg btn-#{product.preorder ? 'warning' : 'success'}" do %>
+  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <%= product.preorder ? 'Pre-Order' : 'Add To Cart' %>
+<% end %>
