@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608141740) do
+ActiveRecord::Schema.define(version: 20170608144012) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -149,5 +149,14 @@ ActiveRecord::Schema.define(version: 20170608141740) do
 
   add_index "products", ["category_id"], name: "index_products_on_category_id"
   add_index "products", ["slug"], name: "index_products_on_slug", unique: true
+
+  create_table "trending_topics", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "trending_topics", ["product_id"], name: "index_trending_topics_on_product_id"
 
 end
