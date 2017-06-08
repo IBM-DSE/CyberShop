@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :init_cart_if_empty
+  
   def show
     @product = Product.find params[:id]
     @deals = (@product.trigger_deals.where(special: false) << @product.deal).compact
@@ -7,19 +9,16 @@ class ProductsController < ApplicationController
   
   def add_to_cart
     @product = Product.find params[:id]
-    init_cart_if_empty
     session[:cart] << @product.friendly_id
     redirect_to action: 'cart'
   end
 
   def remove_from_cart
-    init_cart_if_empty
     session[:cart].delete params[:id]
     redirect_to action: 'cart'
   end
   
   def cart
-    init_cart_if_empty
     @cart = session[:cart].map { |id| Product.find id } 
     trigger_deals = @cart.collect(&:trigger_deals).flatten.compact
     offered_deals = []

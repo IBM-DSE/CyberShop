@@ -36,12 +36,12 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
       Deal.all.each do |deal|
         expect(page).to have_text deal.product.name
         expect(page).to have_text deal.description
-        expect(page).to have_link 'Details', href: "/products/#{deal.product.id}"
+        expect(page).to have_link 'Details', href: "/products/#{deal.product.friendly_id}"
       end
     end
 
     Product.all.each do |product|
-      expect(page).to have_link product.name, href: "/products/#{product.id}"
+      expect(page).to have_link product.name, href: "/products/#{product.friendly_id}"
       click_link product.name
       expect(page).to have_text product.name
       expect(page).to have_text "by #{product.brand.name}"
