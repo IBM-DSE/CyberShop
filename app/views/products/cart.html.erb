@@ -14,7 +14,7 @@
     </td>
     <td class="col-md-2">
       <div style="font-size: 16px">
-        <%= content_tag(:strike, number_to_currency(product.price, unit: '€')) + tag(:br) if product.discount_price %>
+        <%= content_tag(:strike, format_price(product.price)) + tag(:br) if product.discount_price %>
       </div>
       <%= price product %>
     </td>

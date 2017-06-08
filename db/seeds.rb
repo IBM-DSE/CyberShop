@@ -49,7 +49,7 @@ Deal.create! product:     sPhone8,
              description: "Singsong's all-new sPhone8 has a voice assistant Boxy that can sing for you!"
 
 Deal.create! product:         aPhone8,
-             description:     'Good news! Because you are a loyal customer of the Apricot line and are about to purchase the Honeycrisp Book, we offer to waive the regular €100 Pre-Order. Add it to your cart right now for free!',
+             description:     'Good news! Because you are a loyal customer of the Apricot line and are about to purchase the Honeycrisp Book, we offer to waive the regular €100 Pre-Order fee. Add it to your cart right now for free!',
              special:         true,
              trigger_product: honeycrisp,
              price:    0.00
