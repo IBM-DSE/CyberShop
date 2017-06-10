@@ -3,7 +3,8 @@ AdminUser.create! email: 'admin@example.com', password: 'password', password_con
 %w(Smartphones Laptops Headphones).each {|name| Category.create! name: name}
 %w(Apricot Gazillion Singsong).each {|name| Brand.create! name: name}
 
-Customer.create! name: 'John Smith'
+Customer.create! name: 'David', email: 'david@example.com', password: 'password', password_confirmation: 'password'
+Customer.create! name: 'Keith', email: 'keith@example.com', password: 'password', password_confirmation: 'password'
 
 aPhone7 = Product.create! name:     'aPhone 7',
                           category: Category.find_by_name('Smartphones'),

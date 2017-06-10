@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :customers
   get 'messages', to: 'messages#start'
   post 'messages', to: 'messages#create'
 
