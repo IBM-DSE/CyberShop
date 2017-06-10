@@ -1,7 +1,7 @@
 class Conversation
 
   # class method for sending string message content and customer context to WC
-  def self.send(customer, message, context)
+  def self.send(message, context)
 
     # if this is the first message in the conversation, check to see if the customer will churn
     # context[:will_churn] = customer.will_churn? if context.empty?

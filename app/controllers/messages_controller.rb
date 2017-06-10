@@ -1,21 +1,10 @@
 class MessagesController < ApplicationController
 
-  # Start conversation with Watson
-  def start
-
-    if current_customer.messages.empty? # if there are no messages with this customer yet
-
-      # Send empty string to Watson Conversation
-      Message.send_to_watson_conversation('', current_customer)
-
-    end
-
-  end
-
   def create
     context = JSON.parse(message_params[:context].presence || '{}') # set the context variable as a Hash
+    context.merge! current_customer.conversation_context if context.empty?  # add customer context if first message
 
-    response = Conversation.send current_customer, message_params[:content], context  # send message and context to Watson Conversation
+    response = Conversation.send message_params[:content], context  # send message and context to Watson Conversation
 
     # Extract messages and context 
     @messages = response[:output][:text]

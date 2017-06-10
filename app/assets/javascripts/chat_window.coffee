@@ -19,7 +19,7 @@ ready_input = ->
 
 set_user_message = (message) ->
   if message.length > 0
-    template = $('#myTemplate').html()
+    template = $('#user-message-template').html()
     result = Mustache.render(template, {'message': message});
     $("#chat-messages").append(result)
   

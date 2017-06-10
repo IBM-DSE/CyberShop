@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170610152332) do
+ActiveRecord::Schema.define(version: 20170610192511) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20170610152332) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "interest"
   end
 
   add_index "customers", ["email"], name: "index_customers_on_email", unique: true
