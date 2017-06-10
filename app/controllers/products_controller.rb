@@ -3,13 +3,26 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find params[:id]
-    @deals = (@product.trigger_deals.where(special: false) << @product.deal).compact
+    combo_deals = @product.trigger_deals.where(special: false)
+    @deals = (combo_deals << @product.deal).compact
+    if combo_deals.first
+      @additional_product = combo_deals.first.product
+      @discount_price = combo_deals.first.price
+    end
     @in_cart = session[:cart].include? @product.id
   end
   
   def add_to_cart
     @product = Product.find params[:id]
     session[:cart] << @product.friendly_id
+    redirect_to action: 'cart'
+  end
+
+  def add_multiple_to_cart
+    @product = Product.find order_products_params[:id]
+    @additional_product = Product.find params[:additional_product]
+    session[:cart] << @product.friendly_id
+    session[:cart] << @additional_product.friendly_id if @additional_product
     redirect_to action: 'cart'
   end
 
@@ -37,6 +50,10 @@ class ProductsController < ApplicationController
   
   def init_cart_if_empty
     session[:cart] = [] unless session[:cart]
+  end
+  
+  def order_products_params
+    params.require(:product).permit(:id, :additional_product)
   end
   
 end

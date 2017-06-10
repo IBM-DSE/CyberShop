@@ -1,3 +1,15 @@
-<%= link_to order_product_path(product), class: "btn btn-lg btn-#{product.preorder ? 'warning' : 'success'}" do %>
-  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <%= product.preorder ? 'Pre-Order' : 'Add To Cart' %>
+<% if defined? additional_product and not additional_product.nil? %>
+  <%= form_for product, url: order_products_path, method: 'post' do |f| %>
+    <%= f.hidden_field :id %>
+    <%= f.submit 'Add To Cart', class: "btn btn-lg btn-#{product.preorder ? 'warning' : 'success'}" %>
+        &nbsp;&nbsp;
+    <span style="font-size: 16px">
+    <%= check_box_tag :additional_product, additional_product.id %>
+    Include <%= additional_product.name %> for <strong><%= format_price(price) %></strong>
+    </span>
+  <% end %>
+<% else %>
+  <%= link_to order_product_path(product), class: "btn btn-lg btn-#{product.preorder ? 'warning' : 'success'}" do %>
+    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <%= product.preorder ? 'Pre-Order' : 'Add To Cart' %>
+  <% end %>
 <% end %>
