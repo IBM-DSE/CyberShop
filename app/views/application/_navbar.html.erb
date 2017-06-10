@@ -1,6 +1,6 @@
 <!-- Static navbar -->
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
+<nav class="top-navbar navbar-default">
+  <div class="top-navbar container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
@@ -8,14 +8,72 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to Company.name, root_path, class: 'navbar-brand' unless home_page  %>
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
+    <div class="top-navbar navbar-collapse collapse">
       <ul class="nav navbar-nav">
-
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">USA <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">USA</a></li>
+            <li><a href="#">UK</a></li>
+            <li><a href="#">Deutschland</a></li>
+          </ul>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'Shopping Cart', cart_path %></li>
+        <li>
+          <%= link_to '#' do %>
+            <%= content_tag :span, class: 'glyphicon glyphicon glyphicon-user', 'aria-hidden' => 'true' do %>
+              <%= content_tag :span, ' LOGIN', class: 'login' %>
+            <% end %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to cart_path, class: 'cart-button' do %>
+            <%= content_tag :span, class: 'cart-icon glyphicon glyphicon-shopping-cart', 'aria-hidden' => 'true' do %>
+              <%= content_tag :span, ' € 0', class: 'cart-price' %>
+            <% end %>
+          <% end %>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container-fluid -->
+</nav>
+<nav class="main-navbar navbar-default">
+  <div class="main-navbar">
+    <div class="main-navbar navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to root_path, class: 'navbar-brand' do %>
+        <%= content_tag :span, 'CYBERSHOP', class: 'company-name' %>
+      <% end %>
+    </div>
+    <div class="main-navbar navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% Category.all.each do |category| %>
+                <li><%= link_to category.name, category_path(category) %></li>
+            <% end %>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brands <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% Brand.all.each do |brand| %>
+                <li><%= link_to brand.name, brand_path(brand) %></li>
+            <% end %>
+          </ul>
+        </li>
+        <li class="dropdown"><a href="#">Deals</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
