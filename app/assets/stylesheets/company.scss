@@ -134,8 +134,8 @@ $carousel-height: 600px;
       .carousel-description {
         text-align: right;
         height: 100%;
-        padding-top: 175px;
-        padding-right: 12vw;
+        padding-top: 10em;
+        padding-right: 10vw;
         
         h1 {
           font-size: 67.2px;
@@ -147,9 +147,6 @@ $carousel-height: 600px;
         }
         
         .btn {
-          width: 128px;
-          height: 44px;
-          font-size: 13px;
           background-color: #414141;
           border-radius: 0;
         }
