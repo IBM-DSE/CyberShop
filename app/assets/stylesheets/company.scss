@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+  font-family: Montserrat;
+}
+
 /** TOP NAVBAR */
 $top-navbar-height: 40px;
 
@@ -16,14 +20,12 @@ $top-navbar-height: 40px;
   }
   
   .login {
-    font-family: Montserrat;
     font-size: 12px;
     letter-spacing: 0.8px;
     color: #737373;
   }
   
   .cart-price {
-    font-family: Montserrat;
     line-height: 20px;
     letter-spacing: 0.8px;
     color: #737373;
@@ -45,7 +47,6 @@ $main-navbar-height: 93px;
   
   .dropdown {
     height: 100%;
-    font-family: Montserrat;
     font-size: 16px;
     letter-spacing: 0.4px;
     color: #1e2226;
