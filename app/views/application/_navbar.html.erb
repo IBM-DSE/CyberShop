@@ -21,13 +21,26 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <%= link_to '#' do %>
-            <%= content_tag :span, class: 'glyphicon glyphicon glyphicon-user', 'aria-hidden' => 'true' do %>
-              <%= content_tag :span, ' LOGIN', class: 'login' %>
+        <% if customer_signed_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="glyphicon glyphicon glyphicon-user"></span>
+              <span><%= " #{current_customer.name} " %></span>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Sign Out', destroy_customer_session_path, method: :delete%></li>
+            </ul>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to new_customer_session_path do %>
+                <%= content_tag :span, class: 'glyphicon glyphicon glyphicon-user', 'aria-hidden' => 'true' do %>
+                    <%= content_tag :span, ' LOGIN', class: 'login' %>
+                <% end %>
             <% end %>
-          <% end %>
-        </li>
+          </li>
+        <% end %>
         <li>
           <%= link_to cart_path, class: 'cart-button' do %>
             <%= content_tag :span, class: 'cart-icon glyphicon glyphicon-shopping-cart', 'aria-hidden' => 'true' do %>
@@ -39,7 +52,7 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
 </nav>
-<nav class="main-navbar navbar-default">
+<nav id="main-navbar" class="main-navbar navbar-default">
   <div class="main-navbar">
     <div class="main-navbar navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -54,7 +67,7 @@
     </div>
     <div class="main-navbar navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
+        <li id="categories" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <% Category.all.each do |category| %>
@@ -62,7 +75,7 @@
             <% end %>
           </ul>
         </li>
-        <li class="dropdown">
+        <li id="brands" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brands <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <% Brand.all.each do |brand| %>
@@ -70,7 +83,7 @@
             <% end %>
           </ul>
         </li>
-        <li class="dropdown"><a href="#">Deals</a></li>
+        <li id="deals" class="dropdown"><a href="#">Deals</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         

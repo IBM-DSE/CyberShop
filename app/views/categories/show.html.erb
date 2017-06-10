@@ -1,4 +1,4 @@
 <h1><%= @category.name %></h1>
 <%= render partial: 'products', locals: {category: @category} %>
 
-<%= render 'messages/chat_window' if @category.name == 'Smartphones' %>
+<%= render 'messages/chat_window' if customer_signed_in? and @category.name == 'Smartphones' %>
