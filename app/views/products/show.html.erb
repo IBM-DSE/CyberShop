@@ -4,13 +4,15 @@
 
 <%= render @deals %>
 
-<p>
-  <%= price @product %>
-</p>
+<%= display_price @product.price, @product.discount_price %>
 <p>
   <% if @in_cart %>
     <%= link_to 'View in your Cart >', cart_path, class: 'btn btn-lg btn-primary' %>
   <% else %>
-    <%= render partial: 'cart_button', locals: { product: @product, additional_product: @additional_product, price: @discount_price } %>
+    <%= render partial: 'cart_button', locals: {
+        product: @product,
+        price: @discount_price,
+        additional_product: @additional_product
+    } %>
   <% end %>
 </p>

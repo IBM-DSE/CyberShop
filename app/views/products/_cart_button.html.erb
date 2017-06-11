@@ -5,7 +5,7 @@
         &nbsp;&nbsp;
     <span style="font-size: 16px">
     <%= check_box_tag :additional_product, additional_product.id %>
-    Include <%= additional_product.name %> for <strong><%= format_price(price) %></strong>
+    Include <%= additional_product.name %> for <strong><%= decimal_to_euros(price) %></strong>
     </span>
   <% end %>
 <% else %>

@@ -1,17 +1,26 @@
 <div class="jumbotron">
-  <h4>
-    <%= deal.description %>
-  </h4>
+  
+  <h3><%= deal.description %></h3>
+  <br>
   <% product_page = current_page?(action: 'show', id: deal.product.friendly_id) %>
   <% if deal.trigger_product %>
-    <% src = product_page ? deal.trigger_product : deal.product %>
-    <p>
-      <%= image_tag src.image.url, style: 'float: left; height: 7em; margin-right: 1em;' %>
-    <h3><%= src.name %></h3>
-    <p>
-      by <%= src.brand.name %>
-    </p>
-    <%= render partial: "products/details#{'_cart' if action_name == 'cart'}_button", locals: {product: src} %>
+    <div style="display: table;">
+      <div style="display: table-cell; padding-right: 1em; vertical-align: top;" >
+        <% src = product_page ? deal.trigger_product : deal.product %>
+        <%= image_tag src.image.url, style: 'height: 10em;' %>
+      </div>
+    
+      <div style="display: table-cell; padding-right: 2em; vertical-align: top;" >
+        <h4><%= src.name %></h4>
+        <p>
+          by <%= src.brand.name %>
+        </p>
+        <%= render partial: "products/details#{'_cart' if action_name == 'cart'}_button", locals: {product: src} %>
+      </div>
+        
+      <div style="display: table-cell;">
+        <%= display_price(deal.product.price, deal.price) %>
+      </div>
+    </div>
   <% end %>
-  </p>
 </div>

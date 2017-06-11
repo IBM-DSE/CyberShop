@@ -4,12 +4,13 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find params[:id]
     combo_deals = @product.trigger_deals.where(special: false)
-    @deals = (combo_deals << @product.deal).compact
     if combo_deals.first
       @additional_product = combo_deals.first.product
       @discount_price = combo_deals.first.price
     end
-    @in_cart = session[:cart].include? @product.id
+    @deals = (combo_deals << @product.deal).compact
+    @in_cart = session[:cart].include? @product.friendly_id
+    p @in_cart
   end
   
   def add_to_cart

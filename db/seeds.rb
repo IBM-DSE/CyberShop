@@ -41,7 +41,7 @@ Deal.create! product:     aPhone8,
              description: 'Lock in your order for just €100'
 
 Deal.create! product:         aHeadphones,
-             description:     'Get a FREE pair of Sounds by Sir Simon headphones when you purchase Apricot Book by Apricot!',
+             description:     'Get a FREE pair of Sounds by Sir Simon headphones when you purchase Apricot Book',
              trigger_product: apricotBook,
              price:           0.00
 
