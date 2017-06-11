@@ -12,7 +12,7 @@ aPhone7 = Product.create! name:     'aPhone 7',
                           image:    File.new(Rails.root.join('public', 'images', 'aPhone9.png'), 'r'),
                           price:    699.00
 
-aPhone8 = Product.create! name:     'aPhone 8',
+aPhone8 = Product.create! name:     'Pre-Order aPhone 8',
                           category: Category.find_by_name('Smartphones'),
                           brand:    Brand.find_by_name('Apricot'),
                           image:    File.new(Rails.root.join('public', 'images', 'aPhone10-wide.jpg'), 'r'),
@@ -38,7 +38,7 @@ aHeadphones = Product.create! name:     'Sounds by Sir Simon',
                               price:    299.00
 
 Deal.create! product:     aPhone8,
-             description: 'Pre-Order for just €100'
+             description: 'Lock in your order for just €100'
 
 Deal.create! product:         aHeadphones,
              description:     'Get a FREE pair of Sounds by Sir Simon headphones when you purchase Apricot Book by Apricot!',
