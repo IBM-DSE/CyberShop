@@ -12,18 +12,16 @@ class ProductsController < ApplicationController
     @in_cart = session[:cart].include? @product.friendly_id
     p @in_cart
   end
-  
-  def add_to_cart
-    @product = Product.find params[:id]
-    session[:cart] << @product.friendly_id
-    redirect_to action: 'cart'
-  end
 
   def add_multiple_to_cart
-    @product = Product.find order_products_params[:id]
-    @additional_product = Product.find params[:additional_product]
-    session[:cart] << @product.friendly_id
+    @additional_product = Product.find order_products_params[:additional_product] if order_products_params[:additional_product]
     session[:cart] << @additional_product.friendly_id if @additional_product
+    add_to_cart and return
+  end
+
+  def add_to_cart
+    @product = Product.find order_products_params[:id]
+    session[:cart] << @product.friendly_id
     redirect_to action: 'cart'
   end
 
@@ -54,7 +52,7 @@ class ProductsController < ApplicationController
   end
   
   def order_products_params
-    params.require(:product).permit(:id, :additional_product)
+    params.permit(:id, :additional_product)
   end
   
 end

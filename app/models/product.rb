@@ -11,4 +11,8 @@ class Product < ActiveRecord::Base
   
   extend FriendlyId
   friendly_id :name, use: :slugged
+  
+  def check_special_offer
+    
+  end
 end

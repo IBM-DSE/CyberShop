@@ -1,7 +1,7 @@
 <% if defined? additional_product and not additional_product.nil? %>
-  <%= form_for product, url: order_products_path, method: 'post' do |f| %>
-    <%= f.hidden_field :id %>
-    <%= f.submit 'Add To Cart', class: "btn btn-lg btn-#{product.preorder ? 'warning' : 'success'}" %>
+  <%= form_tag order_products_path, method: 'post' do |f| %>
+    <%= hidden_field_tag :id, product.id %>
+    <%= submit_tag 'Add To Cart', class: "btn btn-lg btn-#{product.preorder ? 'warning' : 'success'}" %>
         &nbsp;&nbsp;
     <span style="font-size: 16px">
     <%= check_box_tag :additional_product, additional_product.id %>
