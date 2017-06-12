@@ -1,7 +1,7 @@
 <% if defined? additional_product and not additional_product.nil? %>
   <%= form_tag order_products_path, method: 'post' do |f| %>
     <%= hidden_field_tag :id, product.id %>
-    <%= submit_tag 'Add To Cart', class: "btn btn-lg btn-#{product.preorder ? 'warning' : 'success'}" %>
+    <%= submit_tag 'Add To Cart', class: 'btn btn-lg btn-cart' %>
         &nbsp;&nbsp;
     <span style="font-size: 16px">
     <%= check_box_tag :additional_product, additional_product.id %>
@@ -9,7 +9,7 @@
     </span>
   <% end %>
 <% else %>
-  <%= link_to order_product_path(product), class: "btn btn-lg btn-#{product.preorder ? 'warning' : 'success'}" do %>
+  <%= link_to order_product_path(product), class: 'btn btn-lg btn-cart' do %>
     <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <%= product.preorder ? 'Pre-Order' : 'Add To Cart' %>
   <% end %>
 <% end %>
