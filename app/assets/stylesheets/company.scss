@@ -71,8 +71,10 @@ $main-navbar-height: 93px;
     line-height: $main-navbar-height;
   
     .company-name {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 24px;
+      font-family: 'Open Sans';
+      font-style: italic;
+      font-weight: 800;
+      font-size: 30px;
       color: #1e2226;
     }
   }
