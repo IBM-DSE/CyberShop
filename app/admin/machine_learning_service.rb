@@ -1,11 +1,12 @@
 ActiveAdmin.register MachineLearningService do
-  permit_params :name, :username, :password
+  permit_params :name, :username, :password, :hostname
 
   index do
     column 'Service' do |service|
       link_to service.name || service.id, admin_machine_learning_service_path(service)
     end
     column :username
+    column :hostname
     column :created_at
     column :updated_at
     actions
