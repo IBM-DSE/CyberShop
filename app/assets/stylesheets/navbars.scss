@@ -1,0 +1,73 @@
+/** TOP NAVBAR */
+$top-navbar-height: 40px;
+
+.top-navbar {
+  height: $top-navbar-height !important;
+  .navbar-collapse {
+    height: $top-navbar-height !important;
+  }
+  .nav > * > * {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .login {
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    color: #737373;
+  }
+  
+  .cart-price {
+    line-height: 20px;
+    letter-spacing: 0.8px;
+    color: #737373;
+  }
+  
+  .cart-button {
+    width: 162px;
+    height: $top-navbar-height;
+    background-color: #dedede;
+  }
+}
+
+/** MAIN NAVBAR */
+$main-navbar-height: 93px;
+
+.main-navbar {
+  height: $main-navbar-height !important;
+  background-color: #ffffff;
+  
+  .dropdown {
+    height: 100%;
+    font-size: 16px;
+    letter-spacing: 0.4px;
+    color: #1e2226;
+    > * {
+      height: 100%;
+      padding: 0 20px;
+      line-height: $main-navbar-height;
+    }
+  }
+  
+  > * {
+    height: 100%;
+    line-height: $main-navbar-height !important;
+  }
+  
+  .navbar-collapse > * {
+    height: $main-navbar-height !important;
+  }
+  
+  .navbar-brand {
+    padding: 0 40px;
+    line-height: $main-navbar-height;
+    
+    .company-name {
+      font-family: 'Open Sans';
+      font-style: italic;
+      font-weight: 800;
+      font-size: 30px;
+      color: #1e2226;
+    }
+  }
+}
