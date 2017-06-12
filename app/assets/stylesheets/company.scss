@@ -6,6 +6,10 @@ body {
   font-family: Montserrat;
 }
 
+#content {
+  margin: 0 40px;
+}
+
 /** TOP NAVBAR */
 $top-navbar-height: 40px;
 
@@ -82,27 +86,6 @@ $main-navbar-height: 93px;
 
 .trade-gothic {
   font-family: font132426;
-}
-
-/** IMAGES */
-
-// Custom additions to thumbnail
-.thumbnail {
-  min-height: 344px;
-  padding: 8px;
-}
-
-.product-image {
-  line-height: 100%;
-}
-
-.product-image img {
-  max-height: 400px;
-}
-
-.product-buttons {
-  position: absolute;
-  bottom: 2px;
 }
 
 

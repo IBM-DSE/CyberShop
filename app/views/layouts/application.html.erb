@@ -13,10 +13,8 @@
   <%= render 'application/header' %>
 
   <%= flash_messages %>
-
-  <%= render 'deals/carousel' if current_page? root_path %>
   
-  <div class="container">
+  <div id="content">
     
     <%= yield %>
     

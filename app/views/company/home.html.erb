@@ -1,4 +1,6 @@
 
+<%= render 'deals/carousel' %>
+
 <% Category.all.each do |category| %>
 <h3><%= category.name %></h3>
 <%= render partial: 'categories/products', locals: {category: category} %>

@@ -1,0 +1,16 @@
+// Custom additions to thumbnail
+
+.thumbnail {
+  min-height: 344px;
+  padding: 8px;
+  border: solid 1px #e8e8e8;
+  border-radius: 0;
+  
+  .product-image {
+    line-height: 100%;
+    img {
+      max-height: 400px;
+    }
+  }
+  
+}
