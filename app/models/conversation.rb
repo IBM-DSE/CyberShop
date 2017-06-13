@@ -52,5 +52,20 @@ class Conversation
   def self.conversation_url
     API_ENDPOINT + ENV['WORKSPACE_ID'] + '/message?version=' + VERSION
   end
+  
+  def self.get_recommendation(customer, product_line)
+
+    ml_service = MachineLearningService.find_by_name 'Customer Prediction'
+
+    product_scores = {}
+    product_line.each do |product|
+      deployment = ml_service.deployments.find_by_name "#{product} Classifier"
+      score = ml_service.get_score deployment.id, customer.tweets
+      product_scores[score] = product
+    end
+
+    return product_scores.sort.reverse.to_h.values.first
+
+  end
 
 end
