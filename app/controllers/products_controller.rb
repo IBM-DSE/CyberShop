@@ -4,29 +4,34 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find params[:id]
     combo_deals = @product.trigger_deals.where(special: false)
-    if combo_deals.first
-      @additional_product = combo_deals.first.product
-      @discount_price = combo_deals.first.price
-    end
+    # if combo_deals.first
+    #   additional_product = combo_deals.first.product
+    #   @discount_price = combo_deals.first.price
+    # end
     @deals = (combo_deals << @product.deal).compact
     @in_cart = session[:cart].include? @product.friendly_id
-    p @in_cart
   end
 
   def add_multiple_to_cart
-    @additional_product = Product.find order_products_params[:additional_product] if order_products_params[:additional_product]
-    session[:cart] << @additional_product.friendly_id if @additional_product
+    if order_products_params[:additional_product]
+      additional_product = Product.find order_products_params[:additional_product]
+      session[:cart] << additional_product.friendly_id if additional_product
+      change_cart_price(additional_product.price)
+    end
     add_to_cart and return
   end
 
   def add_to_cart
     @product = Product.find order_products_params[:id]
     session[:cart] << @product.friendly_id
+    change_cart_price(@product.price)
     redirect_to action: 'cart'
   end
 
   def remove_from_cart
+    product = Product.find params[:id]
     session[:cart].delete params[:id]
+    change_cart_price(product.price, false)
     redirect_to action: 'cart'
   end
   
@@ -48,11 +53,18 @@ class ProductsController < ApplicationController
   private
   
   def init_cart_if_empty
-    session[:cart] = [] unless session[:cart]
+    unless session[:cart]
+      session[:cart] = []
+      session[:cart_price] = 0
+    end
   end
   
   def order_products_params
     params.permit(:id, :additional_product)
+  end
+  
+  def change_cart_price(price, increment=true)
+    session[:cart_price] = BigDecimal.new(session[:cart_price]) + (increment ? 1 : -1)*price
   end
   
 end

@@ -42,7 +42,7 @@
         <li>
           <%= link_to cart_path, class: 'cart-button' do %>
             <%= content_tag :span, '', class: 'glyphicon glyphicon-shopping-cart', 'aria-hidden' => 'true' %>
-              &nbsp;<%= content_tag :span, '€ 0', class: 'cart-price' %>
+              &nbsp;<%= content_tag :span, decimal_to_euros(session[:cart_price] || 0), class: 'cart-price' %>
           <% end %>
         </li>
       </ul>
