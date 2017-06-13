@@ -1,0 +1,37 @@
+// Place all the styles related to the company controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  font-family: Montserrat;
+}
+
+#content {
+  margin: 0 40px;
+}
+
+.you-may-also-like {
+  font-size: 24px;
+  letter-spacing: 0.2px;
+  color: #1e2226;
+  margin-bottom: 50px;
+}
+
+.trade-gothic {
+  font-family: font132426;
+}
+
+.btn-cart {
+  background-color: #626d74;
+  border-radius: 0;
+  font-size: 12px;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.jumbotron {
+  text-align: center;
+  padding-left: 48px;
+  padding-right: 48px;
+}

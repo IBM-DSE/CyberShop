@@ -1,0 +1,24 @@
+
+/** SHOPPING CART
+-------------------------------------------------- */
+
+.shopping-cart {
+  width: 100%;
+  
+  img {
+    height: 10em;
+    float: left;
+  }
+  
+  tr > td {
+    padding-bottom: 1em;
+  }
+  
+  .in-stock {
+    color: green;
+  }
+  
+  .coming-soon {
+    color: darkgoldenrod;
+  }
+}

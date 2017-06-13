@@ -1,18 +1,26 @@
-<h1><%= @product.name %></h1>
-<h4>by <%= @product.brand.name %></h4>
-<%= content_tag :p, image_tag(@product.image.url, style: 'max-height: 500px') %>
+<div class="product-panel">
+  <div class="product-image">
+    <%= image_tag(@product.image.url, style: 'max-height: 500px') %>
+  </div>
+  <div class="product-info">
+    <div>
+      <h2 class="product-name"><%= @product.name %></h2>
+      <h3 class="brand-name"><%= @product.brand.name %> inc.</h3>
+      <h3 class="price"><%= decimal_to_euros @product.price %></h3>
+      <ul class="features-list">
+        <% @product.features.each do |feature| %>
+        <li><span><%= feature.description %></span></li>
+        <% end %>
+      </ul>
+      <p>
+        <% if @in_cart %>
+            <%= link_to 'View in your Cart >', cart_path, class: 'btn btn-lg big-btn-cart' %>
+        <% else %>
+            <%= link_to 'Add to Cart', order_product_path(@product), class: 'btn btn-lg big-btn-cart' %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
 
 <%= render @deals %>
-
-<%= display_price @product.price, @product.discount_price %>
-<p>
-  <% if @in_cart %>
-    <%= link_to 'View in your Cart >', cart_path, class: 'btn btn-lg btn-primary' %>
-  <% else %>
-    <%= render partial: 'cart_button', locals: {
-        product: @product,
-        price: @discount_price,
-        additional_product: @additional_product
-    } %>
-  <% end %>
-</p>

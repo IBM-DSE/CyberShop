@@ -1,13 +1,16 @@
 <div class="col-sm-6 col-md-4 col-lg-3">
   <div class="thumbnail">
-    <%= content_tag :div, class: 'product-image' do %>
+    <div class="product-image">
+      <div>
       <%= link_to product_path(product) do %>
         <%= image_tag product.image.url %>
       <% end %>
-    <% end %>
+      </div>
+    </div>
     <div class="caption">
       <div class="product-name"><%= link_to product.name, product_path(product) %></div>
       <p class="brand-name"><%= 'by '+product.brand.name if product.brand %></p>
+      <p class="price"><%= decimal_to_euros product.price %></p>
     </div>
     <div class="thumbnail-cart-button">
       <%= render partial: 'products/cart_button', locals: { product: product} %>

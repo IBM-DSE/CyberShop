@@ -16,7 +16,7 @@ module ProductsHelper
   end
 
   def decimal_to_euros(price)
-    number_to_currency price, unit: '€', separator: ',', delimiter: '.'
+    number_to_currency price, unit: '€', separator: ',', delimiter: '.', format: '%u %n'
   end
   
   def stock_status(in_stock)
