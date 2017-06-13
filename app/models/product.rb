@@ -16,7 +16,19 @@ class Product < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
   
-  def check_special_offer
+  def check_special_offer(customer)
+    special_deal = self.trigger_deals.where(special: true)
     
+    if special_deal
+      
+      ml_service = MachineLearningService.find_by_name 'Customer Prediction'
+      
+      deployment = ml_service.deployments.find_by_name 'aPhone Model'
+      
+      score = ml_service.get_score deployment.id, customer.get_attributes
+      
+      return special_deal if score > 0.8
+      
+    end
   end
 end

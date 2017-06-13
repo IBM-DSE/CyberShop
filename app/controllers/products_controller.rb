@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
   def add_to_cart
     @product = Product.find order_products_params[:id]
     put_in_cart @product if @product
+    @product.check_special_offer current_customer
     redirect_to action: 'cart'
   end
 
