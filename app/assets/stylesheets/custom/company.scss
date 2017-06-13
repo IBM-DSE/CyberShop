@@ -41,4 +41,7 @@ body {
   padding-right: 48px;
   @extend .grey-border;
   background-color: #FFFFFF;
+  img {
+    max-width: 100%;
+  }
 }

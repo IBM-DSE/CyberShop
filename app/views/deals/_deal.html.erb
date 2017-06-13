@@ -22,4 +22,7 @@
       </div>
     </div>
   <% end %>
+  <% if deal.image_file_name %>
+    <%= image_tag deal.image.url %>
+  <% end %>
 </div>
