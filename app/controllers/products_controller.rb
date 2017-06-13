@@ -15,16 +15,14 @@ class ProductsController < ApplicationController
   def add_multiple_to_cart
     if order_products_params[:additional_product]
       additional_product = Product.find order_products_params[:additional_product]
-      session[:cart] << additional_product.friendly_id if additional_product
-      change_cart_price(additional_product.price)
+      put_in_cart additional_product if additional_product
     end
     add_to_cart and return
   end
 
   def add_to_cart
     @product = Product.find order_products_params[:id]
-    session[:cart] << @product.friendly_id
-    change_cart_price(@product.price)
+    put_in_cart @product if @product
     redirect_to action: 'cart'
   end
 
@@ -61,6 +59,11 @@ class ProductsController < ApplicationController
   
   def order_products_params
     params.permit(:id, :additional_product)
+  end
+  
+  def put_in_cart(product)
+    session[:cart] << product.friendly_id
+    change_cart_price(product.price)
   end
   
   def change_cart_price(price, increment=true)
