@@ -1,20 +1,20 @@
 AdminUser.create! email: 'admin@example.com', password: 'password', password_confirmation: 'password'
 
-%w(Smartphones Laptops Headphones).each {|name| Category.create! name: name}
+%w(Smartphones Tablets Laptops Headphones).each {|name| Category.create! name: name}
 %w(Apricot Gazillion Singsong).each {|name| Brand.create! name: name}
 
 Customer.create! name: 'David', email: 'david@example.com', password: 'password', password_confirmation: 'password', interest: 'smartphones'
 Customer.create! name: 'Keith', email: 'keith@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops'
 
-aphone7 = Product.create name:     'aPhone 7 GREEN',
+sphone8 = Product.create name:     'sPhone 8',
                          category: Category.find_by_name('Smartphones'),
-                         brand:    Brand.find_by_name('Apricot'),
-                         image:    File.new(Rails.root.join('public', 'images', 'aPhone7GREEN.png'), 'r'),
-                         price:    699.00
-aphone7.features.build description: 'High Quality Camera'
-aphone7.features.build description: 'Waterproof'
-aphone7.features.build description: 'P9 Processor'
-aphone7.save
+                         brand:    Brand.find_by_name('Singsong'),
+                         image:    File.new(Rails.root.join('public', 'images', 'sPhone8.jpg'), 'r'),
+                         price:    799.00
+sphone8.features.build description: 'Voice Assistant Boxy'
+sphone8.features.build description: 'Fireproof'
+sphone8.features.build description: 'S10 Processor'
+sphone8.save
 
 aphone8 = Product.create name:     'Pre-Order aPhone 8',
                          category: Category.find_by_name('Smartphones'),
@@ -27,21 +27,33 @@ aphone8.features.build description: 'Fireproof'
 aphone8.features.build description: 'P10 Processor'
 aphone8.save
 
-aheadphones = Product.create! name:     'Sounds by Sir Simon',
-                              category: Category.find_by_name('Headphones'),
-                              brand:    Brand.find_by_name('Apricot'),
-                              image:    File.new(Rails.root.join('public', 'images', 'aHeadphones.jpg'), 'r'),
-                              price:    299.00
-
-sphone8 = Product.create name:     'sPhone 8',
+aphone7 = Product.create name:     'aPhone 7 GREEN',
                          category: Category.find_by_name('Smartphones'),
-                         brand:    Brand.find_by_name('Singsong'),
-                         image:    File.new(Rails.root.join('public', 'images', 'sPhone8.jpg'), 'r'),
-                         price:    799.00
-sphone8.features.build description: 'Voice Assistant Boxy'
-aphone8.features.build description: 'Fireproof'
-aphone8.features.build description: 'S10 Processor'
-sphone8.save
+                         brand:    Brand.find_by_name('Apricot'),
+                         image:    File.new(Rails.root.join('public', 'images', 'aPhone7GREEN.png'), 'r'),
+                         price:    699.00
+aphone7.features.build description: 'High Quality Camera'
+aphone7.features.build description: 'Waterproof'
+aphone7.features.build description: 'P9 Processor'
+aphone7.save
+
+Product.create name:     'aPad',
+               category: Category.find_by_name('Tablets'),
+               brand:    Brand.find_by_name('Apricot'),
+               image:    File.new(Rails.root.join('public', 'images', 'aPad.png'), 'r'),
+               price:    999.00
+
+
+songbook = Product.create name:     'Song Book',
+                          category: Category.find_by_name('Laptops'),
+                          brand:    Brand.find_by_name('Singsong'),
+                          image:    File.new(Rails.root.join('public', 'images', 'SongBook.jpg'), 'r'),
+                          price:    999.00
+songbook.features.build description: '8 Core Processor'
+songbook.features.build description: 'High Quality and Speakers'
+songbook.features.build description: 'Fireproof'
+songbook.features.build description: '2 Year Warranty'
+songbook.save
 
 apricotbook = Product.create name:     'Apricot Book',
                              category: Category.find_by_name('Laptops'),
@@ -53,6 +65,19 @@ apricotbook.features.build description: 'High Quality Video and Speakers'
 apricotbook.features.build description: 'Waterproof'
 apricotbook.features.build description: '2 Year Warranty'
 apricotbook.save
+
+Product.create! name:     'Seal Buds',
+                category: Category.find_by_name('Headphones'),
+                brand:    Brand.find_by_name('Singsong'),
+                image:    File.new(Rails.root.join('public', 'images', 'seal-buds.jpg'), 'r'),
+                price:    99.00
+
+aheadphones = Product.create! name:     'Sounds by Sir Simon',
+                              category: Category.find_by_name('Headphones'),
+                              brand:    Brand.find_by_name('Apricot'),
+                              image:    File.new(Rails.root.join('public', 'images', 'aHeadphones.jpg'), 'r'),
+                              price:    299.00
+
 
 Deal.create! product:     aphone8,
              description: 'Lock in your order for just €100'
