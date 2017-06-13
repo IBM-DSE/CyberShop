@@ -6,10 +6,10 @@ AdminUser.create! email: 'admin@example.com', password: 'password', password_con
 Customer.create! name: 'David', email: 'david@example.com', password: 'password', password_confirmation: 'password', interest: 'smartphones'
 Customer.create! name: 'Keith', email: 'keith@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops'
 
-aphone7 = Product.create name:     'aPhone 7',
+aphone7 = Product.create name:     'aPhone 7 GREEN',
                          category: Category.find_by_name('Smartphones'),
                          brand:    Brand.find_by_name('Apricot'),
-                         image:    File.new(Rails.root.join('public', 'images', 'aPhone9.png'), 'r'),
+                         image:    File.new(Rails.root.join('public', 'images', 'aPhone7GREEN.png'), 'r'),
                          price:    699.00
 aphone7.features.build description: 'High Quality Camera'
 aphone7.features.build description: 'Waterproof'
