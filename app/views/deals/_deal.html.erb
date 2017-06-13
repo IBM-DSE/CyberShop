@@ -1,9 +1,8 @@
 <div class="jumbotron">
-  
   <h3><%= deal.description %></h3>
   <br>
-  <% product_page = current_page?(action: 'show', id: deal.product.friendly_id) %>
-  <% if deal.trigger_product %>
+  <% product_page = current_page?(controller: 'products', action: 'show', id: deal.product.friendly_id) %>
+  <% if deal.trigger_product or not product_page %>
     <div style="display: table;">
       <div style="display: table-cell; padding-right: 1em; vertical-align: top;" >
         <% src = product_page ? deal.trigger_product : deal.product %>
