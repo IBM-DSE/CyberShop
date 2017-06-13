@@ -6,12 +6,6 @@ AdminUser.create! email: 'admin@example.com', password: 'password', password_con
 Customer.create! name: 'David', email: 'david@example.com', password: 'password', password_confirmation: 'password', interest: 'smartphones'
 Customer.create! name: 'Keith', email: 'keith@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops'
 
-aPhone7 = Product.create! name:     'aPhone 7',
-                          category: Category.find_by_name('Smartphones'),
-                          brand:    Brand.find_by_name('Apricot'),
-                          image:    File.new(Rails.root.join('public', 'images', 'aPhone9.png'), 'r'),
-                          price:    699.00
-
 aPhone8 = Product.create! name:     'Pre-Order aPhone 8',
                           category: Category.find_by_name('Smartphones'),
                           brand:    Brand.find_by_name('Apricot'),
@@ -25,17 +19,29 @@ sPhone8 = Product.create! name:     'sPhone 8',
                           image:    File.new(Rails.root.join('public', 'images', 'sPhone8.jpg'), 'r'),
                           price:    799.00
 
-apricotBook = Product.create! name:     'Apricot Book',
-                              category: Category.find_by_name('Laptops'),
-                              brand:    Brand.find_by_name('Apricot'),
-                              image:    File.new(Rails.root.join('public', 'images', 'apricotbook.jpg'), 'r'),
-                              price:    2299.00
+apricotBook = Product.create name:     'Apricot Book',
+                             category: Category.find_by_name('Laptops'),
+                             brand:    Brand.find_by_name('Apricot'),
+                             image:    File.new(Rails.root.join('public', 'images', 'apricotbook.jpg'), 'r'),
+                             price:    2299.00
+
+aPhone7 = Product.create! name:     'aPhone 7',
+                          category: Category.find_by_name('Smartphones'),
+                          brand:    Brand.find_by_name('Apricot'),
+                          image:    File.new(Rails.root.join('public', 'images', 'aPhone9.png'), 'r'),
+                          price:    699.00
 
 aHeadphones = Product.create! name:     'Sounds by Sir Simon',
                               category: Category.find_by_name('Headphones'),
                               brand:    Brand.find_by_name('Apricot'),
                               image:    File.new(Rails.root.join('public', 'images', 'aHeadphones.jpg'), 'r'),
                               price:    299.00
+
+apricotBook.features.build description: '16 Core Processor'
+apricotBook.features.build description: 'High Quality Video and Speakers'
+apricotBook.features.build description: 'Waterproof'
+apricotBook.features.build description: '2 Year Warranty'
+apricotBook.save
 
 Deal.create! product:     aPhone8,
              description: 'Lock in your order for just €100'
@@ -49,7 +55,7 @@ Deal.create! product:     sPhone8,
              description: "Smithsong's sPhone8 carries Boxy - a travel companion that can translate any foreign text with the aim of a camera"
 
 Deal.create! product:         aPhone8,
-             description:     'Good news! Because you are a loyal customer of the Apricot line and are about to purchase the Apricot Book, we offer to waive the regular €100 Pre-Order fee. Add it to your cart right now for free!',
+             description:     'Good news! Because you are a loyal customer of the Apricot line and are about to purchase the Apricot Book, we offer to waive the regular €100 aPhone 8 Pre-Order deposit. Add it to your cart right now for free!',
              special:         true,
              trigger_product: apricotBook,
              price:           0.00

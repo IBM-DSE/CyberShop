@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
   belongs_to :category
   belongs_to :brand
+  has_many :features
   has_one :deal
   has_many :trigger_deals, :class_name => 'Deal', :foreign_key => 'trigger_product_id'
 
