@@ -12,12 +12,29 @@
         <li><span><%= feature.description %></span></li>
         <% end %>
       </ul>
+      <br>
       <% unless @product.color_options.empty? %>
-          CHOOSE YOUR COLOR<br>
-          <%= @product.color_options.each do |color| %>
-            <% color %>
-          <% end %>
+          <p class="choose-your">CHOOSE YOUR COLOR</p>
+          <div class="btn-group" data-toggle="buttons">
+            <% @product.color_options.each do |color| %>
+            <label class="btn btn-default btn-lg option option-<%= color.downcase %>">
+              <input type="radio" name="options" id="<%= color %>" autocomplete="off"><%= color %>
+            </label>
+            <% end %>
+          </div>
       <% end %>
+      <br><br>
+      <% unless @product.storage_options.empty? %>
+          <p class="choose-your">CHOOSE YOUR STORAGE</p>
+          <div class="btn-group" data-toggle="buttons">
+            <% @product.storage_options.each do |size| %>
+                <label class="btn btn-default btn-lg option option-storage">
+                  <input type="radio" name="options" id="size-<%= size %>" autocomplete="off"><%= size %> GB
+                </label>
+            <% end %>
+          </div>
+      <% end %>
+      
       <p style="margin-top: 40px;">
         <% if @in_cart %>
             <%= link_to 'View in your Cart >', cart_path, class: 'btn btn-lg big-btn-cart' %>
