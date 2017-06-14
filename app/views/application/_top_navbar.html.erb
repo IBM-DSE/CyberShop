@@ -41,7 +41,7 @@
         <% end %>
         <li>
           <%= link_to cart_path, class: 'cart-button' do %>
-            <div class="cart-count"><%= session[:cart].length %></div>
+            <div class="cart-count"><%= (session[:cart] || []).length %></div>
             <%= content_tag :span, '', class: 'glyphicon glyphicon-shopping-cart', 'aria-hidden' => 'true' %>
             &nbsp;<%= content_tag :span, decimal_to_euros(session[:cart_price] || 0), class: 'cart-price' %>
           <% end %>

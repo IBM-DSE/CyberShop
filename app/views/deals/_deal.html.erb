@@ -14,8 +14,7 @@
                     locals:  { product: src, deal: deal } unless product_page %></div>
     <% if combo_deal %>
         <div><%= render partial: 'products/cart_button',
-                        locals:  { product:            deal.trigger_product,
-                                   additional_product: deal.product, big: true } %>
+                        locals:  { product: deal.trigger_product, additional_product: deal.product, big: true } %>
         </div>
     <% elsif !product_page %>
         <div><%= render partial: 'products/cart_button',
