@@ -25,8 +25,8 @@ aphone8 = Product.create name:     'Pre-Order aPhone 8',
 aphone8.features.build description: 'Voice Assistant Stoey'
 aphone8.features.build description: 'Fireproof'
 aphone8.features.build description: 'P10 Processor'
-aphone8.color_options = ['White', 'Black', 'GREEN']
-aphone8.memory_options = [16, 32, 64]
+aphone8.color_options = %w(White Black GREEN)
+aphone8.storage_options = [16, 32, 64]
 aphone8.save
 
 aphone7 = Product.create name:     'aPhone 7 GREEN',
@@ -81,6 +81,10 @@ aheadphones = Product.create! name:     'Sounds by Sir Simon',
                               price:    299.00
 
 
+Deal.create! product:     aphone7,
+             description: 'A portion of the proceeds from each phone is donated to help fight HIV/AIDS',
+             image:       File.new(Rails.root.join('public', 'images', '512px-Red_Ribbon.png'), 'r')
+
 Deal.create! product:     aphone8,
              description: 'Lock in your order for just €100'
 
@@ -90,7 +94,7 @@ Deal.create! product:         aheadphones,
              price:           0.00
 
 Deal.create! product:     sphone8,
-             description: "Smithsong's sPhone8 carries Boxy - a travel companion that can translate any foreign text with the aim of a camera",
+             description: "Singsong's sPhone8 carries Boxy - a travel companion that can translate any foreign text with the aim of a camera",
              image:       File.new(Rails.root.join('public', 'images', 'translate.jpg'), 'r')
 
 Deal.create! product:         aphone8,
