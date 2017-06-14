@@ -46,19 +46,23 @@ $top-navbar-height: 40px;
 /** MAIN NAVBAR */
 $main-navbar-height: 93px;
 
-.main-navbar {
+#main-navbar {
   height: $main-navbar-height !important;
-  background-color: #ffffff;
+  background-color: #434343;
   
   .dropdown {
     height: 100%;
-    font-size: 16px;
-    letter-spacing: 0.4px;
-    color: #1e2226;
     > * {
-      padding: 0 20px;
       line-height: $main-navbar-height;
+      padding: 0 20px;
+      font-size: 16px;
+      letter-spacing: 0.4px;
+      color: #ffffff;
     }
+  }
+  
+  .open > a {
+    background-color: #65c95f;
   }
   
   > * {
@@ -76,10 +80,11 @@ $main-navbar-height: 93px;
     
     .company-name {
       font-family: 'Open Sans';
-      font-style: italic;
+      font-size: 36px;
       font-weight: 800;
-      font-size: 30px;
-      color: #1e2226;
+      font-style: italic;
+      color: #ffffff;
+      letter-spacing: 0.5px;
     }
   }
 }

@@ -10,8 +10,9 @@
     float: left;
   }
   
-  tr > td {
-    padding-bottom: 1em;
+  td {
+    border-bottom: solid 1.8px #979797;
+    padding: 1em;
   }
   
   .in-stock {
@@ -21,4 +22,12 @@
   .coming-soon {
     color: darkgoldenrod;
   }
+}
+
+.quantity-select {
+  width: 96px;
+  height: 40px;
+  border-radius: 1.8px;
+  background-color: #ffffff;
+  border: solid 0.9px #cccccc;
 }
