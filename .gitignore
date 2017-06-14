@@ -20,3 +20,6 @@
 
 # IDE files
 .idea
+
+# Deployment files
+manifest.yml
