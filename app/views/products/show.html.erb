@@ -12,6 +12,12 @@
         <li><span><%= feature.description %></span></li>
         <% end %>
       </ul>
+      <% unless @product.color_options.empty? %>
+          CHOOSE YOUR COLOR<br>
+          <%= @product.color_options.each do |color| %>
+            <% color %>
+          <% end %>
+      <% end %>
       <p style="margin-top: 40px;">
         <% if @in_cart %>
             <%= link_to 'View in your Cart >', cart_path, class: 'btn btn-lg big-btn-cart' %>
