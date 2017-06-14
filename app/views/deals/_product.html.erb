@@ -1,0 +1,21 @@
+<div class="deal-product">
+  <div>
+    <%= image_tag product.image.url, style: 'height: 10em;' %>
+  </div>
+
+  <div>
+    <h4><%= product.name %></h4>
+    <p>
+      by <%= product.brand.name %>
+    </p>
+    <%= render partial: 'products/details_button', locals: { product: product} %>
+  </div>
+
+  <div>
+    <% if defined?(deal) %>
+      <%= display_price(deal.product.price, deal.price) %>
+    <% else %>
+      <%= display_price product.price %>
+    <% end %>
+  </div>
+</div>

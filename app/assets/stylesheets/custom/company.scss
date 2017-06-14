@@ -21,27 +21,36 @@ body {
   font-family: font132426;
 }
 
+.horizontal {
+  display: table;
+  > div {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
 .grey-border {
   border: solid 1px #aaaaaa;
 }
 
-.btn-cart {
-  background-color: #626d74;
-  border-radius: 0;
-  font-size: 12px;
-  letter-spacing: 0.1px;
-  text-align: center;
+.btn {
   color: #ffffff;
+  font-size: 12px;
+  border-radius: 0;
 }
 
-.jumbotron {
+.btn-details {
+  background-color: #414141;
+}
+
+.btn-cart {
+  background-color: #626d74;
+  letter-spacing: 0.1px;
   text-align: center;
-  margin-top: 30px;
-  padding-left: 48px;
-  padding-right: 48px;
-  @extend .grey-border;
-  background-color: #FFFFFF;
-  img {
-    max-width: 100%;
-  }
+}
+
+.big-btn-cart {
+  background-color: #565656;
+  width: 164px;
+  height: 40px;
 }

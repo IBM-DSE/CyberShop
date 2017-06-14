@@ -3,12 +3,8 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find params[:id]
-    combo_deals = @product.trigger_deals.where(special: false)
-    # if combo_deals.first
-    #   additional_product = combo_deals.first.product
-    #   @discount_price = combo_deals.first.price
-    # end
-    @deals = (combo_deals << @product.deal).compact
+    @combo_deals = @product.trigger_deals.where(special: false)
+    @deals = (@combo_deals << @product.deal).compact
     @in_cart = session[:cart].include? @product.friendly_id
   end
 
@@ -62,8 +58,10 @@ class ProductsController < ApplicationController
   end
   
   def put_in_cart(product)
-    session[:cart] << product.friendly_id
-    change_cart_price(product.price)
+    unless session[:cart].include? product.friendly_id
+      session[:cart] << product.friendly_id
+      change_cart_price(product.price)
+    end
   end
   
   def change_cart_price(price, increment=true)

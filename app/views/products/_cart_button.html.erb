@@ -1,5 +1,7 @@
+<% big = (defined?(big) and big) %>
+<% two = defined? additional_product %>
 <%= form_tag order_products_path, method: 'post' do |f| %>
   <%= hidden_field_tag :id, product.id %>
-  <%= hidden_field_tag :additional_product, product.id if defined? additional_product %>
-  <%= submit_tag 'Add To Cart', class: 'btn btn-lg btn-cart' %>
+  <%= hidden_field_tag :additional_product, additional_product.id if two %>
+  <%= submit_tag "Add#{' Both' if two} To Cart", class: "btn btn-lg #{'big-' if big}btn-cart" %>
 <% end %>
