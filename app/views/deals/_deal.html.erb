@@ -5,18 +5,25 @@
   <% combo_deal = deal.trigger_product && !current_page?(controller: 'products', action: 'cart') %>
   <% src = product_page ? deal.trigger_product : deal.product %>
   <div class="horizontal">
-  <% if combo_deal %>
-    <div><%= render partial: 'deals/product', locals: { product: deal.trigger_product} %></div>
-    <div class="plus">+</div>
-  <% end %>
-    <div><%= render partial: 'deals/product', locals: { product: src, deal: deal} %></div>
-  <% if combo_deal %>
-    <div><%= render partial: 'products/cart_button', locals: { product: deal.trigger_product, additional_product: deal.product, big: true } %></div>
-  <% else %>
-    <div><%= render partial: 'products/cart_button', locals: { product: deal.product, big: true } %></div>
-  <% end %>
+    <% if combo_deal %>
+        <div><%= render partial: 'deals/product',
+                        locals:  { product: deal.trigger_product } %></div>
+        <div class="plus">+</div>
+    <% end %>
+    <div><%= render partial: 'deals/product',
+                    locals:  { product: src, deal: deal } unless product_page %></div>
+    <% if combo_deal %>
+        <div><%= render partial: 'products/cart_button',
+                        locals:  { product:            deal.trigger_product,
+                                   additional_product: deal.product, big: true } %>
+        </div>
+    <% elsif !product_page %>
+        <div><%= render partial: 'products/cart_button',
+                        locals:  { product: deal.product, big: true } %></div>
+    <% end %>
   </div>
   <% if deal.image_file_name %>
+    <br>
     <%= image_tag deal.image.url %>
   <% end %>
 </div>

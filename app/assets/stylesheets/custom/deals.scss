@@ -20,10 +20,17 @@
       padding-right: 2em;
       vertical-align: top;
     }
+    img {
+      max-height: 10em;
+    }
   }
   
   .plus {
     padding:1em;
     font-size: 30px;
+  }
+  
+  .horizontal {
+    text-align: left;
   }
 }
