@@ -17,6 +17,20 @@ $top-navbar-height: 40px;
     color: #737373;
   }
   
+  .cart-count {
+    width: 17px;
+    height: 17px;
+    margin-right: 15px;
+    border-radius: 17px;
+    background-color: #ffffff;
+    font-size: 8px;
+    letter-spacing: 0.5px;
+    color: #737373;
+    float: left;
+    vertical-align: middle;
+    text-align: center;
+  }
+  
   .cart-price {
     line-height: 20px;
     letter-spacing: 0.8px;
@@ -24,7 +38,6 @@ $top-navbar-height: 40px;
   }
   
   .cart-button {
-    width: 162px;
     height: $top-navbar-height;
     background-color: #dedede;
   }
@@ -43,7 +56,6 @@ $main-navbar-height: 93px;
     letter-spacing: 0.4px;
     color: #1e2226;
     > * {
-      height: 100%;
       padding: 0 20px;
       line-height: $main-navbar-height;
     }
