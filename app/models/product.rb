@@ -1,3 +1,4 @@
+# noinspection ALL
 class Product < ActiveRecord::Base
   belongs_to :category
   belongs_to :brand

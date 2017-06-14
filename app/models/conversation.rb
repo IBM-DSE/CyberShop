@@ -1,3 +1,4 @@
+# noinspection ALL
 class Conversation
 
   # class method for sending string message content and customer context to WC
@@ -51,6 +52,13 @@ class Conversation
 
   def self.conversation_url
     API_ENDPOINT + ENV['WORKSPACE_ID'] + '/message?version=' + VERSION
+  end
+
+  def self.handle_consent(customer, consent_provided)
+    if consent_provided
+      ConsentManager.join_twitter_data(customer)
+      customer.tweets = Tweets.find_by_name customer.name
+    end
   end
   
   def self.get_recommendation(customer, product_line)
