@@ -80,13 +80,12 @@ aheadphones = Product.create! name:     'Sounds by Sir Simon',
                               image:    File.new(Rails.root.join('public', 'images', 'aHeadphones.jpg'), 'r'),
                               price:    299.00
 
+Deal.create! product:     aphone8,
+             description: 'Lock in your order for just €100'
 
 Deal.create! product:     aphone7,
              description: 'A portion of the proceeds from each phone is donated to help fight HIV/AIDS',
              image:       File.new(Rails.root.join('public', 'images', '512px-Red_Ribbon.png'), 'r')
-
-Deal.create! product:     aphone8,
-             description: 'Lock in your order for just €100'
 
 Deal.create! product:         aheadphones,
              description:     'Get a FREE pair of Sounds by Sir Simon headphones when you purchase Apricot Book',
