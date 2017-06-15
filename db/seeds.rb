@@ -4,6 +4,7 @@ AdminUser.create! email: 'admin@example.com', password: 'password', password_con
 %w(Apricot Gazillion Singsong).each {|name| Brand.create! name: name}
 
 Customer.create! name: 'David', email: 'david@example.com', password: 'password', password_confirmation: 'password', interest: 'smartphones'
+Customer.create! name: 'Matt', email: 'matt@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops'
 Customer.create! name: 'Keith', email: 'keith@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops'
 
 sphone8 = Product.create name:     'sPhone 8',

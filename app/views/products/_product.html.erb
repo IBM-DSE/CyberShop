@@ -2,7 +2,7 @@
   <div class="thumbnail">
     <div class="product-image">
       <div>
-      <%= link_to product_path(product) do %>
+      <%= link_to product_path(product), id: "#{product.friendly_id}-img-link" do %>
         <%= image_tag product.image.url %>
       <% end %>
       </div>
