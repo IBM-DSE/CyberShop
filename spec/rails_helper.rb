@@ -7,8 +7,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
-require 'support/factory_girl'
-require 'support/app_configured'
+# require 'support/factory_girl'
+# require 'support/app_configured'
 include ActionDispatch::TestProcess
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -61,4 +61,10 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+    Rails.application.load_seed # loading seeds
+  end
+
 end

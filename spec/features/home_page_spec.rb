@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Visiting the Home Page', type: :feature do
-  include_context 'app configured'
+  # include_context 'app configured'
 
   scenario 'anonymous visitor sees the expected homepage content' do
     visit root_path
@@ -46,7 +46,7 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
       expect(page).to have_text product.name
       expect(page).to have_text "#{product.brand.name} inc."
       expect(page).to have_text product.deal.description if product.deal
-      expect(page).to have_link product.preorder ? 'Pre-Order' : 'Add To Cart'
+      expect(page).to have_link 'Add To Cart'
       click_link 'CYBERSHOP'
     end
 
