@@ -1,26 +1,28 @@
 <div class="jumbotron">
-  
   <h3><%= deal.description %></h3>
   <br>
-  <% product_page = current_page?(action: 'show', id: deal.product.friendly_id) %>
-  <% if deal.trigger_product %>
-    <div style="display: table;">
-      <div style="display: table-cell; padding-right: 1em; vertical-align: top;" >
-        <% src = product_page ? deal.trigger_product : deal.product %>
-        <%= image_tag src.image.url, style: 'height: 10em;' %>
-      </div>
-    
-      <div style="display: table-cell; padding-right: 2em; vertical-align: top;" >
-        <h4><%= src.name %></h4>
-        <p>
-          by <%= src.brand.name %>
-        </p>
-        <%= render partial: "products/details#{'_cart' if action_name == 'cart'}_button", locals: {product: src} %>
-      </div>
-        
-      <div style="display: table-cell;">
-        <%= display_price(deal.product.price, deal.price) %>
-      </div>
-    </div>
+  <% product_page = current_page?(controller: 'products', action: 'show', id: deal.product.friendly_id) %>
+  <% combo_deal = deal.trigger_product && !current_page?(controller: 'products', action: 'cart') %>
+  <% src = product_page ? deal.trigger_product : deal.product %>
+  <div class="horizontal">
+    <% if combo_deal %>
+        <div><%= render partial: 'deals/product',
+                        locals:  { product: deal.trigger_product } %></div>
+        <div class="plus">+</div>
+    <% end %>
+    <div><%= render partial: 'deals/product',
+                    locals:  { product: src, deal: deal } unless product_page %></div>
+    <% if combo_deal %>
+        <div><%= render partial: 'products/cart_button',
+                        locals:  { product: deal.trigger_product, additional_product: deal.product, big: true } %>
+        </div>
+    <% elsif !product_page %>
+        <div><%= render partial: 'products/cart_button',
+                        locals:  { product: deal.product, big: true } %></div>
+    <% end %>
+  </div>
+  <% if deal.image_file_name %>
+    <br>
+    <%= image_tag deal.image.url %>
   <% end %>
 </div>

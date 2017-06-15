@@ -1,4 +1,3 @@
-<!-- Static navbar -->
 <nav class="top-navbar navbar-default">
   <div class="top-navbar container-fluid">
     <div class="navbar-header">
@@ -42,8 +41,9 @@
         <% end %>
         <li>
           <%= link_to cart_path, class: 'cart-button' do %>
+            <div class="cart-count"><%= (session[:cart] || []).length %></div>
             <%= content_tag :span, '', class: 'glyphicon glyphicon-shopping-cart', 'aria-hidden' => 'true' %>
-              &nbsp;<%= content_tag :span, '€ 0', class: 'cart-price' %>
+            &nbsp;<%= content_tag :span, decimal_to_euros(session[:cart_price] || 0), class: 'cart-price' %>
           <% end %>
         </li>
       </ul>

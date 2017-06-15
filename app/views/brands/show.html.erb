@@ -1,3 +1,2 @@
 <h1><%= @brand.name %> Products</h1>
-<br>
-<%= render @brand.products %>
+<%= render partial: 'products/thumbnails', locals: {products: @brand.products} %>

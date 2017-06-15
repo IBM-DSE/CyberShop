@@ -29,7 +29,7 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
         end
       end
 
-      expect(page).to have_link 'Deals', href: '#'
+      expect(page).to have_link 'Deals', href: '/deals'
     end
 
     within('#carousel') do
@@ -44,7 +44,7 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
       expect(page).to have_link product.name, href: "/products/#{product.friendly_id}"
       click_link product.name
       expect(page).to have_text product.name
-      expect(page).to have_text "by #{product.brand.name}"
+      expect(page).to have_text "#{product.brand.name} inc."
       expect(page).to have_text product.deal.description if product.deal
       expect(page).to have_link product.preorder ? 'Pre-Order' : 'Add To Cart'
       click_link 'CYBERSHOP'

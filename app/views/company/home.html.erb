@@ -1,5 +1,5 @@
 
-<% Category.all.each do |category| %>
-<h3><%= category.name %></h3>
-<%= render partial: 'categories/products', locals: {category: category} %>
-<% end %>
+<%= render 'deals/carousel' %>
+
+<h3 class="trade-gothic you-may-also-like">YOU MAY ALSO LIKE</h3>
+<%= render partial: 'products/thumbnails', locals: {products: @products} if @products %>

@@ -14,7 +14,7 @@ RSpec.feature 'Scenario 1', type: :feature do
     end
 
     expect(page).to have_text @product.name
-    expect(page).to have_text "by #{@brand.name}"
+    expect(page).to have_text "#{@brand.name} inc."
     expect(page).to have_text @deal.description
     expect(page).to have_link 'Add To Cart'
 

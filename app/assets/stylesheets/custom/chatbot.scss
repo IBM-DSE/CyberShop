@@ -24,7 +24,7 @@ $input-height: 55px;
   position: fixed;
   bottom: $offset;
   right: 20px;
-  //height: 90vh;
+  z-index: 10;
   height: calc(100vh - calc(50px + #{$offset}));
 }
 
@@ -41,7 +41,6 @@ $input-height: 55px;
   box-shadow: 0 5px 40px rgba(0,0,0,.16)!important;
   overflow: hidden;
   
-  z-index: 1;
   display: none;
 }
 
