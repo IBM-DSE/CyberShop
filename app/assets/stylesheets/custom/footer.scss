@@ -1,0 +1,43 @@
+$footer-height: 134px;
+
+body {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: $footer-height + 110px;
+}
+
+#footer {
+  
+  position: absolute;
+  bottom: 0;
+  
+  width: 100%;
+  height: $footer-height;
+  background-color: #1e2226;
+  
+  text-align: center;
+  
+  > .links {
+    padding-top: 50px;
+    > div {
+      display: table;
+      margin-left: auto;
+      margin-right: auto;
+      > div {
+        display: table-cell;
+        padding-right: 30px;
+      }
+    }
+    font-size: 12px;
+    letter-spacing: 0.2px;
+    color: #ffffff;
+  }
+  
+  > .motto {
+    padding-top: 19px;
+    font-size: 10px;
+    line-height: 2.4;
+    letter-spacing: 0.2px;
+    color: #737373;
+  }
+}

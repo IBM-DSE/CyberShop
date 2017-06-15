@@ -1,3 +1,7 @@
-<%= link_to order_product_path(product), class: "btn btn-lg btn-#{product.preorder ? 'warning' : 'success'}" do %>
-  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <%= product.preorder ? 'Pre-Order' : 'Add To Cart' %>
+<% big = (defined?(big) and big) %>
+<% two = defined? additional_product %>
+<%= form_tag order_products_path, method: 'post' do |f| %>
+  <%= hidden_field_tag :id, product.id %>
+  <%= hidden_field_tag :additional_product, additional_product.id if two %>
+  <%= submit_tag "Add#{' Both' if two} To Cart", class: "btn btn-lg #{'big-' if big}btn-cart" %>
 <% end %>

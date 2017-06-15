@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608144012) do
+ActiveRecord::Schema.define(version: 20170614172020) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -59,10 +59,19 @@ ActiveRecord::Schema.define(version: 20170608144012) do
   add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true
 
   create_table "customers", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name"
+    t.string   "email",               default: "", null: false
+    t.string   "encrypted_password",  default: "", null: false
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",       default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "interest"
   end
+
+  add_index "customers", ["email"], name: "index_customers_on_email", unique: true
 
   create_table "deals", force: :cascade do |t|
     t.integer  "product_id"
@@ -90,6 +99,13 @@ ActiveRecord::Schema.define(version: 20170608144012) do
     t.integer  "machine_learning_service_id"
   end
 
+  create_table "features", force: :cascade do |t|
+    t.integer "product_id"
+    t.string  "description"
+  end
+
+  add_index "features", ["product_id"], name: "index_features_on_product_id"
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false
     t.integer  "sluggable_id",               null: false
@@ -109,6 +125,7 @@ ActiveRecord::Schema.define(version: 20170608144012) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name",       limit: 255
+    t.string   "hostname"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -145,6 +162,8 @@ ActiveRecord::Schema.define(version: 20170608144012) do
     t.boolean  "preorder"
     t.decimal  "price"
     t.string   "slug"
+    t.text     "color_options"
+    t.text     "storage_options"
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id"
@@ -152,6 +171,9 @@ ActiveRecord::Schema.define(version: 20170608144012) do
 
   create_table "trending_topics", force: :cascade do |t|
     t.string   "name"
+    t.integer  "frequency"
+    t.integer  "aphone"
+    t.integer  "sphone"
     t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

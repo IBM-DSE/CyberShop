@@ -1,7 +1,8 @@
+# noinspection ALL
 class Conversation
 
   # class method for sending string message content and customer context to WC
-  def self.send(customer, message, context)
+  def self.send(message, context)
 
     # if this is the first message in the conversation, check to see if the customer will churn
     # context[:will_churn] = customer.will_churn? if context.empty?
@@ -51,6 +52,28 @@ class Conversation
 
   def self.conversation_url
     API_ENDPOINT + ENV['WORKSPACE_ID'] + '/message?version=' + VERSION
+  end
+
+  def self.handle_consent(customer, consent_provided)
+    if consent_provided
+      ConsentManager.join_twitter_data(customer)
+      customer.tweets = Tweets.find_by_name customer.name
+    end
+  end
+  
+  def self.get_recommendation(customer, product_line)
+
+    ml_service = MachineLearningService.find_by_name 'Customer Prediction'
+
+    product_scores = {}
+    product_line.each do |product|
+      deployment = ml_service.deployments.find_by_name "#{product} Classifier"
+      score = ml_service.get_score deployment.id, customer.tweets
+      product_scores[score] = product
+    end
+
+    return product_scores.sort.reverse.to_h.values.first
+
   end
 
 end

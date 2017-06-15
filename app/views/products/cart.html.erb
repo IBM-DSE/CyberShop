@@ -4,6 +4,12 @@
 <%= render partial: 'deals/deal', locals: {deal: @special_deal} %>
 <% end %>
 <table class='shopping-cart'>
+  <tr>
+    <th></th>
+    <th></th>
+    <th>Price</th>
+    <th>Quantity</th>
+  </tr>
 <% @cart.each do |product| %>
   <tr>
     <td class="col-md-4"><%= image_tag product.image.url %></td>
@@ -13,13 +19,20 @@
       <%= stock_status !product.preorder %>
     </td>
     <td class="col-md-2">
-      <div style="font-size: 16px">
-        <%= content_tag(:strike, number_to_currency(product.price, unit: '€')) + tag(:br) if product.discount_price %>
-      </div>
-      <%= price product %>
+      <%= display_price(product.price, product.discount_price) %>
     </td>
     <td>
-      <%= link_to 'Remove', remove_product_path(product) %>
+      <p>
+      <select class="quantity-select">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+      </p>
+      <p>
+        <%= link_to 'Remove', remove_product_path(product) %>
+      </p>
     </td>
   </tr>
 <% end %>

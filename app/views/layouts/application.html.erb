@@ -10,15 +10,17 @@
 
   <body>
 
-  <%= render 'application/navbar' %>
-  
-  <div class="container">
+  <%= render 'application/header' %>
 
-    <%= flash_messages %>
+  <%= flash_messages %>
+  
+  <div id="content">
     
     <%= yield %>
     
   </div>
+
+  <%= render 'application/footer' %>
   
   </body>
 </html>

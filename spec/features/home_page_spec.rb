@@ -5,12 +5,12 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
 
   scenario 'anonymous visitor sees the expected homepage content' do
     visit root_path
-    expect(page).to have_text app_name
+    expect(page).to have_text 'CYBERSHOP'
 
-    within('#nav.nav.nav-tabs') do
+    within('#main-navbar') do
 
       within('li#categories') do
-        expect(page).to have_link 'Categories', href: '#'
+        expect(page).to have_link 'Categories', href: '#', class: 'dropdown-toggle'
         expect(page).to have_selector 'ul.dropdown-menu'
         within('ul.dropdown-menu') do
           Category.all.each do |category|
@@ -29,11 +29,11 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
         end
       end
 
-      expect(page).to have_link 'Deals', href: '#'
+      expect(page).to have_link 'Deals', href: '/deals'
     end
 
-    within('#myCarousel') do
-      Deal.all.each do |deal|
+    within('#carousel') do
+      Deal.first do |deal|
         expect(page).to have_text deal.product.name
         expect(page).to have_text deal.description
         expect(page).to have_link 'Details', href: "/products/#{deal.product.friendly_id}"
@@ -44,10 +44,10 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
       expect(page).to have_link product.name, href: "/products/#{product.friendly_id}"
       click_link product.name
       expect(page).to have_text product.name
-      expect(page).to have_text "by #{product.brand.name}"
+      expect(page).to have_text "#{product.brand.name} inc."
       expect(page).to have_text product.deal.description if product.deal
       expect(page).to have_link product.preorder ? 'Pre-Order' : 'Add To Cart'
-      click_link app_name
+      click_link 'CYBERSHOP'
     end
 
   end

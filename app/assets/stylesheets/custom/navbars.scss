@@ -1,0 +1,90 @@
+/** TOP NAVBAR */
+$top-navbar-height: 40px;
+
+.top-navbar {
+  height: $top-navbar-height !important;
+  .navbar-collapse {
+    height: $top-navbar-height !important;
+  }
+  .nav > * > * {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .login {
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    color: #737373;
+  }
+  
+  .cart-count {
+    width: 17px;
+    height: 17px;
+    margin-right: 15px;
+    border-radius: 17px;
+    background-color: #ffffff;
+    font-size: 8px;
+    letter-spacing: 0.5px;
+    color: #737373;
+    float: left;
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  .cart-price {
+    line-height: 20px;
+    letter-spacing: 0.8px;
+    color: #737373;
+  }
+  
+  .cart-button {
+    height: $top-navbar-height;
+    background-color: #dedede;
+  }
+}
+
+/** MAIN NAVBAR */
+$main-navbar-height: 93px;
+
+#main-navbar {
+  height: $main-navbar-height !important;
+  background-color: #434343;
+  
+  .dropdown {
+    height: 100%;
+    > * {
+      line-height: $main-navbar-height;
+      padding: 0 20px;
+      font-size: 16px;
+      letter-spacing: 0.4px;
+      color: #ffffff;
+    }
+  }
+  
+  .open > a {
+    background-color: #65c95f;
+  }
+  
+  > * {
+    height: 100%;
+    line-height: $main-navbar-height !important;
+  }
+  
+  .navbar-collapse > * {
+    height: $main-navbar-height !important;
+  }
+  
+  .navbar-brand {
+    padding: 0 40px;
+    line-height: $main-navbar-height;
+    
+    .company-name {
+      font-family: 'Open Sans';
+      font-size: 36px;
+      font-weight: 800;
+      font-style: italic;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+  }
+}

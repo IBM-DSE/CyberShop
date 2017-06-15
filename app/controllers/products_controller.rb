@@ -3,18 +3,30 @@ class ProductsController < ApplicationController
   
   def show
     @product = Product.find params[:id]
-    @deals = (@product.trigger_deals.where(special: false) << @product.deal).compact
-    @in_cart = session[:cart].include? @product.id
+    @combo_deals = @product.trigger_deals.where(special: false)
+    @deals = (@combo_deals << @product.deal).compact
+    @in_cart = session[:cart].include? @product.friendly_id
   end
-  
+
+  def add_multiple_to_cart
+    if order_products_params[:additional_product]
+      additional_product = Product.find order_products_params[:additional_product]
+      put_in_cart additional_product if additional_product
+    end
+    add_to_cart and return
+  end
+
   def add_to_cart
-    @product = Product.find params[:id]
-    session[:cart] << @product.friendly_id
+    @product = Product.find order_products_params[:id]
+    put_in_cart @product if @product
+    # @product.check_special_offer current_customer
     redirect_to action: 'cart'
   end
 
   def remove_from_cart
+    product = Product.find params[:id]
     session[:cart].delete params[:id]
+    change_cart_price(product.price, false)
     redirect_to action: 'cart'
   end
   
@@ -36,7 +48,25 @@ class ProductsController < ApplicationController
   private
   
   def init_cart_if_empty
-    session[:cart] = [] unless session[:cart]
+    unless session[:cart]
+      session[:cart] = []
+      session[:cart_price] = 0
+    end
+  end
+  
+  def order_products_params
+    params.permit(:id, :additional_product)
+  end
+  
+  def put_in_cart(product)
+    unless session[:cart].include? product.friendly_id
+      session[:cart] << product.friendly_id
+      change_cart_price(product.price)
+    end
+  end
+  
+  def change_cart_price(price, increment=true)
+    session[:cart_price] = BigDecimal.new(session[:cart_price]) + (increment ? 1 : -1)*price
   end
   
 end

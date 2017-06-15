@@ -1,35 +1,19 @@
-<!-- Carousel from https://getbootstrap.com/examples/carousel/
-    ================================================== -->
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <% (1..@public_deals.length).each do |i| %>
-        <li data-target="#myCarousel" data-slide-to="<%= i %>" <%= 'class="active"'.html_safe if i == 1 %>></li>
-    <% end %>
-  </ol>
-  <div class="carousel-inner" role="listbox">
-    <% @public_deals.each do |deal| %>
-        <div class="item <%= 'active' if deal.id == 1 %>">
-          <% src = deal.trigger_product ? deal.trigger_product : deal.product %>
-          <%= image_tag src.image.url %>
-          <div class="container">
-            <div class="carousel-caption">
-              <h1><%= src.name %></h1>
-              <p><%= deal.description %></p>
-              <p>
-                <%= render partial: 'products/details_button', locals: {product: src} %>
-              </p>
-            </div>
-          </div>
+<div id="carousel" class="carousel">
+<% @public_deals.find 1 do |deal| %>
+  <div class="carousel-inner">
+    <div class="item <%= 'active' if deal.id == 1 %>">
+      <% src = deal.trigger_product ? deal.trigger_product : deal.product %>
+      <div class="item-content">
+        <div><%= image_tag src.image.url %></div>
+        <div class="carousel-description trade-gothic">
+          <h1><%= src.name %></h1>
+          <div class="vert-sep"></div>
+          <h3><%= deal.description %></h3>
+          <div class="vert-sep"></div>
+          <p><%= render partial: 'products/details_button', locals: {product: src} %></p>
         </div>
-    <% end %>
+      </div>
+    </div>
   </div>
-  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div><!-- /.carousel -->
+<% end %>
+</div>
