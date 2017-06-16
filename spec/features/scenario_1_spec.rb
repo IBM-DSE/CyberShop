@@ -13,6 +13,12 @@ RSpec.feature 'Scenario 1', type: :feature do
     page.fill_in 'Password', with: 'password'
     click_button 'Log in'
 
+    within('#top-navbar') do
+      expect(page).to have_text 'USA'
+      expect(page).to have_text 'Matt'
+      expect(page).to have_text '€ 0,00'
+    end
+
     # sees aPhone 8 Pre-Order ad
     within('#carousel') do
       expect(page).to have_text 'Pre-Order aPhone 8'
@@ -40,16 +46,28 @@ RSpec.feature 'Scenario 1', type: :feature do
     expect(page).to have_button 'Add Both To Cart'
     click_button 'Add Both To Cart'
 
-    # sees ad to waive the Pre-Order deposit
+    # sees ad to waive the Pre-Order deposit and clicks 'Details'
+    expect(page).to have_text 'Subtotal (2 items): € 2.299,00'
     within('.jumbotron') do
       expect(page).to have_text 'Good news! Because you are a loyal customer of the Apricot line and are about to purchase the Apricot Book, we offer to waive the regular €100 aPhone 8 Pre-Order deposit. Add it to your cart right now for free!'
       expect(page).to have_text 'Pre-Order aPhone 8'
       expect(page).to have_text '€ 0,00'
+      expect(page).to have_link 'Details'
       expect(page).to have_button 'Add To Cart'
-      click_button 'Add To Cart'
+      click_link 'Details'
     end
+
+    # sees product page with all the features and adds to cart
+    expect(page).to have_text 'Pre-Order aPhone 8'
+    expect(page).to have_text '€ 100,00'
+    expect(page).to have_text 'Voice Assistant Stoey'
+    expect(page).to have_text 'Fireproof'
+    expect(page).to have_text 'I10 Processor'
+    expect(page).to have_text 'CHOOSE YOUR COLOR'
+    expect(page).to have_text 'CHOOSE YOUR STORAGE'
+    click_link 'Add To Cart'
     
-    # sees the three items in his shopping cart
+    # sees the three items in his shopping cart with the correct subtotal
     within '#shopping-cart' do
 
       expect(page).to have_text 'Price'
@@ -68,7 +86,6 @@ RSpec.feature 'Scenario 1', type: :feature do
       expect(page).to have_text 'Coming Soon!'
       
     end
-
     expect(page).to have_text 'Subtotal (3 items): € 2.299,00'
     expect(page).to have_link 'Proceed To Checkout'
     

@@ -25,7 +25,7 @@ aphone8 = Product.create name:     'Pre-Order aPhone 8',
                          preorder: true
 aphone8.features.build description: 'Voice Assistant Stoey'
 aphone8.features.build description: 'Fireproof'
-aphone8.features.build description: 'P10 Processor'
+aphone8.features.build description: 'I10 Processor'
 aphone8.color_options = %w(White Black GREEN)
 aphone8.storage_options = [16, 32, 64]
 aphone8.save
