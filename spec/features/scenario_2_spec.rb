@@ -42,13 +42,13 @@ RSpec.feature 'Scenario 2', type: :feature, js: true do
       expect(page).to have_css "input[placeholder='Send a message...']"
       expect(page).to have_text 'David, it looks you have been looking at smartphones. Can I help you?'
       page.fill_in 'Send a message...', with: 'okay'
-      find('#chat-input').native.send_keys(:return)
+      find('#chat-input').native.send_keys(:enter)
       expect(page).to have_text 'Before we start may I use your personal data to make product recommendations? Please answer full or none.'
       page.fill_in 'Send a message...', with: 'none'
-      find('#chat-input').native.send_keys(:return)
+      find('#chat-input').native.send_keys(:enter)
       expect(page).to have_text 'The A-phone Model GREEN has been popular on social media over the past few weeks. Can I tell you more?'
       page.fill_in 'Send a message...', with: 'sure'
-      find('#chat-input').native.send_keys(:return)
+      find('#chat-input').native.send_keys(:enter)
       expect(page).to have_text 'A portion of the proceeds from each phone is donated to help fight HIV/AIDS. Just click the image above for more information!'
       expect(page).to have_css 'a[href^="/products/aphone-7-green"] > img[src="/images/aPhone7GREEN.png"]'
       find('a[href^="/products/aphone-7-green"]').click
@@ -70,13 +70,13 @@ RSpec.feature 'Scenario 2', type: :feature, js: true do
       expect(page).to have_css "input[placeholder='Send a message...']"
       expect(page).to have_text 'David, it looks you have been looking at smartphones. Can I help you?'
       page.fill_in 'Send a message...', with: 'okay'
-      find('#chat-input').native.send_keys(:return)
+      find('#chat-input').native.send_keys(:enter)
       expect(page).to have_text 'Before we start may I use your personal data to make product recommendations? Please answer full or none.'
       page.fill_in 'Send a message...', with: 'full'
-      find('#chat-input').native.send_keys(:return)
+      find('#chat-input').native.send_keys(:enter)
       expect(page).to have_text 'I see you have tweeted about phone features such as translation. Can I tell you more?'
       page.fill_in 'Send a message...', with: 'okay'
-      find('#chat-input').native.send_keys(:return)
+      find('#chat-input').native.send_keys(:enter)
       expect(page).to have_text 'The S-phone Model 8 is a good choice. It allows you to point your phone camera at foreign language text and it will give you a real-time translation.
 Just click the image for more details!'
       expect(page).to have_css 'a[href^="/products/sphone-8"] > img[src="/images/sPhone8.jpg"]'
