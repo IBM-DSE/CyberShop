@@ -1,7 +1,7 @@
 module ProductsHelper
   
   def display_price(price, discount_price=nil)
-    content_tag :div do
+    content_tag :div, class: 'price' do
       if discount_price
         concat(content_tag :p, content_tag(:strike, decimal_to_euros(price), style: 'font-size: 16px') )
       end

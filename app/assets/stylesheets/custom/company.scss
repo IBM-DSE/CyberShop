@@ -35,22 +35,25 @@ body {
 
 .btn {
   color: #ffffff;
-  font-size: 12px;
+  background-color: #626d74;
+  //font-size: 12px;
   border-radius: 0;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
-.btn-details {
-  background-color: #414141;
-}
+//.btn-details {
+//  //background-color: #414141;
+//}
 
 .btn-cart {
-  background-color: #626d74;
+  //background-color: #626d74;
   letter-spacing: 0.1px;
   text-align: center;
 }
 
-.big-btn-cart {
-  background-color: #565656;
-  width: 164px;
-  height: 40px;
-}
+//.big-btn-cart {
+//  //background-color: #565656;
+//  //width: 164px;
+//  //height: 40px;
+//}

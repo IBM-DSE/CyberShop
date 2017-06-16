@@ -9,8 +9,7 @@
     width: 100%;
     vertical-align: middle;
     > div {
-      width: 50%;
-      margin: auto;
+      margin-left: 40px;
       > .product-name {
         @extend .trade-gothic;
         color: #1e2226;
@@ -42,7 +41,7 @@
     
     .option {
       //border: solid 0.9px #e4e4e5;
-      margin-right: 10px;
+      margin: 10px;
       font-size: 10.8px;
       font-weight: bold;
       text-align: center;
