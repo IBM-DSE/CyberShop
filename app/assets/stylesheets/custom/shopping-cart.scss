@@ -2,6 +2,13 @@
 /** SHOPPING CART
 -------------------------------------------------- */
 
+#shopping-cart-title {
+  margin-top: 50px;
+  font-weight: bold;
+  letter-spacing: 0.8px;
+  color: #1e2226;
+}
+
 #shopping-cart {
   width: 100%;
   
@@ -10,17 +17,35 @@
     float: left;
   }
   
-  td {
+  th {
+    text-align: right;
+  }
+  
+  th,td {
     border-bottom: solid 1.8px #979797;
     padding: 1em;
   }
   
+  .product-name {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.15;
+  }
+  
   .in-stock {
-    color: green;
+    font-size: 17.7px;
+    font-weight: bold;
+    color: #4adc7d;
   }
   
   .coming-soon {
+    font-size: 17.7px;
+    font-weight: bold;
     color: darkgoldenrod;
+  }
+  
+  .price {
+    text-align: right;
   }
 }
 
