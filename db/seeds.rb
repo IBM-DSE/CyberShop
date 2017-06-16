@@ -3,9 +3,10 @@ AdminUser.create! email: 'admin@example.com', password: 'password', password_con
 %w(Smartphones Tablets Laptops Headphones).each {|name| Category.create! name: name}
 %w(Apricot Gazillion Singsong).each {|name| Brand.create! name: name}
 
-Customer.create! name: 'David', email: 'david@example.com', password: 'password', password_confirmation: 'password', interest: 'smartphones'
-Customer.create! name: 'Matt', email: 'matt@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops'
+Customer.create! name:   'Matt', email: 'matt@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops',
+                 gender: 'M', age_group: '35-44', education: 'Doctorate', profession: 'Executive', income: 150000, switcher: 0, last_purchase: 3, annual_spend: 1200
 Customer.create! name: 'Keith', email: 'keith@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops'
+Customer.create! name: 'David', email: 'david@example.com', password: 'password', password_confirmation: 'password', interest: 'smartphones'
 
 sphone8 = Product.create name:     'sPhone 8',
                          category: Category.find_by_name('Smartphones'),
@@ -26,7 +27,7 @@ aphone8 = Product.create name:     'Pre-Order aPhone 8',
 aphone8.features.build description: 'Voice Assistant Stoey'
 aphone8.features.build description: 'Fireproof'
 aphone8.features.build description: 'I10 Processor'
-aphone8.color_options = %w(White Black GREEN)
+aphone8.color_options   = %w(White Black GREEN)
 aphone8.storage_options = [16, 32, 64]
 aphone8.save
 
@@ -111,3 +112,13 @@ CSV.foreach('db/seed_data/WEX_output.csv', headers: true) do |row|
   data['product_id'] = data['aphone'] > data['sphone'] ? aphone7.id : sphone8.id
   TrendingTopic.create! data
 end
+
+customer_interest_ml = MachineLearningService.create name:     'Customer Interest',
+                                                     hostname: ENV['ML_LOCAL_HOSTNAME'],
+                                                     username: ENV['ML_LOCAL_USERNAME'],
+                                                     password: ENV['ML_LOCAL_PASSWORD']
+
+customer_interest_ml.deployments.build name: 'aPhone Model',
+                                       guid: ENV['APHONE_DEPLOYMENT']
+
+customer_interest_ml.save

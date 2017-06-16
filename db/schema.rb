@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170616155129) do
+ActiveRecord::Schema.define(version: 20170616160836) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -61,6 +61,15 @@ ActiveRecord::Schema.define(version: 20170616155129) do
   create_table "customers", force: :cascade do |t|
     t.string   "name"
     t.string   "email",               default: "", null: false
+    t.string   "interest"
+    t.string   "gender"
+    t.string   "age_group"
+    t.string   "education"
+    t.string   "profession"
+    t.integer  "income"
+    t.integer  "switcher"
+    t.integer  "last_purchase"
+    t.integer  "annual_spend"
     t.string   "encrypted_password",  default: "", null: false
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",       default: 0,  null: false
@@ -68,7 +77,6 @@ ActiveRecord::Schema.define(version: 20170616155129) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "interest"
   end
 
   add_index "customers", ["email"], name: "index_customers_on_email", unique: true
