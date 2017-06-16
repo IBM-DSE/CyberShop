@@ -23,10 +23,10 @@ class Product < ActiveRecord::Base
     
     if potential_deal
       
-      ml_service = MachineLearningService.find_by_name 'Customer Prediction'
+      ml_service = MachineLearningService.find_by_name 'Customer Interest'
       deployment = ml_service.deployments.find_by_name 'aPhone Model'
       
-      score = ml_service.get_score deployment.id, customer.get_attributes
+      score = ml_service.get_score deployment.guid, customer.attributes
       
       return potential_deal if score > 0.8
       

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170614172020) do
+ActiveRecord::Schema.define(version: 20170616155129) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20170614172020) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "machine_learning_service_id"
+    t.string   "guid"
   end
 
   create_table "features", force: :cascade do |t|

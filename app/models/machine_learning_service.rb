@@ -11,7 +11,7 @@ class MachineLearningService < ActiveRecord::Base
       deployments_list.each do |deployment|
         url    = deployment['entity']['scoringHref']
         prefix = url[36..url.index('/', 36) - 1]
-        deployments.find_or_initialize_by id: deployment['metadata']['guid'] do |d|
+        deployments.find_or_initialize_by guid: deployment['metadata']['guid'] do |d|
           d.name       = deployment['entity']['name']
           d.status     = deployment['entity']['status']
           d.prefix     = prefix
