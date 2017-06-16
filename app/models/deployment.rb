@@ -1,5 +1,6 @@
 class Deployment < ActiveRecord::Base
   belongs_to :machine_learning_service
+  belongs_to :product
 
   def self.display_columns
     self.columns_hash.except('machine_learning_service_id').keys

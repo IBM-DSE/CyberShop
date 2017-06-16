@@ -1,9 +1,9 @@
 ActiveAdmin.register Deployment do 
-  permit_params :machine_learning_service_id, :guid, :name
+  permit_params :product_id, :machine_learning_service_id, :guid
 
   form do |f|
     f.semantic_errors
-    f.inputs :machine_learning_service, :guid, :name
+    f.inputs :product, :machine_learning_service, :guid
     f.actions
   end
   

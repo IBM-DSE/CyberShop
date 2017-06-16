@@ -38,14 +38,12 @@ class ProductsController < ApplicationController
 
   def cart
     @cart = Product.find session[:cart]
-    p @cart
     apply_discounts
 
     # Check for any special offers
     if customer_signed_in?
       @cart.each do |product|
-        p product
-        @offered_deal = product.check_special_offer(current_customer)
+        @offered_deal ||= product.check_special_offer(current_customer)
       end
     end
   end
@@ -87,7 +85,7 @@ class ProductsController < ApplicationController
 
 
   def discount(deal)
-    deal.product.price - deal.price
+    deal.product.price - (deal.price || 0)
   end
 
 

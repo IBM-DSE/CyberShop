@@ -28,7 +28,7 @@ class Product < ActiveRecord::Base
       
       # Find the deployment for the the model of this deal's product
       ml_service = MachineLearningService.find_by_name 'Customer Interest'
-      deployment = ml_service.deployments.find_by_name "#{potential_deal.product.name} Model" if ml_service
+      deployment = ml_service.deployments.find_by_product_id potential_deal.product.id if ml_service
       if ml_service && deployment
         
         # Extract the essential customer attributes

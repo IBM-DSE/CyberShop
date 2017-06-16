@@ -118,7 +118,7 @@ customer_interest_ml = MachineLearningService.create name:     'Customer Interes
                                                      username: ENV['ML_LOCAL_USERNAME'],
                                                      password: ENV['ML_LOCAL_PASSWORD']
 
-customer_interest_ml.deployments.build name: 'aPhone Model',
+customer_interest_ml.deployments.build product: aphone8,
                                        guid: ENV['APHONE_DEPLOYMENT']
 
 customer_interest_ml.save
