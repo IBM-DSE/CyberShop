@@ -13,6 +13,8 @@ RSpec.feature 'Scenario 1', type: :feature do
     page.fill_in 'Password', with: 'password'
     click_button 'Log in'
 
+    # sees appropriate logged in content
+    expect(page).to have_text 'Signed in successfully.'
     within('#top-navbar') do
       expect(page).to have_text 'USA'
       expect(page).to have_text 'Matt'
