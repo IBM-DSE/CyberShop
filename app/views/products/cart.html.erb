@@ -38,6 +38,12 @@
 <% end %>
 </table>
 <br>
+<div style="text-align: right;">
+<h3 id="subtotal">
+  Subtotal (<%= (session[:cart] || []).length %> items): <%= decimal_to_euros(session[:cart_price] || 0) %>
+</h3>
+<br>
 <p>
   <%= link_to 'Proceed To Checkout', '#', class: 'btn btn-lg', id: 'checkout' %>
 </p>
+</div>
