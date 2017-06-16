@@ -4,6 +4,7 @@ AdminUser.create! email: 'admin@example.com', password: 'password', password_con
 %w(Apricot Gazillion Singsong).each {|name| Brand.create! name: name}
 
 Customer.create! name: 'David', email: 'david@example.com', password: 'password', password_confirmation: 'password', interest: 'smartphones'
+Customer.create! name: 'Matt', email: 'matt@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops'
 Customer.create! name: 'Keith', email: 'keith@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops'
 
 sphone8 = Product.create name:     'sPhone 8',
@@ -24,7 +25,7 @@ aphone8 = Product.create name:     'Pre-Order aPhone 8',
                          preorder: true
 aphone8.features.build description: 'Voice Assistant Stoey'
 aphone8.features.build description: 'Fireproof'
-aphone8.features.build description: 'P10 Processor'
+aphone8.features.build description: 'I10 Processor'
 aphone8.color_options = %w(White Black GREEN)
 aphone8.storage_options = [16, 32, 64]
 aphone8.save
@@ -36,7 +37,7 @@ aphone7 = Product.create name:     'aPhone 7 GREEN',
                          price:    699.00
 aphone7.features.build description: 'High Quality Camera'
 aphone7.features.build description: 'Waterproof'
-aphone7.features.build description: 'P9 Processor'
+aphone7.features.build description: 'I9 Processor'
 aphone7.save
 
 Product.create name:     'aPad',

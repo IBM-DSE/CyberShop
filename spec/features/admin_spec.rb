@@ -1,23 +1,22 @@
 require 'rails_helper'
 
 RSpec.feature 'Admin', type: :feature do
-  include_context 'app configured'
 
   before do
     visit '/admin'
 
     expect(page).to have_text 'You need to sign in or sign up before continuing.'
-    expect(page).to have_text app_name + ' Login'
+    expect(page).to have_text 'CyberShop Login'
 
     page.fill_in 'Email*', with: 'admin@example.com'
-    page.fill_in 'Password*', with: 'factorygirl'
+    page.fill_in 'Password*', with: 'password'
     click_button 'Login'
   end
 
   scenario 'Dashboard' do
 
     expect(page).to have_selector('#site_title')
-    expect(find('#site_title')).to have_link app_name, href: '/'
+    expect(find('#site_title')).to have_link 'CyberShop', href: '/'
     expect(find('#tabs')).to have_text 'Dashboard'
     expect(find('#tabs')).to have_text 'Admin Users'
     expect(find('#tabs')).to have_text 'Machine Learning Services'

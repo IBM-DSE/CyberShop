@@ -3,12 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .jumbotron {
+  
   text-align: center;
   margin-top: 30px;
   padding-left: 48px;
   padding-right: 48px;
   @extend .grey-border;
   background-color: #FFFFFF;
+  
+  h3 {
+    font-weight: 500;
+    color: #1e2226;
+  }
+  
   img {
     max-width: 100%;
   }
@@ -18,7 +25,7 @@
     > div {
       display: table-cell;
       padding-right: 2em;
-      vertical-align: top;
+      vertical-align: middle;
     }
     img {
       max-height: 10em;
