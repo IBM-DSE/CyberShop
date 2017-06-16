@@ -26,23 +26,14 @@ class ProductsController < ApplicationController
   def remove_from_cart
     product = Product.find params[:id]
     session[:cart].delete params[:id]
-    change_cart_price(product.price, false)
+    final_price = check_discount(product)
+    change_cart_price(-1*final_price)
     redirect_to action: 'cart'
   end
   
   def cart
-    @cart = session[:cart].map { |id| Product.find id } 
-    trigger_deals = @cart.collect(&:trigger_deals).flatten.compact
-    offered_deals = []
-    trigger_deals.each do |deal|
-      idx = @cart.index deal.product
-      if idx
-        @cart[idx].discount_price = deal.price
-      else
-        offered_deals << deal
-      end
-    end
-    @special_deal = offered_deals[0]
+    @cart         = session[:cart].map { |id| Product.find id }
+    @offered_deal = offered_deals[0]
   end
   
   private
@@ -50,6 +41,7 @@ class ProductsController < ApplicationController
   def init_cart_if_empty
     unless session[:cart]
       session[:cart] = []
+      session[:deals] = []
       session[:cart_price] = 0
     end
   end
@@ -61,12 +53,42 @@ class ProductsController < ApplicationController
   def put_in_cart(product)
     unless session[:cart].include? product.friendly_id
       session[:cart] << product.friendly_id
-      change_cart_price(product.price)
+      change_cart_price(product.discount_price || product.price)
     end
   end
   
-  def change_cart_price(price, increment=true)
-    session[:cart_price] = BigDecimal.new(session[:cart_price]) + (increment ? 1 : -1)*price
+  def change_cart_price(price)
+    session[:cart_price] = BigDecimal.new(session[:cart_price]) + price
+  end
+  
+  def offered_deals
+    trigger_deals = @cart.collect(&:trigger_deals).flatten.compact
+    offered_deals = []
+    trigger_deals.each do |deal|
+      idx = @cart.index deal.product
+      if idx
+        @cart[idx].discount_price = deal.price
+        unless session[:deals].include? deal.id
+          session[:deals] << deal.id
+          change_cart_price deal.price - deal.product.price
+        end
+      else
+        offered_deals << deal
+      end
+    end
+    offered_deals
+  end
+
+  def check_discount(product)
+    Deal.where(id: session[:deals]).each do |deal|
+      if deal.trigger_product == product
+        session[:deals].delete deal.id
+        change_cart_price deal.product.price - deal.price
+      elsif deal.product == product
+        return deal.price
+      end
+    end
+    product.price
   end
   
 end

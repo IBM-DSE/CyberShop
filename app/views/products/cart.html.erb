@@ -1,7 +1,7 @@
 <%= content_tag :h1, 'Shopping Cart' %>
 <br>
-<% if @special_deal and not @cart.include? @special_deal.product %>
-<%= render partial: 'deals/deal', locals: {deal: @special_deal} %>
+<% if @offered_deal and not @cart.include? @offered_deal.product %>
+<%= render partial: 'deals/deal', locals: {deal: @offered_deal} %>
 <% end %>
 <table id='shopping-cart'>
   <tr>
