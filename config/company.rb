@@ -1,7 +1,7 @@
 
 class Company
   def self.name
-    Rails.application.class.parent_name.titleize
+    Rails.application.class.parent_name
   end
 
   def self.description

@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature 'Visiting the Home Page', type: :feature do
-  include_context 'app configured'
+  background do
+    visit root_path
+  end
 
   scenario 'anonymous visitor sees the expected homepage content' do
-    visit root_path
     expect(page).to have_text 'CYBERSHOP'
 
     within('#main-navbar') do
@@ -39,14 +40,17 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
         expect(page).to have_link 'Details', href: "/products/#{deal.product.friendly_id}"
       end
     end
+  end
 
+  scenario 'anonymous visitor visits every product page' do
+    expect(page).to have_text 'CYBERSHOP'
     Product.all.each do |product|
       expect(page).to have_link product.name, href: "/products/#{product.friendly_id}"
       click_link product.name
       expect(page).to have_text product.name
       expect(page).to have_text "#{product.brand.name} inc."
       expect(page).to have_text product.deal.description if product.deal
-      expect(page).to have_link product.preorder ? 'Pre-Order' : 'Add To Cart'
+      expect(page).to have_link 'Add To Cart'
       click_link 'CYBERSHOP'
     end
 
