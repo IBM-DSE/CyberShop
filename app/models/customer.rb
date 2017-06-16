@@ -12,4 +12,10 @@ class Customer < ActiveRecord::Base
     }
   end
   
+  def get_twitter_data
+    [
+      'This menu is hard to read and I could really use some assistance'
+    ]
+  end
+  
 end

@@ -26,12 +26,12 @@ class MachineLearningService < ActiveRecord::Base
     end
   end
 
-  def get_model deployment_id
+  def get_model(deployment_id)
     init_service
     @service.get_model deployment_id
   end
 
-  def get_score deployment_id, data, prefix=nil
+  def get_score(deployment_id, data, prefix=nil)
     init_service
     @service.get_score deployment_id, data
   end
