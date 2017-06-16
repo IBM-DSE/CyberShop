@@ -37,7 +37,7 @@ aphone7 = Product.create name:     'aPhone 7 GREEN',
                          price:    699.00
 aphone7.features.build description: 'High Quality Camera'
 aphone7.features.build description: 'Waterproof'
-aphone7.features.build description: 'P9 Processor'
+aphone7.features.build description: 'I9 Processor'
 aphone7.save
 
 Product.create name:     'aPad',
