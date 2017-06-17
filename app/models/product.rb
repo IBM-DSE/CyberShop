@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
   has_many :features
   has_one :deal
   has_many :trigger_deals, :class_name => 'Deal', :foreign_key => 'trigger_product_id'
+  has_one :deployment
   
   serialize :color_options, Array
   serialize :storage_options, Array
@@ -17,19 +18,26 @@ class Product < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
   
+  
+  # Check for Machine Learning Model-based special offers 
   def check_special_offer(customer)
     
-    potential_deal = trigger_deals.where(special: true)
-    
-    if potential_deal
+    # Check for potential deals
+    potential_deals = trigger_deals.where(special: true)
+    unless potential_deals.empty?
+      potential_deal = potential_deals.first
       
-      ml_service = MachineLearningService.find_by_name 'Customer Prediction'
-      deployment = ml_service.deployments.find_by_name 'aPhone Model'
-      
-      score = ml_service.get_score deployment.id, customer.get_attributes
-      
-      return potential_deal if score > 0.8
+      # Find the deployment for the the model of this deal's product
+      if potential_deal.product.deployment
+        
+        # Get the score from the given deployment
+        score = potential_deal.product.deployment.get_score customer
+        
+        # Offer the deal if the probability is greater than 80%
+        return potential_deal if score > 0.8
+      end
       
     end
   end
+  
 end
