@@ -14,7 +14,9 @@ class Customer < ActiveRecord::Base
   
   def get_twitter_data
     [
-      'This menu is hard to read and I could really use some assistance'
+      'All is in French... Here is the menu picture, please assist me with this menu.',
+      'This menu is hard to read and I could really use some assistance',
+      'Wish I paid more attention in High School French class... this menu is completely illegible.'
     ]
   end
   

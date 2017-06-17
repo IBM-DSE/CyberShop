@@ -1,12 +1,14 @@
-AdminUser.create! email: 'admin@example.com', password: 'password', password_confirmation: 'password'
+admin_password =  ENV['ADMIN_PASSWORD'] || 'password'
+AdminUser.create! email: 'admin@example.com', password: admin_password, password_confirmation: admin_password
 
 %w(Smartphones Tablets Laptops Headphones).each {|name| Category.create! name: name}
 %w(Apricot Gazillion Singsong).each {|name| Brand.create! name: name}
 
 Customer.create! name:   'Matt', email: 'matt@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops',
-                 gender: 'M', age_group: '35-44', education: 'Doctorate', profession: 'Executive', income: 150000, switcher: 0, last_purchase: 3, annual_spend: 1200
-Customer.create! name: 'Keith', email: 'keith@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops'
+                 gender: 'M', age_group: '45-54', education: 'Doctorate', profession: 'Executive', income: 200000, switcher: 0, last_purchase: 3, annual_spend: 1200
 Customer.create! name: 'David', email: 'david@example.com', password: 'password', password_confirmation: 'password', interest: 'smartphones'
+                 # gender: 'M', age_group: '25-34', education: 'Masters', profession: 'Programmer', income: 40000, switcher: 1, last_purchase: 5, annual_spend: 200
+Customer.create! name: 'Keith', email: 'keith@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops'
 
 sphone8 = Product.create name:     'sPhone 8',
                          category: Category.find_by_name('Smartphones'),
@@ -120,5 +122,7 @@ customer_interest_ml = MachineLearningService.create name:     'Customer Interes
 
 customer_interest_ml.deployments.build product: aphone8,
                                        guid: ENV['APHONE_DEPLOYMENT']
+customer_interest_ml.deployments.build product: sphone8,
+                                       guid: ENV['SPHONE_DEPLOYMENT']
 
 customer_interest_ml.save

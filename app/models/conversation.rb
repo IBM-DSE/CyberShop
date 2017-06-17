@@ -70,17 +70,23 @@ class Conversation
   
   
   def self.get_recommendation(customer, category, tweets)
-
     product_scores = {}
+
+    # Check each product in the customer's category of interest
     category.products.each do |product|
+
+      # If we have a model deployment for this product
       if product.deployment
+        
+        # Get the score by passing in this customer's attributes
         score = product.deployment.get_score customer, tweets
         product_scores[score] = product
       end
     end
 
-    return product_scores.sort_by { |score, prod| score }.reverse.to_h.values.first
-      
+    # Sort the hash by product score and return the first one
+    return product_scores.sort_by { |score, product| score }.reverse.to_h.values.first
+    
   end
 
 end
