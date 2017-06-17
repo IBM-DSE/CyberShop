@@ -4,8 +4,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find params[:id]
-    @deals   = @product.trigger_deals.where(special: false) << @product.deal
-    @deals.compact!
+    @deals   = @product.trigger_deals.where(special: false) + @product.deals
     @in_cart = session[:cart].include? @product.id
   end
 
@@ -54,11 +53,13 @@ class ProductsController < ApplicationController
 
   def check_new_deals
     Product.find(session[:cart]).each do |product|
-      deal = product.deal
-      if deal and !session[:deals].include?(deal.id)
-        if deal.trigger_product.nil? or session[:cart].include?(deal.trigger_product.id)
-          session[:deals] << deal.id
-          change_cart_price -1*discount(deal)
+      deals = product.deals
+      deals.each do |deal|
+        if deal&.price and !session[:deals].include?(deal.id)
+          if deal.trigger_product.nil? or session[:cart].include?(deal.trigger_product.id)
+            session[:deals] << deal.id
+            change_cart_price -1*discount(deal)
+          end
         end
       end
     end

@@ -11,7 +11,7 @@
     <th></th>
   </tr>
 <% @cart.each do |product| %>
-  <tr>
+  <tr id="<%= product.friendly_id %>">
     <td class="col-md-3"><%= image_tag product.image.url %></td>
     <td>
       <%= link_to content_tag(:h4, product.name, class: 'product-name'), product %>

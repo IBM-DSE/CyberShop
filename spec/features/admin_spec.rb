@@ -9,7 +9,7 @@ RSpec.feature 'Admin', type: :feature do
     expect(page).to have_text 'CyberShop Login'
 
     page.fill_in 'Email*', with: 'admin@example.com'
-    page.fill_in 'Password*', with: 'password'
+    page.fill_in 'Password*', with: ENV['ADMIN_PASSWORD'] || 'password'
     click_button 'Login'
   end
 

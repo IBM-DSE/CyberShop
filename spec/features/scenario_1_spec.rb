@@ -83,10 +83,14 @@ RSpec.feature 'Scenario 1', type: :feature do
       expect(page).to have_text 'by Apricot'
       expect(page).to have_text 'In Stock'
 
-      expect(page).to have_text 'Pre-Order aPhone 8'
-      expect(page).to have_text 'by Apricot'
-      expect(page).to have_text 'Coming Soon!'
-      
+      within '#pre-order-aphone-8' do
+        expect(page).to have_text 'Pre-Order aPhone 8'
+        expect(page).to have_text 'by Apricot'
+        expect(page).to have_text 'Coming Soon!'
+        expect(page).to have_text '€ 0,00'
+        expect(page).to have_text '€ 100,00'
+      end
+
     end
     expect(page).to have_text 'Subtotal (3 items): € 2.299,00'
     expect(page).to have_link 'Proceed To Checkout'
