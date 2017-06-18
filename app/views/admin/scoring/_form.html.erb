@@ -4,7 +4,7 @@
         <%= content_tag :ol do %>
             <% input_schema.each do |param| %>
                 <%= content_tag :li do %>
-                    <%= label_tag param['name'], param['name'] %>
+                    <%= label_tag param['name'], param['alias'] %>
                     <%= scoring_input param %>
                 <% end %>
             <% end %>

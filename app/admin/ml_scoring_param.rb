@@ -1,9 +1,10 @@
 ActiveAdmin.register MlScoringParam do
-  permit_params :file, :name, ml_scoring_param_options_attributes: [:id, :value, :_destroy]
+  permit_params :file, :name, :alias, ml_scoring_param_options_attributes: [:id, :value, :_destroy]
 
   index do
     selectable_column
     column :name
+    column :alias
     column :ml_scoring_param_options
     actions
   end
@@ -18,6 +19,7 @@ ActiveAdmin.register MlScoringParam do
   show do
     attributes_table do
       row :name
+      row :alias
       row :options do
         table_for ml_scoring_param.ml_scoring_param_options do
           column :value
@@ -30,6 +32,7 @@ ActiveAdmin.register MlScoringParam do
     f.semantic_errors
     f.inputs do
       f.input :name
+      f.input :alias
       f.has_many :ml_scoring_param_options, allow_destroy: true do |option|
         option.input :value
       end

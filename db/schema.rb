@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170616204957) do
+ActiveRecord::Schema.define(version: 20170618073244) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -102,8 +102,8 @@ ActiveRecord::Schema.define(version: 20170616204957) do
     t.integer  "product_id"
     t.string   "guid"
     t.integer  "prefix"
-    t.integer  "machine_learning_service_id"
     t.string   "status",                      limit: 255
+    t.integer  "machine_learning_service_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -157,7 +157,8 @@ ActiveRecord::Schema.define(version: 20170616204957) do
   add_index "ml_scoring_param_options", ["ml_scoring_param_id"], name: "index_ml_scoring_param_options_on_ml_scoring_param_id"
 
   create_table "ml_scoring_params", force: :cascade do |t|
-    t.string "name", limit: 255
+    t.string "name",  limit: 255
+    t.string "alias"
   end
 
   create_table "products", force: :cascade do |t|
