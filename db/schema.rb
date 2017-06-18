@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170618073244) do
+ActiveRecord::Schema.define(version: 20170618114107) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20170618073244) do
     t.integer  "machine_learning_service_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   add_index "deployments", ["product_id"], name: "index_deployments_on_product_id"
@@ -131,12 +132,12 @@ ActiveRecord::Schema.define(version: 20170618073244) do
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "machine_learning_services", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "hostname"
     t.string   "username",   limit: 255
     t.string   "password",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",       limit: 255
-    t.string   "hostname"
   end
 
   create_table "messages", force: :cascade do |t|

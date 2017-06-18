@@ -24,6 +24,10 @@ ActiveAdmin.register_page 'Scoring' do
       score          = deployment.get_score cleansed_values
 
       @input = valid_params.to_h
+      @input.transform_keys! do |key|
+        rec = MlScoringParam.find_by_name(key)
+        rec&.alias ? rec.alias : key
+      end
       @output = score.except(*@input.keys)
 
     end
