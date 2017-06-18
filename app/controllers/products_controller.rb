@@ -77,7 +77,7 @@ class ProductsController < ApplicationController
 
   def check_removed_deals
     Deal.find(session[:deals]).each do |deal|
-      if deal.trigger_product and (session[:cart] & [deal.trigger_product.id, deal.product.id]).length < 2 or not session[:cart].include? deal.product
+      if !session[:cart].include? deal.product.id || deal.trigger_product and (session[:cart] & [deal.trigger_product.id, deal.product.id]).length < 2
         session[:deals].delete deal.id
         change_cart_price discount(deal)
       end
