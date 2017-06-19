@@ -18,7 +18,7 @@ class Conversation
 
       # slice the output and context
       response = JSON.parse(response.body).deep_symbolize_keys!.slice(:output, :context)
-      p self.handle_actions response
+      self.handle_actions response
       response
 
     rescue => e
