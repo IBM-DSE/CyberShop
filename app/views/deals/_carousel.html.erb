@@ -1,19 +1,17 @@
 <div id="carousel" class="carousel">
-<% @public_deals.find 1 do |deal| %>
   <div class="carousel-inner">
-    <div class="item <%= 'active' if deal.id == 1 %>">
-      <% src = deal.trigger_product ? deal.trigger_product : deal.product %>
+    <div class="item <%= 'active' if @deal.id == 1 %>">
+      <% src = @deal.trigger_product ? @deal.trigger_product : @deal.product %>
       <div class="item-content">
-        <div><%= image_tag src.image.url %></div>
-        <div class="carousel-description trade-gothic">
+        <div class="col-sm-6 col-md-6 col-lg-8"><%= image_tag src.image.url %></div>
+        <div class="col-sm-6 col-md-6 col-lg-4 carousel-description trade-gothic">
           <h1><%= src.name %></h1>
           <div class="vert-sep"></div>
-          <h3><%= deal.description %></h3>
+          <h3><%= @deal.description %></h3>
           <div class="vert-sep"></div>
           <p><%= render partial: 'products/details_button', locals: {product: src} %></p>
         </div>
       </div>
     </div>
   </div>
-<% end %>
 </div>

@@ -1,6 +1,6 @@
 class CompanyController < ApplicationController
   def home
-    @public_deals = Deal.where special: false
+    @deal = Deal.where(special: false).first
     @products = Product.first 8
   end
 
