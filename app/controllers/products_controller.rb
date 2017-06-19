@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find params[:id]
-    @deals   = @product.trigger_deals.where(special: false) + @product.deals
+    @deals   = @product.trigger_deals.where(special: false) + @product.deals.where(special: false)
     @in_cart = session[:cart].include? @product.id
   end
 
