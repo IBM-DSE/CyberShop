@@ -1,5 +1,8 @@
 require 'rails_helper'
 
+INTRO_QUESTION = 'David, it looks you have been looking at smartphones. Can I help you?'
+PERMISSION_QUESTION = 'Before we start may I use your personal data including your tweets to make product recommendations or special offers? Please answer full or none.'
+
 RSpec.feature 'Scenario 2', type: :feature, js: true do
 
   background do
@@ -40,10 +43,10 @@ RSpec.feature 'Scenario 2', type: :feature, js: true do
     expect(page).to have_css '#chat-zone'
     within '#chat-window' do
       expect(page).to have_css "input[placeholder='Send a message...']"
-      expect(page).to have_text 'David, it looks you have been looking at smartphones. Can I help you?'
+      expect(page).to have_text INTRO_QUESTION
       page.fill_in 'Send a message...', with: 'okay'
       find('#chat-input').native.send_keys(:enter)
-      expect(page).to have_text 'Before we start may I use your personal data to make product recommendations? Please answer full or none.'
+      expect(page).to have_text PERMISSION_QUESTION
       page.fill_in 'Send a message...', with: 'none'
       find('#chat-input').native.send_keys(:enter)
       expect(page).to have_text 'The A-phone Model GREEN has been popular on social media over the past few weeks. Can I tell you more?'
@@ -60,6 +63,34 @@ RSpec.feature 'Scenario 2', type: :feature, js: true do
     expect(page).to have_text 'I9 Processor'
     expect(page).to have_text 'A portion of the proceeds from each phone is donated to help fight HIV/AIDS'
 
+    # go back and do full consent conversation
+    page.driver.go_back
+
+    # expect chatbot to pop up, interact with none permission and navigate to aPhone 7 GREEN
+    expect(page).to have_css '#chat-zone'
+    within '#chat-window' do
+      expect(page).to have_css "input[placeholder='Send a message...']"
+      expect(page).to have_text INTRO_QUESTION
+      page.fill_in 'Send a message...', with: 'okay'
+      find('#chat-input').native.send_keys(:enter)
+      expect(page).to have_text PERMISSION_QUESTION
+      page.fill_in 'Send a message...', with: 'full'
+      find('#chat-input').native.send_keys(:enter)
+      expect(page).to have_text 'I see you have tweeted about phone features such as translation. Can I tell you more?'
+      page.fill_in 'Send a message...', with: 'okay'
+      find('#chat-input').native.send_keys(:enter)
+      expect(page).to have_text 'The S-phone Model 8 is a good choice. It allows you to point your phone camera at foreign language text and it will give you a real-time translation.
+Just click the image for more details!'
+      expect(page).to have_css 'a[href^="/products/sphone-8"] > img[src="/images/sPhone8.jpg"]'
+      find('a[href^="/products/sphone-8"]').click
+    end
+
+    # expect sPhone 8 page
+    expect(page).to have_text 'Voice Assistant Boxy'
+    expect(page).to have_text 'Fireproof'
+    expect(page).to have_text 'S10 Processor'
+    expect(page).to have_text "Singsong's sPhone8 carries Boxy - a travel companion that can translate any foreign text with the aim of a camera"
+
   end
 
   scenario 'David talks to the chatbot with full permission' do
@@ -68,10 +99,10 @@ RSpec.feature 'Scenario 2', type: :feature, js: true do
     expect(page).to have_css '#chat-zone'
     within '#chat-window' do
       expect(page).to have_css "input[placeholder='Send a message...']"
-      expect(page).to have_text 'David, it looks you have been looking at smartphones. Can I help you?'
+      expect(page).to have_text INTRO_QUESTION
       page.fill_in 'Send a message...', with: 'okay'
       find('#chat-input').native.send_keys(:enter)
-      expect(page).to have_text 'Before we start may I use your personal data to make product recommendations? Please answer full or none.'
+      expect(page).to have_text PERMISSION_QUESTION
       page.fill_in 'Send a message...', with: 'full'
       find('#chat-input').native.send_keys(:enter)
       expect(page).to have_text 'I see you have tweeted about phone features such as translation. Can I tell you more?'

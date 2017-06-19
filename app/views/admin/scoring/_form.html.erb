@@ -2,10 +2,10 @@
     <%= hidden_field_tag :deployment_id, deployment_id %>
     <%= content_tag :fieldset, class: 'inputs' do %>
         <%= content_tag :ol do %>
-            <% input_schema.each do |param| %>
+            <% ml_scoring_params.each do |hash, record| %>
                 <%= content_tag :li do %>
-                    <%= label_tag param['name'], param['name'] %>
-                    <%= scoring_input param %>
+                    <%= label_tag record ? record.alias : hash['name']%>
+                    <%= scoring_input hash, record %>
                 <% end %>
             <% end %>
         <% end %>

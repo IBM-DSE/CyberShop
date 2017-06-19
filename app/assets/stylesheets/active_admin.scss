@@ -15,3 +15,21 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+.input-col {
+  width: 300px!important;
+}
+#input-table {
+  width: 500px;
+}
+
+#output-row {
+  height: 320px;
+  vertical-align: middle;
+}
+
+#output {
+  font-size: 40px;
+  vertical-align: middle;
+  padding-left: 2em;
+}

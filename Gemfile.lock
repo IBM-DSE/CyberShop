@@ -94,6 +94,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    cf-app-utils (0.6)
     childprocess (0.7.0)
       ffi (~> 1.0, >= 1.0.11)
     climate_control (0.2.0)
@@ -363,6 +364,7 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   capybara (~> 2.13.0)
+  cf-app-utils
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise!
