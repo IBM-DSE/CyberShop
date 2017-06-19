@@ -1,5 +1,8 @@
 require 'rails_helper'
 
+INTRO_QUESTION = 'David, it looks you have been looking at smartphones. Can I help you?'
+PERMISSION_QUESTION = 'Before we start may I use your personal data including your tweets to make product recommendations or special offers? Please answer full or none.'
+
 RSpec.feature 'Scenario 2', type: :feature, js: true do
 
   background do
@@ -40,10 +43,10 @@ RSpec.feature 'Scenario 2', type: :feature, js: true do
     expect(page).to have_css '#chat-zone'
     within '#chat-window' do
       expect(page).to have_css "input[placeholder='Send a message...']"
-      expect(page).to have_text 'David, it looks you have been looking at smartphones. Can I help you?'
+      expect(page).to have_text INTRO_QUESTION
       page.fill_in 'Send a message...', with: 'okay'
       find('#chat-input').native.send_keys(:enter)
-      expect(page).to have_text 'Before we start may I use your personal data to make product recommendations? Please answer full or none.'
+      expect(page).to have_text PERMISSION_QUESTION
       page.fill_in 'Send a message...', with: 'none'
       find('#chat-input').native.send_keys(:enter)
       expect(page).to have_text 'The A-phone Model GREEN has been popular on social media over the past few weeks. Can I tell you more?'
@@ -68,10 +71,10 @@ RSpec.feature 'Scenario 2', type: :feature, js: true do
     expect(page).to have_css '#chat-zone'
     within '#chat-window' do
       expect(page).to have_css "input[placeholder='Send a message...']"
-      expect(page).to have_text 'David, it looks you have been looking at smartphones. Can I help you?'
+      expect(page).to have_text INTRO_QUESTION
       page.fill_in 'Send a message...', with: 'okay'
       find('#chat-input').native.send_keys(:enter)
-      expect(page).to have_text 'Before we start may I use your personal data to make product recommendations? Please answer full or none.'
+      expect(page).to have_text PERMISSION_QUESTION
       page.fill_in 'Send a message...', with: 'full'
       find('#chat-input').native.send_keys(:enter)
       expect(page).to have_text 'I see you have tweeted about phone features such as translation. Can I tell you more?'

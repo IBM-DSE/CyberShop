@@ -15,7 +15,7 @@ class Deployment < ActiveRecord::Base
     if machine_learning_service.hostname == 'ibm-watson-ml.mybluemix.net'
       machine_learning_service.get_score guid, input, prefix
     else
-      data = use_tweets? ? { TWEETS: tweets[0] } : extract_attributes(customer)
+      data = (tweets && use_tweets?) ? { TWEETS: input[0] } : extract_attributes(input)
       if data.values.any?
         p data
         result = machine_learning_service.get_score guid, data

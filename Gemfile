@@ -62,7 +62,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Config
-gem 'dotenv-rails'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'cf-app-utils', group: :production
 
 # Front-End
 gem 'bootstrap-sass'

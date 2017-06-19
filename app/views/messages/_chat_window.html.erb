@@ -3,7 +3,6 @@
   <div id="chat-window">
     <div id="chat-flow">
       <div id="chat-messages">
-        <%= render current_customer.messages %>
       </div>
     </div>
 
@@ -23,6 +22,8 @@
 </div>
 
 <%= render 'messages/user_message' %>
+
+<%= javascript_include_tag 'chat_window' %>
 
 <%= hidden_field_tag 'chat_window_delay', ENV['CHAT_WINDOW_DELAY'] || 1 %>
 <%= javascript_include_tag 'auto_chat' %>
