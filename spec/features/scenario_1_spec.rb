@@ -74,14 +74,21 @@ RSpec.feature 'Scenario 1', type: :feature do
 
       expect(page).to have_text 'Price'
       expect(page).to have_text 'Quantity'
-      
-      expect(page).to have_text 'Sounds by Sir Simon'
-      expect(page).to have_text 'by Apricot'
-      expect(page).to have_text 'In Stock'
 
-      expect(page).to have_text 'Apricot Book'
-      expect(page).to have_text 'by Apricot'
-      expect(page).to have_text 'In Stock'
+      within '#sounds-by-sir-simon' do
+        expect(page).to have_text 'Sounds by Sir Simon'
+        expect(page).to have_text 'by Apricot'
+        expect(page).to have_text 'In Stock'
+        expect(page).to have_text '€ 0,00'
+        expect(page).to have_text '€ 299,00'
+      end
+
+      within '#apricot-book' do
+        expect(page).to have_text 'Apricot Book'
+        expect(page).to have_text 'by Apricot'
+        expect(page).to have_text 'In Stock'
+        expect(page).to have_text '€ 2.299,00'
+      end
 
       within '#pre-order-aphone-8' do
         expect(page).to have_text 'Pre-Order aPhone 8'
@@ -94,6 +101,18 @@ RSpec.feature 'Scenario 1', type: :feature do
     end
     expect(page).to have_text 'Subtotal (3 items): € 2.299,00'
     expect(page).to have_link 'Proceed To Checkout'
+    
+    # BONUS: verify that removing a product maintains the state of other non-relevant deals
+    within '#pre-order-aphone-8' do
+      click_link 'Remove'
+    end
+    within '#sounds-by-sir-simon' do
+      expect(page).to have_text 'Sounds by Sir Simon'
+      expect(page).to have_text 'by Apricot'
+      expect(page).to have_text 'In Stock'
+      expect(page).to have_text '€ 0,00'
+      expect(page).to have_text '€ 299,00'
+    end
     
   end
   

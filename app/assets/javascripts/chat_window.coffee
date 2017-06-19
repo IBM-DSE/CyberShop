@@ -32,11 +32,7 @@ ChatWindow.received_message = ->
   ready_input()
 
 $(document).ready ->
-
-#  $(window).bind "pageshow", ->
-#    form = $('form')
-#    form[0].reset()
-    
+  
   $('#chat-button').click ->
     toggle()
     
@@ -46,4 +42,5 @@ $(document).ready ->
     $('#chat-input').val('')
     $('#chat-input').attr('placeholder', 'Sending...')
     
+  $("#message_context").val('')
   $("#new_message").submit()

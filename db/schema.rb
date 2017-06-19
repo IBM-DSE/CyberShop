@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170616204957) do
+ActiveRecord::Schema.define(version: 20170618114107) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -102,10 +102,11 @@ ActiveRecord::Schema.define(version: 20170616204957) do
     t.integer  "product_id"
     t.string   "guid"
     t.integer  "prefix"
-    t.integer  "machine_learning_service_id"
     t.string   "status",                      limit: 255
+    t.integer  "machine_learning_service_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   add_index "deployments", ["product_id"], name: "index_deployments_on_product_id"
@@ -131,12 +132,12 @@ ActiveRecord::Schema.define(version: 20170616204957) do
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "machine_learning_services", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "hostname"
     t.string   "username",   limit: 255
     t.string   "password",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",       limit: 255
-    t.string   "hostname"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -157,7 +158,8 @@ ActiveRecord::Schema.define(version: 20170616204957) do
   add_index "ml_scoring_param_options", ["ml_scoring_param_id"], name: "index_ml_scoring_param_options_on_ml_scoring_param_id"
 
   create_table "ml_scoring_params", force: :cascade do |t|
-    t.string "name", limit: 255
+    t.string "name",  limit: 255
+    t.string "alias"
   end
 
   create_table "products", force: :cascade do |t|

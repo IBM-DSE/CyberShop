@@ -115,14 +115,16 @@ CSV.foreach('db/seed_data/WEX_output.csv', headers: true) do |row|
   TrendingTopic.create! data
 end
 
-customer_interest_ml = MachineLearningService.create name:     'Customer Interest',
-                                                     hostname: ENV['ML_LOCAL_HOSTNAME'],
-                                                     username: ENV['ML_LOCAL_USERNAME'],
-                                                     password: ENV['ML_LOCAL_PASSWORD']
+if ENV['ML_LOCAL_HOSTNAME']
+  customer_interest_ml = MachineLearningService.create name:     'Customer Interest',
+                                                       hostname: ENV['ML_LOCAL_HOSTNAME'],
+                                                       username: ENV['ML_LOCAL_USERNAME'],
+                                                       password: ENV['ML_LOCAL_PASSWORD']
 
-customer_interest_ml.deployments.build product: aphone8,
-                                       guid: ENV['APHONE_DEPLOYMENT']
-customer_interest_ml.deployments.build product: sphone8,
-                                       guid: ENV['SPHONE_DEPLOYMENT']
+  customer_interest_ml.deployments.build product: aphone8,
+                                         guid: ENV['APHONE_DEPLOYMENT']
+  customer_interest_ml.deployments.build product: sphone8,
+                                         guid: ENV['SPHONE_DEPLOYMENT']
 
-customer_interest_ml.save
+  customer_interest_ml.save
+end

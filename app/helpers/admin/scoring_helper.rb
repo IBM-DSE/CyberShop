@@ -7,13 +7,12 @@ module Admin::ScoringHelper
     }[in_type]
   end
 
-  def scoring_input param
-    selectable_param = MlScoringParam.find_by_name(param['name'])
-    if !selectable_param
-      text_field_tag param['name'], nil, type: type(param['type'].split('(')[0])
+  def scoring_input(hash, record)
+    if !record or record.ml_scoring_param_options.empty?
+      text_field_tag hash['name'], nil, type: type(hash['type'].split('(')[0])
     else
-      select_tag param['name'],
-                 options_from_collection_for_select(selectable_param.ml_scoring_param_options,
+      select_tag hash['name'],
+                 options_from_collection_for_select(record.ml_scoring_param_options,
                                                     :value,
                                                     :value)
     end
