@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h3><%= deal.description %></h3>
+  <h2 id="description"><%= deal.description.html_safe %></h2>
   <br>
   <% product_page = current_page?(controller: 'products', action: 'show', id: deal.product.friendly_id) %>
   <% combo_deal = deal.trigger_product && !current_page?(controller: 'products', action: 'cart') %>
