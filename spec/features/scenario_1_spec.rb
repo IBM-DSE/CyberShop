@@ -24,7 +24,7 @@ RSpec.feature 'Scenario 1', type: :feature do
     # sees aPhone 8 Pre-Order ad
     within('#carousel') do
       expect(page).to have_text 'Pre-Order aPhone 8'
-      expect(page).to have_text 'Lock in your order for just €100'
+      expect(page).to have_text 'Guaranteed availability on day of launch for just €100 in advance'
       expect(page).to have_link 'Details'
     end
 
@@ -51,7 +51,7 @@ RSpec.feature 'Scenario 1', type: :feature do
     # sees ad to waive the Pre-Order deposit and clicks 'Details'
     expect(page).to have_text 'Subtotal (2 items): € 2.299,00'
     within('.jumbotron') do
-      expect(page).to have_text 'Good news! Because you are a loyal customer of the Apricot line and are about to purchase the Apricot Book, we offer to waive the regular €100 aPhone 8 Pre-Order deposit. Add it to your cart right now for free!'
+      expect(page).to have_text 'Good news Matt! Because you are a loyal Apricot customer, we will waive the regular €100 for the aPhone 8 Pre-Order deposit!Add your favorite color and memory option right now, and get it on the day of launch, guaranteed!'
       expect(page).to have_text 'Pre-Order aPhone 8'
       expect(page).to have_text '€ 0,00'
       expect(page).to have_link 'Details'

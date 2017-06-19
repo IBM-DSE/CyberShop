@@ -85,7 +85,7 @@ aheadphones = Product.create! name:     'Sounds by Sir Simon',
                               price:    299.00
 
 Deal.create! product:     aphone8,
-             description: 'Lock in your order for just €100'
+             description: 'Guaranteed availability on day of launch for just €100 in advance'
 
 Deal.create! product:     aphone7,
              description: 'A portion of the proceeds from each phone is donated to help fight HIV/AIDS',
@@ -101,7 +101,7 @@ Deal.create! product:     sphone8,
              image:       File.new(Rails.root.join('public', 'images', 'translate.jpg'), 'r')
 
 Deal.create! product:         aphone8,
-             description:     'Good news! Because you are a loyal customer of the Apricot line and are about to purchase the Apricot Book, we offer to waive the regular €100 aPhone 8 Pre-Order deposit. Add it to your cart right now for free!',
+             description:     'Good news Matt! Because you are a loyal Apricot customer, we will waive the regular €100 for the aPhone 8 Pre-Order deposit!<br><br>Add your favorite color and memory option right now, and get it on the day of launch, guaranteed!',
              special:         true,
              trigger_product: apricotbook,
              price:           0.00
