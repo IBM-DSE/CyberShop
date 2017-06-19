@@ -2,6 +2,7 @@ require 'rails_helper'
 
 INTRO_QUESTION = 'David, it looks you have been looking at smartphones. Can I help you?'
 PERMISSION_QUESTION = 'Before we start may I use your personal data including your tweets to make product recommendations or special offers? Please answer full or none.'
+SPHONE_FEATURE = "Singsong's sPhone8 carries Boxy - your travel companion it can translate any foreign text with the aim of a camera"
 
 RSpec.feature 'Scenario 2', type: :feature, js: true do
 
@@ -89,7 +90,7 @@ Just click the image for more details!'
     expect(page).to have_text 'Voice Assistant Boxy'
     expect(page).to have_text 'Fireproof'
     expect(page).to have_text 'S10 Processor'
-    expect(page).to have_text "Singsong's sPhone8 carries Boxy - a travel companion that can translate any foreign text with the aim of a camera"
+    expect(page).to have_text SPHONE_FEATURE
 
   end
 
@@ -118,7 +119,7 @@ Just click the image for more details!'
     expect(page).to have_text 'Voice Assistant Boxy'
     expect(page).to have_text 'Fireproof'
     expect(page).to have_text 'S10 Processor'
-    expect(page).to have_text "Singsong's sPhone8 carries Boxy - a travel companion that can translate any foreign text with the aim of a camera"
+    expect(page).to have_text SPHONE_FEATURE
     
   end
 

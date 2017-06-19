@@ -49,7 +49,7 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
       click_link product.name
       expect(page).to have_text product.name
       expect(page).to have_text "#{product.brand.name} inc."
-      expect(page).to have_text product.deals.first.description unless product.deals.empty?
+      # expect(page).to have_text product.deals.first.description unless product.deals.empty?
       expect(page).to have_link 'Add To Cart'
       click_link 'CYBERSHOP'
     end

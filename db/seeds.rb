@@ -97,7 +97,7 @@ Deal.create! product:         aheadphones,
              price:           0.00
 
 Deal.create! product:     sphone8,
-             description: "Singsong's sPhone8 carries Boxy - a travel companion that can translate any foreign text with the aim of a camera",
+             description: "Singsong's sPhone8 carries <strong>Boxy</strong> - your travel companion<br> it can <strong>translate any foreign text</strong><br> with the <strong>aim of a camera</strong>",
              image:       File.new(Rails.root.join('public', 'images', 'translate.jpg'), 'r')
 
 Deal.create! product:         aphone8,
