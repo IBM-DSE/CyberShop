@@ -11,11 +11,11 @@ class Deployment < ActiveRecord::Base
     model_result['entity']['inputDataSchema']['fields']
   end
 
-  def get_score(input, tweets=nil)
+  def get_score(input)
     if machine_learning_service.hostname == 'ibm-watson-ml.mybluemix.net'
       machine_learning_service.get_score guid, input, prefix
     else
-      data = (tweets && use_tweets?) ? { TWEETS: input[0] } : extract_attributes(input)
+      data = use_tweets? ? { TWEETS: input.get_twitter_data[0] } : extract_attributes(input)
       if data.values.any?
         p data
         result = machine_learning_service.get_score guid, data

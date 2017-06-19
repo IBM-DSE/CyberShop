@@ -37,7 +37,7 @@ RSpec.feature 'Scenario 2', type: :feature, js: true do
 
   end
 
-  scenario 'David talks to the chatbot with no permission' do
+  scenario 'David talks to the chatbot with no permission, goes back and tries again with full permission' do
 
     # expect chatbot to pop up, interact with none permission and navigate to aPhone 7 GREEN
     expect(page).to have_css '#chat-zone'

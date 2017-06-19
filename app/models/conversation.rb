@@ -59,15 +59,14 @@ class Conversation
     if response[:output][:action] == 'full_consent'
 
       customer = Customer.find_by_name response[:context][:name]
-      category = Category.find response[:context][:interest]
-      tweets   = customer.get_twitter_data
+      category = Category.find customer.interest
 
-      self.get_recommendation customer, category, tweets
+      self.get_recommendation customer, category
     end
   end
 
 
-  def self.get_recommendation(customer, category, tweets)
+  def self.get_recommendation(customer, category)
     product_scores = {}
 
     # Check each product in the customer's category of interest
@@ -77,7 +76,7 @@ class Conversation
       if product.deployment
 
         # Get the score by passing in this customer's attributes
-        score                 = product.deployment.get_score customer, tweets
+        score                 = product.deployment.get_score customer
         product_scores[score] = product
       end
     end
