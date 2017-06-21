@@ -82,7 +82,7 @@ class Conversation
     end
 
     # Sort the hash by product score and return the first one
-    return product_scores.sort_by {|score, product| score}.reverse.to_h.values.first
+    return product_scores.sort_by {|score, _| score}.reverse.to_h.values.first
 
   end
 
