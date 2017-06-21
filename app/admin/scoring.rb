@@ -30,9 +30,9 @@ ActiveAdmin.register_page 'Scoring' do
       end
       @output = score.except(*@input.keys)
       
-      @color = case @output['prediction']
-                 when 0..1 then 'green' 
-                 when 1..2 then 'gold'
+      @color = case 
+                 when @output['prediction'] < 1 then 'green' 
+                 when @output['prediction'] < 2 then 'gold'
                  else 'red'
     end
 
