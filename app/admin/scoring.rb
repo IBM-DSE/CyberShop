@@ -29,6 +29,12 @@ ActiveAdmin.register_page 'Scoring' do
         rec&.alias ? rec.alias : key
       end
       @output = score.except(*@input.keys)
+      
+      @color = case 
+                 when @output['prediction'] < 1 then 'green' 
+                 when @output['prediction'] < 2 then 'gold'
+                 else 'red'
+    end
 
     end
 
