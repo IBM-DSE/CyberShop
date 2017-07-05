@@ -1,5 +1,6 @@
 class DealsController < ApplicationController
   def index
-    @deals = Deal.where special: false
+    @public_deals = Deal.where special: false
+    @deals = Deal.where(special: false).where.not(trigger_product_id: nil)
   end
 end

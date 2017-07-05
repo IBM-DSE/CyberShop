@@ -51,7 +51,7 @@ RSpec.feature 'Scenario 1', type: :feature do
     # sees ad to waive the Pre-Order deposit and clicks 'Details'
     expect(page).to have_text 'Subtotal (2 items): € 2.299,00'
     within('.jumbotron') do
-      expect(page).to have_text 'Good news Matt! Because you are a loyal Apricot customer, we will waive the regular €100 for the aPhone 8 Pre-Order deposit!Add your favorite color and memory option right now, and get it on the day of launch, guaranteed!'
+      expect(page).to have_text 'Good news Matt! Because you are a loyal Apricot customer, we will waive the regular €100 deposit for the aPhone 8 Pre-Order!Add your favorite color and memory option right now, and get it on the day of launch, guaranteed!'
       expect(page).to have_text 'Pre-Order aPhone 8'
       expect(page).to have_text '€ 0,00'
       expect(page).to have_link 'Details'
