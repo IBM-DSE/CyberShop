@@ -26,6 +26,7 @@ class Product < ActiveRecord::Base
     potential_deals = trigger_deals.where(special: true)
     unless potential_deals.empty?
       potential_deal = potential_deals.first
+      return potential_deal
       
       # Find the deployment for the the model of this deal's product
       if potential_deal.product.deployment
