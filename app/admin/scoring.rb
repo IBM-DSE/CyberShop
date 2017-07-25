@@ -8,7 +8,7 @@ ActiveAdmin.register_page 'Scoring' do
 
       # get a mapping of input schema param name to type
       schema_params   = deployment.get_input_schema.map do |param|
-        [param['name'], param['type']]
+        [param['name'], param['metadata']['columnInfo']['columnTypeName']]
       end.to_h
 
       # extract the valid parameters using the keys of this mapping
@@ -16,9 +16,15 @@ ActiveAdmin.register_page 'Scoring' do
 
       # convert integer type params to integers
       cleansed_values = valid_params.to_h.map do |name, val|
-        schema_params[name] == 'integer' ? val.to_i : val
+        case schema_params[name]
+          when 'integer'
+            val.to_i 
+          when 'decimal'
+            val.to_f
+          else
+            val
+        end
       end
-
 
       # get the score
       score          = deployment.get_score cleansed_values
@@ -29,10 +35,11 @@ ActiveAdmin.register_page 'Scoring' do
         rec&.alias ? rec.alias : key
       end
       @output = score.except(*@input.keys)
+      @prediction = @output['values'][0].last
       
       @color = case 
-                 when @output['prediction'] < 1 then 'green' 
-                 when @output['prediction'] < 2 then 'gold'
+                 when @prediction < 1 then 'green' 
+                 when @prediction < 2 then 'gold'
                  else 'red'
     end
 
