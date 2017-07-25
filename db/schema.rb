@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170618114107) do
+ActiveRecord::Schema.define(version: 20170725192743) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20170618114107) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "model_id"
   end
 
   add_index "deployments", ["product_id"], name: "index_deployments_on_product_id"
