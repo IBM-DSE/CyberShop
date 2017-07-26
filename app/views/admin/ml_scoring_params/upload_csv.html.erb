@@ -1,6 +1,7 @@
 <h2>Import ML Scoring Params</h2>
 
 <%= form_tag import_csv_admin_ml_scoring_params_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag 'Import' %>
+    <p><%= file_field_tag :file %></p><br>
+    <p><%= check_box_tag :aliases, nil, checked=true %> Aliases included (first row)</p><br>
+    <p><%= submit_tag 'Import' %></p><br>
 <% end %>
