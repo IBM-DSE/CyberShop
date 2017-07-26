@@ -16,6 +16,10 @@ ActiveAdmin.register MlScoringParam do
     redirect_to collection_path, notice: 'CSV imported successfully!'
   end
 
+  action_item :upload_csv, only: :index do
+    link_to 'Upload CSV data', upload_csv_admin_ml_scoring_params_path
+  end
+
   show do
     attributes_table do
       row :name
