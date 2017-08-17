@@ -10,4 +10,8 @@ class Deal < ActiveRecord::Base
   def set_defaults
     self.special = false if self.special.nil?
   end
+  
+  def src
+    trigger_product ? trigger_product : product
+  end
 end
