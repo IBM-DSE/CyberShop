@@ -1,6 +1,6 @@
 # CyberShop
 
-[![Build Status](https://travis.ibm.com/ACAT/CyberShop.svg?token=Lsphg5poC1bTwtG8aZmF&branch=master)](https://travis.ibm.com/ACAT/CyberShop)
+[![Build Status](https://travis.ibm.com/ATAT/CyberShop.svg?token=Lsphg5poC1bTwtG8aZmF&branch=master)](https://travis.ibm.com/ATAT/CyberShop)
 
 ## Installation
 

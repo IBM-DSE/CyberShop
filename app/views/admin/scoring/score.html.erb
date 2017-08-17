@@ -28,7 +28,7 @@
       <div class="attributes_table">
         <table>
           <tr id="output-row" class="row">
-            <th id="output">Delay: <span style="color: red;"><%= @output['prediction'].round(2) %> days</span></th>
+            <th id="output">Delay: <span style="color: <%= @color  %>;"><%= @prediction.round(2) %> days</span></th>
           </tr>
           <% if @output['probability'] %>
               <tr class="row"><th>PROBABILITY</th><td><%= @output['probability']['values'][1] %></td></tr>

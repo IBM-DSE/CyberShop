@@ -4,7 +4,7 @@
         <%= content_tag :ol do %>
             <% ml_scoring_params.each do |hash, record| %>
                 <%= content_tag :li do %>
-                    <%= label_tag record ? record.alias : hash['name']%>
+                    <%= label_tag record&.alias ? record.alias : hash['name']%>
                     <%= scoring_input hash, record %>
                 <% end %>
             <% end %>
