@@ -6,38 +6,46 @@
 
 ### Manual
 
-* [Install Ruby](https://www.ruby-lang.org/en/documentation/installation/) version 2.3.4
+* [**Install Ruby**](https://www.ruby-lang.org/en/documentation/installation/) version **2.3.4**
 
-* `gem install bundler`
+* **Install Bundler:** `gem install bundler`
 
-* Install package dependencies: `bundle install`
+* **Install package dependencies:** `bundle install`
 
-* Database creation: `rake db:migrate`
+* **Database creation:** `rake db:migrate`
 
-* copy `.env.example` to `.env` in your working directory and fill it in with your values
+* **Configure Environment:** copy `.env.example` to `.env` in your working directory and fill it in with your values
 
-* Database initialization: `rake db:seed`
+* **Database initialization:** `rake db:seed`
 
-* Test suite: `bundle exec rake`
+* **Test suite:** `bundle exec rake`
 
-* Run the app: `rails server`
+* **Run the app:** `rails server`
 
 ### Docker
 
+#### Configure Environment
 copy `.env.example` to `.env` in your working directory and fill it in with your values
 
 #### Quick Deploy in Development Mode
+Build and run with standard Docker:
 ```bash
 docker build -t cybershop_dev https://github.ibm.com/ATAT/CyberShop.git
 docker run -it -p 3000:3000 --env-file .env cybershop_dev
 ```
+Or clone the code and use Docker Compose:
+```bash
+git clone https://github.ibm.com/ATAT/CyberShop.git && cd CyberShop && mv ../.env .
+docker-compose up
+```
 Visit [http://localhost:3000](http://localhost:3000) from a browser
 
 #### Local Development with Live Reload
+Clone the code, then Docker build and run:
 ```bash
-git clone https://github.ibm.com/ATAT/CyberShop.git && cd CyberShop
+git clone https://github.ibm.com/ATAT/CyberShop.git && cd CyberShop && mv ../.env .
 docker build -t cybershop_dev .
-docker run -it -p 3000:3000 --env-file ../.env -v `pwd`:`pwd` -w `pwd` cybershop_dev rails db:migrate && rails server
+docker run -it -p 3000:3000 --env-file .env -v `pwd`:`pwd` -w `pwd` cybershop_dev rails db:migrate && rails server
 ```
 Visit [http://localhost:3000](http://localhost:3000) from a browser</br>
 Modify any files in `/app` and refresh browser to view updates
