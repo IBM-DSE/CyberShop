@@ -15,8 +15,8 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
         click_link 'Categories'
         expect(page).to have_selector 'ul.dropdown-menu'
         within('ul.dropdown-menu') do
-          Category.all.each do |category|
-            expect(page).to have_link category.name, href: '/categories/'+category.slug
+          %w(Smartphones Tablets Laptops Headphones).each do |category|
+            expect(page).to have_link category, href: '/categories/'+category.downcase
           end
         end
       end
@@ -26,8 +26,8 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
         click_link 'Brands'
         expect(page).to have_selector 'ul.dropdown-menu'
         within('ul.dropdown-menu') do
-          Brand.all.each do |brand|
-            expect(page).to have_link brand.name, href: '/brands/'+brand.slug
+          %w(Apricot Gazillion Singsong).each do |brand|
+            expect(page).to have_link brand, href: '/brands/'+brand.downcase
           end
         end
       end
@@ -36,25 +36,10 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
     end
 
     within('#carousel') do
-      Deal.first do |deal|
-        expect(page).to have_text deal.product.name
-        expect(page).to have_text deal.description
-        expect(page).to have_link 'Details', href: "/products/#{deal.product.friendly_id}"
-      end
+      expect(page).to have_text 'Pre-Order aPhone 8'
+      expect(page).to have_text 'Guaranteed availability on day of launch for just €100 in advance'
+      expect(page).to have_link 'Details', href: '/products/pre-order-aphone-8'
     end
   end
 
-  scenario 'anonymous visitor visits every product page' do
-    expect(page).to have_text 'CYBERSHOP'
-    Product.all.each do |product|
-      expect(page).to have_link product.name, href: "/products/#{product.friendly_id}"
-      click_link product.name
-      expect(page).to have_text product.name
-      expect(page).to have_text "#{product.brand.name} inc."
-      # expect(page).to have_text product.deals.first.description unless product.deals.empty?
-      expect(page).to have_link 'Add To Cart'
-      click_link 'CYBERSHOP'
-    end
-
-  end
 end
