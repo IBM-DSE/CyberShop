@@ -28,7 +28,7 @@ include ActionDispatch::TestProcess
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
-ActiveRecord::Migration.maintain_test_schema!
+ActiveRecord::Migration.maintain_test_schema! if Capybara.run_server
 
 RSpec.configure do |config|
 

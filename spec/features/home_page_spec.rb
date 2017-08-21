@@ -12,6 +12,7 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
 
       within('li#categories') do
         expect(page).to have_link 'Categories', href: '#', class: 'dropdown-toggle'
+        click_link 'Categories'
         expect(page).to have_selector 'ul.dropdown-menu'
         within('ul.dropdown-menu') do
           Category.all.each do |category|
@@ -22,6 +23,7 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
 
       within('li#brands') do
         expect(page).to have_link 'Brands', href: '#'
+        click_link 'Brands'
         expect(page).to have_selector 'ul.dropdown-menu'
         within('ul.dropdown-menu') do
           Brand.all.each do |brand|

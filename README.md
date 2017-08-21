@@ -55,7 +55,7 @@ Modify any files in `/app` and refresh browser to view updates
 - Get a domain name and point it to your server
 - Open ports 80 and 443
 - [Install NGINX](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/) on your server
-- Copy `production/CyberShop-nginx` to `/etc/nginx/sites-available/CyberShop` on your server
+- Copy `build/production/CyberShop-nginx` to `/etc/nginx/sites-available/CyberShop` on your server
 - Modify the file on your server (`/etc/nginx/sites-available/CyberShop`) with the domain name pointing to your server:
     ```
     server_name <DOMAIN_NAME>;
