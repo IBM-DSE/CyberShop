@@ -12,14 +12,25 @@ class Deployment < ActiveRecord::Base
   end
 
   def get_score(input)
+    puts 'Getting Score...'
+    puts 'Customer:'
+    p input
     if machine_learning_service.hostname == 'ibm-watson-ml.mybluemix.net'
       machine_learning_service.get_score guid, input, model_id
     else
       data = use_tweets? ? { TWEETS: input.get_twitter_data[0] } : extract_attributes(input)
       if data.values.any?
+        puts 'Scoring Input:'
         p data
-        result = machine_learning_service.get_score guid, data
+        begin
+          result = machine_learning_service.get_score guid, data
+        rescue Exception => e
+          result = Util.handle_score_error(input)
+        end
+        puts 'Scoring Output:'
+        p result
         score = result[offset][1]
+        puts 'Probability:'
         p score
         return score
       end

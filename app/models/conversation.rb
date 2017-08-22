@@ -72,8 +72,6 @@ class Conversation
     # Check each product in the customer's category of interest
     category.products.each do |product|
 
-      return product if product.name == 'sPhone 8'
-
       # If we have a model deployment for this product
       if product.deployment
 
