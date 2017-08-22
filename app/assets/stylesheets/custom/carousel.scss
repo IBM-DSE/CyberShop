@@ -5,44 +5,28 @@ from https://getbootstrap.com/examples/carousel/
 $carousel-height: 600px;
 
 /* Carousel base class */
-.carousel {
-  //margin-bottom: 60px;
+#carousel {
   @extend .grey-border;
   
-  /* Declare heights because of positioning of img element */
-  .item {
-    background-color: #FFFFFF;
-    
-    .item-content {
-      display:table;
-      width: 100%;
-      height: 100%;
-      
-      > div {
-        display: table-cell;
-        vertical-align: top;
-      }
-      
-      img {
-        max-width: 80vw;
-        max-height: $carousel-height;
-      }
-      
-      .carousel-description {
-        text-align: right;
-        height: 100%;
-        padding-top: 10em;
-        padding-right: 10vw;
-        
-        h1 {
-          font-size: 67.2px;
-          color: #1e2226;
-        }
-        
-        .vert-sep {
-          height: 35px;
-        }
-      }
+  background-color: #FFFFFF;
+
+  img {
+    width: 100%;
+    min-width: 100px;
+  }
+
+  .carousel-description {
+    h1 {
+      font-size: 67.2px;
+      color: #1e2226;
+    }
+
+    .vert-sep {
+      height: 35px;
     }
   }
+}
+
+.vertical-align {
+  padding: 5%;
 }

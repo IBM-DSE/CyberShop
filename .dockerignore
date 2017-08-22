@@ -1,4 +1,4 @@
-# Ignore file for CloudFoundry application
+# Ignore file for Docker build
 
 # Ignore bundler config.
 /.bundle
@@ -31,7 +31,7 @@ docker-compose.yml
 
 # Ignore other ignore files
 .gitignore
-.dockerignore
+.cfignore
 
 # READMEs
 README*

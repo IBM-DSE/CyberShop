@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
     # Check for any special offers
     if customer_signed_in?
       @cart.each do |product|
-        @offered_deal ||= product.check_special_offer(current_customer)
+        @offered_deal ||= product.check_special_offer(current_customer, @cart)
       end
     end
   end

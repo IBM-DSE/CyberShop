@@ -20,7 +20,7 @@ class Product < ActiveRecord::Base
   
   
   # Check for Machine Learning Model-based special offers 
-  def check_special_offer(customer)
+  def check_special_offer(customer, cart)
     
     # Check for potential deals
     potential_deals = trigger_deals.where(special: true)
@@ -29,7 +29,7 @@ class Product < ActiveRecord::Base
       return potential_deal
       
       # Find the deployment for the the model of this deal's product
-      if potential_deal.product.deployment
+      if !(cart.include? potential_deal.product) && potential_deal.product.deployment
         
         # Get the score from the given deployment
         score = potential_deal.product.deployment.get_score customer

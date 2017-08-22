@@ -28,7 +28,7 @@ include ActionDispatch::TestProcess
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
-ActiveRecord::Migration.maintain_test_schema!
+ActiveRecord::Migration.maintain_test_schema! if Capybara.run_server
 
 RSpec.configure do |config|
 
@@ -62,9 +62,11 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   
-  config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
-    Rails.application.load_seed # loading seeds
+  if Capybara.run_server
+    config.before(:suite) do
+      DatabaseCleaner.clean_with(:truncation)
+      Rails.application.load_seed # loading seeds
+    end
   end
 
 end

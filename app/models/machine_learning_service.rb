@@ -11,12 +11,10 @@ class MachineLearningService < ActiveRecord::Base
       begin
         deployments_list = @service.get_deployments['resources']
         deployments_list.each do |deployment|
-          url    = deployment['entity']['scoringHref']
-          prefix = url[36..url.index('/', 36) - 1]
           deployments.find_or_initialize_by guid: deployment['metadata']['guid'] do |d|
             d.name       = deployment['entity']['name']
             d.status     = deployment['entity']['status']
-            d.prefix     = prefix
+            d.model_id   = deployment['entity']['published_model']['guid']
             d.created_at = deployment['metadata']['createdAt']
             d.updated_at = deployment['metadata']['modifiedAt']
           end
@@ -29,17 +27,17 @@ class MachineLearningService < ActiveRecord::Base
     end
   end
 
-  def get_model(deployment_id)
+  def get_model(model_id)
     init_service
-    @service.get_model deployment_id
+    @service.get_model model_id
   end
 
-  def get_score(deployment_id, data, prefix=nil)
+  def get_score(deployment_id, data, model_id=nil)
     init_service
     if @service.class == IBM::MachineLearning::Local
       @service.get_score deployment_id, data
     elsif @service.class == IBM::MachineLearning::Cloud
-      @service.get_score prefix, deployment_id, data
+      @service.get_score model_id, deployment_id, data
     end
   end
   

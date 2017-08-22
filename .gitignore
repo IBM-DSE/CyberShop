@@ -16,7 +16,8 @@
 !/log/.keep
 /tmp
 
+# Generated static assets
 /public/assets
 
-# IDE files
-.idea
+# Ignore local environment files
+.env

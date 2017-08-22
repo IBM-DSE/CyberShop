@@ -1,0 +1,13 @@
+version: '3'
+services:
+  prod:
+    build:
+      context: .
+      args:
+        RAILS_ENV: production
+    volumes:
+      - CyberShop:/CyberShop/public
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env

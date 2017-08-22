@@ -16,7 +16,13 @@
 
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
-Capybara.default_max_wait_time = 5
+if ENV['APP_URL']
+  Capybara.default_driver = :poltergeist
+  Capybara.run_server = false
+  Capybara.app_host = ENV['APP_URL']
+  puts 'Testing against ' + ENV['APP_URL']
+end
+Capybara.default_max_wait_time = 7
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
