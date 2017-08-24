@@ -31,10 +31,10 @@ class Product < ActiveRecord::Base
       if !(cart.include? potential_deal.product) && potential_deal.product.deployment
         
         # Get the score from the given deployment
-        score = potential_deal.product.deployment.get_score customer
+        probability = potential_deal.product.deployment.get_score customer
         
         # Offer the deal if the probability is greater than 80%
-        return potential_deal if score > 0.8
+        return potential_deal if probability > 0.8
       end
       
     end
