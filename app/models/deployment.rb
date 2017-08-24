@@ -29,7 +29,7 @@ class Deployment < ActiveRecord::Base
           puts
           puts 'Scoring Successful!'
         rescue Exception => e
-          STDERR.puts e.message
+          STDERR.puts "#{e.class}: #{e.message}"
           result = Util.handle_score_error(input)
         end
         puts

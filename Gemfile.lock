@@ -1,9 +1,9 @@
 GIT
-  remote: https://github.com/dtom90/ibm-machine_learning.git
-  revision: 067b245d18424e56adddf6a9547b9b28c1bd3848
+  remote: https://github.com/IBM-ATAT/ibm-ml-ruby.git
+  revision: 03fb357a675d241618da1f8c076f227e8a6cace9
   branch: master
   specs:
-    ibm-machine_learning (0.1.0)
+    ibm-ml (0.1.0)
 
 GIT
   remote: https://github.com/plataformatec/devise.git
@@ -377,7 +377,7 @@ DEPENDENCIES
   friendly_id
   guard-livereload
   guard-rspec
-  ibm-machine_learning!
+  ibm-ml!
   jbuilder (~> 2.0)
   jquery-rails
   paperclip (~> 5.0.0)
