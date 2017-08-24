@@ -18,7 +18,7 @@ class Deployment < ActiveRecord::Base
     if machine_learning_service.hostname == 'ibm-watson-ml.mybluemix.net'
       machine_learning_service.get_score guid, input, model_id
     else
-      data = use_tweets? ? { TWEETS: input.get_twitter_data[0] } : extract_attributes(input)
+      data = input_data(input)
       if data.values.any?
         puts
         puts "Scoring against #{guid} :"
@@ -41,6 +41,10 @@ class Deployment < ActiveRecord::Base
       end
       0
     end
+  end
+  
+  def input_data(input)
+    use_tweets? ? { TWEETS: input.get_twitter_data[0] } : extract_attributes(input)
   end
   
   private

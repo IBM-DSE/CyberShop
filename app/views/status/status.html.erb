@@ -1,0 +1,19 @@
+<h1>Status</h1>
+<table class="table">
+  <tr>
+    <th>Product Name</th>
+    <th>Deployment ID</th>
+    <th>Customer</th>
+    <th>Input Data</th>
+    <th>Output</th>
+  </tr>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product[:product_name] %></td>
+      <td><%= product[:deployment_guid] %></td>
+      <td><%= product[:customer_name] %></td>
+      <td><%= product[:input_data] %></td>
+      <td class="<%= product[:status]%>"><%= product[:output] %></td>
+    </tr>
+  <% end %>
+</table>

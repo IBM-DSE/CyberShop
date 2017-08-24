@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'status', to: 'status#status'
+
   devise_for :customers, path: '/', path_names: { sign_in: 'login', sign_out: 'logout' }
 
   root 'company#home'
