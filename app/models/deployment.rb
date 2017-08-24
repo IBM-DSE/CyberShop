@@ -35,7 +35,7 @@ class Deployment < ActiveRecord::Base
         puts
         puts 'Scoring Output:'
         p result
-        probability = result[offset][1]
+        probability = Util.extract(result)[:probability]
         puts "Probability = #{probability}"
         return probability
       end

@@ -9,6 +9,13 @@ class Util
       DAVID_SCORE
     end
   end
+  
+  def self.extract(score)
+    {
+      probability: score['records'][0][score['fields'].index('probability')][1],
+      prediction: score['records'][0][score['fields'].index('prediction')]
+    }
+  end
 end
 
 private

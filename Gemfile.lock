@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/IBM-ATAT/ibm-ml-ruby.git
-  revision: 03fb357a675d241618da1f8c076f227e8a6cace9
+  revision: ad578daa87fc8b30dbee0e20760425133b189a58
   branch: master
   specs:
     ibm-ml (0.1.0)

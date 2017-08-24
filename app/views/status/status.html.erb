@@ -12,8 +12,20 @@
       <td><%= product[:product_name] %></td>
       <td><%= product[:deployment_guid] %></td>
       <td><%= product[:customer_name] %></td>
-      <td><%= product[:input_data] %></td>
-      <td class="<%= product[:status]%>"><%= product[:output] %></td>
+      <td style="max-width: 300px"><pre><%= JSON.pretty_generate(product[:input_data]) %></pre></td>
+      <td>
+        <% if product[:status] == 'green' %>
+        <div>
+          <pre class="<%= product[:status] %>"><%= JSON.pretty_generate(product[:score]) %></pre>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%= product[:deployment_guid] %>">Full JSON</button>
+          <div id="<%= product[:deployment_guid] %>" class="collapse">
+            <pre><%= JSON.pretty_generate(product[:output]) %></pre>
+          </div>
+        </div>
+        <% else %>
+        <pre class="<%= product[:status] %>"><%= "#{product[:output].class}\n#{product[:output].message}" %></pre>
+        <% end %>    
+      </td>
     </tr>
   <% end %>
 </table>
