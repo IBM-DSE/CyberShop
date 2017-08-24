@@ -6,7 +6,7 @@ class MachineLearningService < ActiveRecord::Base
 
   def get_deployments
     init_service
-    if @service.class == IBM::MachineLearning::Cloud
+    if @service.class == IBM::ML::Cloud
       self.hostname = 'ibm-watson-ml.mybluemix.net'
       begin
         deployments_list = @service.get_deployments['resources']
@@ -34,9 +34,9 @@ class MachineLearningService < ActiveRecord::Base
 
   def get_score(deployment_id, data, model_id=nil)
     init_service
-    if @service.class == IBM::MachineLearning::Local
-      @service.get_score deployment_id, data
-    elsif @service.class == IBM::MachineLearning::Cloud
+    if @service.class == IBM::ML::Local
+      @service.get_score deployment_id,data
+    elsif @service.class == IBM::ML::Cloud
       @service.get_score model_id, deployment_id, data
     end
   end
@@ -45,9 +45,9 @@ class MachineLearningService < ActiveRecord::Base
   
   def init_service
     if hostname.empty? or hostname == 'ibm-watson-ml.mybluemix.net'
-      @service = IBM::MachineLearning::Cloud.new username, password
+      @service = IBM::ML::Cloud.new username, password
     else
-      @service = IBM::MachineLearning::Local.new hostname, username, password
+      @service = IBM::ML::Local.new hostname, username, password
     end
   end
 

@@ -12,37 +12,46 @@ class Deployment < ActiveRecord::Base
   end
 
   def get_score(input)
-    puts 'Getting Score...'
-    puts 'Customer:'
+    puts
+    puts "Getting #{product.name} prediction for Customer:"
     p input
     if machine_learning_service.hostname == 'ibm-watson-ml.mybluemix.net'
       machine_learning_service.get_score guid, input, model_id
     else
-      data = use_tweets? ? { TWEETS: input.get_twitter_data[0] } : extract_attributes(input)
+      data = input_data(input)
       if data.values.any?
+        puts
+        puts "Scoring against #{guid} :"
         puts 'Scoring Input:'
-        p data
+        puts JSON.pretty_unparse(data)
         begin
           result = machine_learning_service.get_score guid, data
+          puts
+          puts 'Scoring Successful!'
         rescue Exception => e
+          STDERR.puts "#{e.class}: #{e.message}"
           result = Util.handle_score_error(input)
         end
+        puts
         puts 'Scoring Output:'
         p result
-        score = result[offset][1]
-        puts 'Probability:'
-        p score
-        return score
+        probability = Util.extract(result)[:probability]
+        puts "Probability = #{probability}"
+        return probability
       end
       0
     end
+  end
+  
+  def input_data(input)
+    use_tweets? ? { TWEETS: input.get_twitter_data[0] } : extract_attributes(input)
   end
   
   private
 
   CUSTOMER_ATTRIBUTES = %w(Gender AgeGroup Education Profession Income Switcher LastPurchase Annual_Spend)
   def extract_attributes(customer)
-    CUSTOMER_ATTRIBUTES.map {|attr| [attr, customer[attr.underscore] ] }.to_h
+    CUSTOMER_ATTRIBUTES.map {|attr| [attr.upcase, customer[attr.underscore] ] }.to_h
   end
   
   def use_tweets?
