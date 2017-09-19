@@ -120,11 +120,15 @@ if ENV['ML_LOCAL_HOSTNAME']
                                                        hostname: ENV['ML_LOCAL_HOSTNAME'],
                                                        username: ENV['ML_LOCAL_USERNAME'],
                                                        password: ENV['ML_LOCAL_PASSWORD']
-
-  customer_interest_ml.deployments.build product: aphone8,
-                                         guid: ENV['APHONE_DEPLOYMENT']
-  customer_interest_ml.deployments.build product: sphone8,
-                                         guid: ENV['SPHONE_DEPLOYMENT']
+  if customer_interest_ml.hostname == 'ibm-watson-ml.mybluemix.net'
+    customer_interest_ml.deployments.find_by_guid(ENV['APHONE_DEPLOYMENT']).update product: aphone8
+    customer_interest_ml.deployments.find_by_guid(ENV['SPHONE_DEPLOYMENT']).update product: sphone8
+  else
+    customer_interest_ml.deployments.build product: aphone8,
+                                           guid: ENV['APHONE_DEPLOYMENT']
+    customer_interest_ml.deployments.build product: sphone8,
+                                           guid: ENV['SPHONE_DEPLOYMENT']
+  end
 
   customer_interest_ml.save
 end
