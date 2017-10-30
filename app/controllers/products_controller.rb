@@ -4,6 +4,15 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find params[:id]
+
+    # Check for any special offers
+    if customer_signed_in?
+      cart = Product.find(session[:cart])
+      cart.each do |product|
+        @special_deal ||= product.check_special_offer(current_customer, cart)
+      end
+    end
+    
     @deals   = @product.trigger_deals.where(special: false) + @product.deals.where(special: false)
     @in_cart = session[:cart].include? @product.id
   end
