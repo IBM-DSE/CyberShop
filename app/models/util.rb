@@ -10,10 +10,11 @@ class Util
     end
   end
   
-  def self.extract(score)
+  def self.extract(score, cloud=false)
+    key = cloud ? 'values' : 'records'
     {
-      probability: score['records'][0][score['fields'].index('probability')][1],
-      prediction: score['records'][0][score['fields'].index('prediction')]
+      probability: score[key][0][score['fields'].index('probability')][1],
+      prediction: score[key][0][score['fields'].index('prediction')]
     }
   end
 end

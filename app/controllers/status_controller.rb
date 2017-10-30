@@ -13,7 +13,7 @@ class StatusController < ApplicationController
 
       begin
         product[:output] = deployment.machine_learning_service.get_score deployment.guid, product[:input_data]
-        product[:score] = Util.extract product[:output]
+        product[:score] = Util.extract product[:output], deployment.machine_learning_service.is_cloud?
         product[:status] = 'green'
       rescue Exception => e
         STDERR.puts "#{e.class} : #{e.message}"
