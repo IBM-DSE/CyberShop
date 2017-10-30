@@ -19,8 +19,8 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  location: "USA"
-  currency: "$"
-  separator: '.'
-  delimiter: ','
+es:
+  location: "EU"
+  currency: "€"
+  separator: ','
+  delimiter: '.'
