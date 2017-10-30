@@ -8,6 +8,7 @@ class StatusController < ApplicationController
       
       deployment                = Product.find_by_name(product[:product_name]).deployment
       product[:deployment_guid] = deployment.guid
+      product[:deployment_name] = deployment.name
       product[:input_data] = deployment.input_data(Customer.find_by_name(product[:customer_name]))
 
       begin
