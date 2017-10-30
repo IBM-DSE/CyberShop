@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Scenario 1', type: :feature do
+feature 'Scenario 1' do
 
   scenario "Matt the father is looking for a laptop for his son's graduation" do
     

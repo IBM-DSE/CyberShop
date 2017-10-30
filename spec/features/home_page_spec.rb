@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Visiting the Home Page', type: :feature do
+feature 'Visiting the Home Page' do
   background do
     visit root_path
   end
@@ -35,11 +35,30 @@ RSpec.feature 'Visiting the Home Page', type: :feature do
       expect(page).to have_link 'Deals', href: '/deals'
     end
 
-    within('#carousel') do
-      expect(page).to have_text 'Pre-Order aPhone 8'
-      expect(page).to have_text 'Guaranteed availability on day of launch for just €100 in advance'
-      expect(page).to have_link 'Details', href: '/products/pre-order-aphone-8'
-    end
+    expect_aphone_preorder_ad
   end
 
+  scenario 'anonymous visitor checks the deals page' do
+    click_link 'Deals'
+
+    expect_aphone_preorder_ad
+    
+    within('.jumbotron') do
+      expect(page).to have_text 'Get a FREE pair of Sounds by Sir Simon headphones when you purchase Apricot Book'
+      expect(page).to have_text 'Apricot Book by Apricot Details € 2.299,00 + Sounds by Sir Simon by Apricot Details € 299,00€ 0,00'
+      expect(page).to have_button 'Add Both To Cart'
+    end
+    
+  end
+
+end
+
+
+def expect_aphone_preorder_ad
+  # sees aPhone 8 Pre-Order ad
+  within('#carousel') do
+    expect(page).to have_text 'Pre-Order aPhone 8'
+    expect(page).to have_text 'Guaranteed availability on day of launch for just €100 in advance'
+    expect(page).to have_link 'Details'
+  end
 end
