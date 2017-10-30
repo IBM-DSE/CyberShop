@@ -12,6 +12,7 @@
       <td><%= product[:product_name] %></td>
       <td>
         <table class="table">
+          <tr><th>ML Service: </th><td><%= product[:ml_cloud] ? 'Cloud' : 'Local' %></td></tr>
           <tr><th>Name: </th><td><%= product[:deployment_name] %></td></tr>
           <tr><th>GUID: </th><td><%= product[:deployment_guid] %></td></tr>
         </table>
