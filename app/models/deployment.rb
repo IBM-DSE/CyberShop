@@ -15,32 +15,32 @@ class Deployment < ActiveRecord::Base
     puts
     puts "Getting #{product.name} prediction for Customer:"
     p input
-    if machine_learning_service.hostname == 'ibm-watson-ml.mybluemix.net'
-      machine_learning_service.get_score guid, input, model_id
-    else
-      data = input_data(input)
-      if data.values.any?
-        puts
-        puts "Scoring against #{guid} :"
-        puts 'Scoring Input:'
-        puts JSON.pretty_unparse(data)
-        begin
+    data = input_data(input)
+    if data.values.any?
+      puts
+      puts "Scoring against #{guid} :"
+      puts 'Scoring Input:'
+      puts JSON.pretty_unparse(data)
+      begin
+        if machine_learning_service.is_cloud?
+          result = machine_learning_service.get_score guid, data, model_id
+        else 
           result = machine_learning_service.get_score guid, data
-          puts
-          puts 'Scoring Successful!'
-        rescue Exception => e
-          STDERR.puts "#{e.class}: #{e.message}"
-          result = Util.handle_score_error(input)
         end
         puts
-        puts 'Scoring Output:'
-        p result
-        probability = Util.extract(result)[:probability]
-        puts "Probability = #{probability}"
-        return probability
+        puts 'Scoring Successful!'
+      rescue Exception => e
+        STDERR.puts "#{e.class}: #{e.message}"
+        result = Util.handle_score_error(input)
       end
-      0
+      puts
+      puts 'Scoring Output:'
+      p result
+      probability = Util.extract(result, machine_learning_service.is_cloud?)[:probability]
+      puts "Probability = #{probability}"
+      return probability
     end
+    0
   end
   
   def input_data(input)

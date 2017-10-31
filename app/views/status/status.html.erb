@@ -2,7 +2,7 @@
 <table class="table">
   <tr>
     <th>Product Name</th>
-    <th>Deployment ID</th>
+    <th>Machine Learning Deployment</th>
     <th>Customer</th>
     <th>Input Data</th>
     <th>Output</th>
@@ -10,7 +10,13 @@
   <% @products.each do |product| %>
     <tr>
       <td><%= product[:product_name] %></td>
-      <td><%= product[:deployment_guid] %></td>
+      <td>
+        <table class="table">
+          <tr><th>ML Service: </th><td><%= product[:ml_cloud] ? 'Cloud' : 'Local' %></td></tr>
+          <tr><th>Name: </th><td><%= product[:deployment_name] %></td></tr>
+          <tr><th>GUID: </th><td><%= product[:deployment_guid] %></td></tr>
+        </table>
+      </td>
       <td><%= product[:customer_name] %></td>
       <td style="max-width: 300px"><pre><%= JSON.pretty_generate(product[:input_data]) %></pre></td>
       <td>

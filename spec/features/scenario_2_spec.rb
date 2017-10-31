@@ -4,9 +4,12 @@ INTRO_QUESTION = 'David, it looks you have been looking at smartphones. Can I he
 PERMISSION_QUESTION = 'Before we start may I use your personal data including your tweets to make product recommendations or special offers? Please answer full or none.'
 SPHONE_FEATURE = "Singsong's sPhone8 carries Boxy - your travel companion it can translate any foreign text with the aim of a camera"
 
-RSpec.feature 'Scenario 2', type: :feature, js: true do
+feature 'Scenario 2', js: true do
 
   background do
+
+    cur = '$'
+    sep = '.'
 
     # visits CyberShop and logs in
     visit root_path
@@ -22,7 +25,7 @@ RSpec.feature 'Scenario 2', type: :feature, js: true do
     within '#top-navbar' do
       expect(page).to have_text 'USA'
       expect(page).to have_text 'David'
-      expect(page).to have_text '€ 0,00'
+      expect(page).to have_text cur+' 0'+sep+'00'
     end
 
     # navigate to Smartphones page

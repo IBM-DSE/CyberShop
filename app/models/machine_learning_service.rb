@@ -9,7 +9,7 @@ class MachineLearningService < ActiveRecord::Base
     if @service.class == IBM::ML::Cloud
       self.hostname = 'ibm-watson-ml.mybluemix.net'
       begin
-        deployments_list = @service.get_deployments['resources']
+        deployments_list = @service.deployments['resources']
         deployments_list.each do |deployment|
           deployments.find_or_initialize_by guid: deployment['metadata']['guid'] do |d|
             d.name       = deployment['entity']['name']
@@ -37,14 +37,19 @@ class MachineLearningService < ActiveRecord::Base
     if @service.class == IBM::ML::Local
       @service.get_score deployment_id,data
     elsif @service.class == IBM::ML::Cloud
-      @service.get_score model_id, deployment_id, data
+      model_id = Deployment.find_by_guid(deployment_id).model_id unless model_id
+      @service.get_score model_id, deployment_id, data.values
     end
+  end
+  
+  def is_cloud?
+    hostname.empty? or hostname == 'ibm-watson-ml.mybluemix.net'
   end
   
   private
   
   def init_service
-    if hostname.empty? or hostname == 'ibm-watson-ml.mybluemix.net'
+    if is_cloud?
       @service = IBM::ML::Cloud.new username, password
     else
       @service = IBM::ML::Local.new hostname, username, password

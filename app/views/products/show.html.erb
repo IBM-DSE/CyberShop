@@ -1,3 +1,5 @@
+<%= render @special_deal if @special_deal %>
+
 <div class="product-panel">
   <div class="product-image">
     <%= image_tag(@product.image.url, style: 'max-height: 500px') %>
@@ -46,4 +48,4 @@
   </div>
 </div>
 
-<%= render @deals %>
+<%= render @deals unless @special_deal %>
