@@ -23,49 +23,5 @@ RSpec.feature 'Admin', type: :feature do
     expect(find('#tabs')).to have_text 'Ml Scoring Params'
     expect(find('#tabs')).to have_text 'Scoring'
   end
-
-  scenario 'Categories' do
-
-    within '#header' do
-      within '#tabs' do
-        expect(page).to have_link 'Categories', href: '/admin/categories'
-      end
-    end
-
-  #   click_link 'Categories'
-  #   within 'h2' do
-  #     expect(page).to have_content 'Categories'
-  #   end
-  #   within 'table' do
-  #     Category.all.each do |category|
-  #       expect(page).to have_text category.name
-  #       find('tr', text: category.name).click_link 'View'
-  #       expect(page).to have_text category.name
-  #     end
-  #   end
-  # 
-  # end
-  # 
-  # scenario 'Brands' do
-  # 
-  #   within '#header' do
-  #     within '#tabs' do
-  #       expect(page).to have_link 'Brands', href: '/admin/brands'
-  #     end
-  #   end
-  # 
-  #   click_link 'Brands'
-  #   within 'h2' do
-  #     expect(page).to have_content 'Brands'
-  #   end
-  #   within 'table' do
-  #     Brand.all.each do |brand|
-  #       expect(page).to have_text brand.name
-  #       find('tr', text: brand.name).click_link 'View'
-  #       expect(page).to have_text brand.name
-  #     end
-  #   end
-
-  end
-
+  
 end
