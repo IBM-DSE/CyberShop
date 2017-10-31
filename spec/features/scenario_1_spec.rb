@@ -25,12 +25,7 @@ feature 'Scenario 1' do
       expect(page).to have_text CUR+' 0'+SEP+'00'
     end
 
-    # sees aPhone 8 Pre-Order ad
-    within('#carousel') do
-      expect(page).to have_text 'Pre-Order aPhone 8'
-      expect(page).to have_text 'Guaranteed availability on day of launch for just '+CUR+'100 in advance'
-      expect(page).to have_link 'Details'
-    end
+    expect_aphone_preorder_ad
 
     # sees Apricot Book thumbnail and clicks on the image
     expect(page).to have_text 'Apricot Book'
@@ -47,9 +42,12 @@ feature 'Scenario 1' do
     expect(page).to have_text 'Waterproof'
     expect(page).to have_text '2 Year Warranty'
 
-    # sees the combo deal with the headphones and adds both to his cart
-    expect(page).to have_text 'Get a FREE pair of Sounds by Sir Simon headphones when you purchase Apricot Book'
-    expect(page).to have_button 'Add Both To Cart'
+    expect_laptop_headphones_combo_deal
+
+    # expect to see both deals on the Deals page
+    click_link 'Deals'
+    expect_aphone_preorder_ad
+    expect_laptop_headphones_combo_deal
     click_button 'Add Both To Cart'
 
     # sees ad to waive the Pre-Order deposit and clicks 'Details'
@@ -124,4 +122,22 @@ feature 'Scenario 1' do
     
   end
   
+end
+
+# see aPhone 8 Pre-Order ad
+def expect_aphone_preorder_ad
+  within('#carousel') do
+    expect(page).to have_text 'Pre-Order aPhone 8'
+    expect(page).to have_text 'Guaranteed availability on day of launch for just '+CUR+'100 in advance'
+    expect(page).to have_link 'Details'
+  end
+end
+
+# sees the combo deal with the headphones and adds both to his cart
+def expect_laptop_headphones_combo_deal
+  within('.jumbotron') do
+    expect(page).to have_text 'Get a FREE pair of Sounds by Sir Simon headphones when you purchase Apricot Book'
+    expect(page).to have_text 'Apricot Book by Apricot Details '+CUR+' 2'+DEL+'299'+SEP+'00 + Sounds by Sir Simon by Apricot Details '+CUR+' 299'+SEP+'00'+CUR+' 0'+SEP+'00'
+    expect(page).to have_button 'Add Both To Cart'
+  end
 end
