@@ -1,4 +1,4 @@
-<div class="jumbotron row">
+<div class="deal row">
   <h2 id="description"><%= render_description deal.description %></h2>
   <br><br>
   <% product_page = current_page?(controller: 'products', action: 'show', id: deal.product.friendly_id) %>
@@ -6,14 +6,14 @@
   <% src = product_page ? deal.trigger_product : deal.product %>
   <div id="products" class="flex">
     <% if combo_deal %>
-        <div ><%= render partial: 'deals/product',
+        <div><%= render partial: 'deals/product',
                         locals:  { product: deal.trigger_product } %></div>
         <div class="plus">+</div>
     <% end %>
-    <div ><%= render partial: 'deals/product',
+    <div><%= render partial: 'deals/product',
                     locals:  { product: src, deal: deal } unless product_page %></div>
     <% if combo_deal %>
-        <div ><%= render partial: 'products/cart_button',
+        <div><%= render partial: 'products/cart_button',
                         locals:  { product: deal.trigger_product, additional_product: deal.product, big: true } %>
         </div>
     <% elsif !product_page %>
