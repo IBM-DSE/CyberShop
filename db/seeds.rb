@@ -10,6 +10,9 @@ Customer.create! name: 'David', email: 'david@example.com', password: 'password'
                  # gender: 'M', age_group: '25-34', education: 'Masters', profession: 'Programmer', income: 40000, switcher: 1, last_purchase: 5, annual_spend: 200
 Customer.create! name: 'Keith', email: 'keith@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops'
 
+
+# LAPTOPS
+
 songbook = Product.create name:     'Song Book',
                           category: Category.find_by_name('Laptops'),
                           brand:    Brand.find_by_name('Singsong'),
@@ -24,7 +27,7 @@ songbook.save
 apricotbook = Product.create name:     'Apricot Book',
                              category: Category.find_by_name('Laptops'),
                              brand:    Brand.find_by_name('Apricot'),
-                             image:    File.new(Rails.root.join('public', 'images', 'apricot-notebook.jpg'), 'r'),
+                             image:    File.new(Rails.root.join('public', 'images', 'apricotbook.jpg'), 'r'),
                              price:    2299.00
 apricotbook.features.build description: '16 Core Processor'
 apricotbook.features.build description: 'High Quality Video and Speakers'
@@ -32,23 +35,33 @@ apricotbook.features.build description: 'Waterproof'
 apricotbook.features.build description: '2 Year Warranty'
 apricotbook.save
 
+Product.create name:     'aBook Air',
+               category: Category.find_by_name('Laptops'),
+               brand:    Brand.find_by_name('Apricot'),
+               image:    File.new(Rails.root.join('public', 'images', 'abook-air.jpg'), 'r'),
+               price:    1499.00
+
 Product.create name:     'Goya',
                              category: Category.find_by_name('Laptops'),
                              brand:    Brand.find_by_name('Gazillion'),
                              image:    File.new(Rails.root.join('public', 'images', 'Goya.jpg'), 'r'),
                              price:    1499.00
 
-Product.create name:     'aPad',
-               category: Category.find_by_name('Tablets'),
-               brand:    Brand.find_by_name('Apricot'),
-               image:    File.new(Rails.root.join('public', 'images', 'apad.jpg'), 'r'),
-               price:    999.00
 
-Product.create name:     'sPhone 7',
-               category: Category.find_by_name('Smartphones'),
-               brand:    Brand.find_by_name('Singsong'),
-               image:    File.new(Rails.root.join('public', 'images', 'sphone-7.jpg'), 'r'),
-               price:    799.00
+# SMARTPHONES
+
+aphone8 = Product.create name:     'Pre-Order aPhone 8',
+                         category: Category.find_by_name('Smartphones'),
+                         brand:    Brand.find_by_name('Apricot'),
+                         image:    File.new(Rails.root.join('public', 'images', 'aPhone-8.png'), 'r'),
+                         price:    100.00,
+                         preorder: true
+aphone8.features.build description: 'Voice Assistant Stoey'
+aphone8.features.build description: 'Fireproof'
+aphone8.features.build description: 'I10 Processor'
+aphone8.color_options   = %w(White Black GREEN)
+aphone8.storage_options = [16, 32, 64]
+aphone8.save
 
 sphone8 = Product.create name:     'sPhone 8',
                          category: Category.find_by_name('Smartphones'),
@@ -70,6 +83,20 @@ aphone7.features.build description: 'Waterproof'
 aphone7.features.build description: 'I9 Processor'
 aphone7.save
 
+# HEADPHONES
+
+Product.create name:     'sPhone 7',
+               category: Category.find_by_name('Smartphones'),
+               brand:    Brand.find_by_name('Singsong'),
+               image:    File.new(Rails.root.join('public', 'images', 'sphone-7.jpg'), 'r'),
+               price:    799.00
+
+Product.create name:     'aPad',
+               category: Category.find_by_name('Tablets'),
+               brand:    Brand.find_by_name('Apricot'),
+               image:    File.new(Rails.root.join('public', 'images', 'apad.jpg'), 'r'),
+               price:    999.00
+
 Product.create! name:     'Seal Buds',
                 category: Category.find_by_name('Headphones'),
                 brand:    Brand.find_by_name('Singsong'),
@@ -81,19 +108,6 @@ aheadphones = Product.create! name:     'Sounds by Sir Simon',
                               brand:    Brand.find_by_name('Apricot'),
                               image:    File.new(Rails.root.join('public', 'images', 'aHeadphones.jpg'), 'r'),
                               price:    299.00
-
-aphone8 = Product.create name:     'Pre-Order aPhone 8',
-                         category: Category.find_by_name('Smartphones'),
-                         brand:    Brand.find_by_name('Apricot'),
-                         image:    File.new(Rails.root.join('public', 'images', 'aPhone-8.png'), 'r'),
-                         price:    100.00,
-                         preorder: true
-aphone8.features.build description: 'Voice Assistant Stoey'
-aphone8.features.build description: 'Fireproof'
-aphone8.features.build description: 'I10 Processor'
-aphone8.color_options   = %w(White Black GREEN)
-aphone8.storage_options = [16, 32, 64]
-aphone8.save
 
 Deal.create! product:     aphone8,
              description: 'Guaranteed availability on day of launch'

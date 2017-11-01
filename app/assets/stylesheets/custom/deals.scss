@@ -56,3 +56,8 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.deal:before, .deal:after {
+  content: " ";
+  display: table;
+}

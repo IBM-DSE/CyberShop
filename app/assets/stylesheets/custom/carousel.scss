@@ -5,7 +5,7 @@
   width: 100%;
   
   > div {
-    max-height: 400px;
+    max-height: 420px;
   }
   
   #img-container {
@@ -21,6 +21,11 @@
   #carousel-description {
     h1 {
       font-size: 60px;
+      color: #1e2226;
+    }
+    
+    h2 {
+      font-size: 36px;
       color: #1e2226;
     }
   
