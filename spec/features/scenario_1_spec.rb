@@ -33,7 +33,7 @@ def scenario1(cur, del, sep)
   special_offer_message = SPECIAL_OFFER_MESSAGE.gsub('$', cur)
 
   # logs in as Matt
-  click_link 'LOGIN'
+  click_link 'Login'
   expect(page).to have_text 'Log in'
   page.fill_in 'Email', with: 'matt@example.com'
   page.fill_in 'Password', with: 'password'
@@ -41,17 +41,12 @@ def scenario1(cur, del, sep)
 
   # sees appropriate logged in content
   expect(page).to have_text 'Signed in successfully.'
-  within('#top-navbar') do
-    expect(page).to have_text 'USA'
-    expect(page).to have_text 'Matt'
-    expect(page).to have_text cur+' 0'+sep+'00'
-  end
+  expect(page).to have_text 'Matt'
 
   expect_aphone_preorder_ad(cur, sep)
 
   # sees Apricot Book thumbnail and clicks on the image
   expect(page).to have_text 'Apricot Book'
-  expect(page).to have_css 'a[href^="/products/apricot-book"] > img[alt=Apricotbook]'
   find('#apricot-book-img-link').click
 
   # sees Apricot Book product page
