@@ -101,7 +101,7 @@ Deal.create! product:     sphone8,
              image:       File.new(Rails.root.join('public', 'images', 'translate.jpg'), 'r')
 
 Deal.create! product:         aphone8,
-             description:     'Good news Matt! Because you are a loyal Apricot customer, we will <strong>waive the regular €100 deposit</strong> for the aPhone 8 Pre-Order!<br><br>Add your favorite color and memory option right now, and <strong>get it on the day of launch, guaranteed!',
+             description:     'Good news Matt! We have a <strong>SPECIAL OFFER</strong> just for you:<br><br>We will <strong>waive the regular €100 deposit</strong> for the <strong>aPhone 8 Pre-Order!</strong><br><br>Order now, and <strong>get it on the day of launch, guaranteed!',
              special:         true,
              trigger_product: apricotbook,
              price:           0.00

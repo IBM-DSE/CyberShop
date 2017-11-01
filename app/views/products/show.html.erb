@@ -8,7 +8,11 @@
     <div>
       <h2 class="product-name"><%= @product.name %></h2>
       <h3 class="brand-name"><%= @product.brand.name %> inc.</h3>
-      <h3 class="price"><%= decimal_to_euros @product.price %></h3>
+      <% if @special_deal %>
+          <%= display_price @product.price, @special_deal.price %>
+      <% else %>
+        <h3 class="price"><%= decimal_to_euros @product.price %></h3>
+      <% end %>
       <ul class="features-list">
         <% @product.features.each do |feature| %>
         <li><span><%= feature.description %></span></li>

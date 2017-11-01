@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+SPECIAL_OFFER_MESSAGE = 'Good news Matt! We have a SPECIAL OFFER just for you:We will waive the regular $100 deposit for the aPhone 8 Pre-Order!Order now, and get it on the day of launch, guaranteed!'
+
 feature 'Scenario 1' do
 
   background do
@@ -27,6 +29,8 @@ feature 'Scenario 1' do
 end
 
 def scenario1(cur, del, sep)
+
+  special_offer_message = SPECIAL_OFFER_MESSAGE.gsub('$', cur)
 
   # logs in as Matt
   click_link 'LOGIN'
@@ -75,16 +79,21 @@ def scenario1(cur, del, sep)
   expect(page).to have_text 'Subtotal (2 items): '+cur+' 2'+del+'299'+sep+'00'
   
   # sees ad to waive the Pre-Order deposit and clicks on product name
-  expect_aphone_preorder_fee_waive(cur, sep)
   within '.deal' do
+    expect(page).to have_text special_offer_message
+    expect(page).to have_link 'Pre-Order aPhone 8'
+    expect(page).to have_text 'by Apricot'
+    expect(page).to have_text cur+' 100'+sep+'00'
+    expect(page).to have_text cur+' 0'+sep+'00'
+    expect(page).to have_button 'Add To Cart'
     click_link 'Pre-Order aPhone 8'
   end
 
   # sees same ad on product page with all the features and adds to cart
-  expect(page).to have_text 'Good news Matt! Because you are a loyal Apricot customer, we will waive the regular '+cur+'100 deposit for the aPhone 8 Pre-Order!'
-  expect(page).to have_text 'Add your favorite color and memory option right now, and get it on the day of launch, guaranteed!'
+  expect(page).to have_text special_offer_message
   expect(page).to have_text 'Pre-Order aPhone 8'
   expect(page).to have_text cur+' 100'+sep+'00'
+  expect(page).to have_text cur+' 0'+sep+'00'
   expect(page).to have_text 'Voice Assistant Stoey'
   expect(page).to have_text 'Fireproof'
   expect(page).to have_text 'I10 Processor'
@@ -159,17 +168,5 @@ def expect_headphones(cur, sep)
     expect(page).to have_text 'In Stock'
     expect(page).to have_text cur+' 0'+sep+'00'
     expect(page).to have_text cur+' 299'+sep+'00'
-  end
-end
-
-def expect_aphone_preorder_fee_waive(cur, sep)
-  within '.deal' do
-    expect(page).to have_text 'Good news Matt! Because you are a loyal Apricot customer, we will waive the regular '+cur+'100 deposit for the aPhone 8 Pre-Order!'
-    expect(page).to have_text 'Add your favorite color and memory option right now, and get it on the day of launch, guaranteed!'
-    expect(page).to have_link 'Pre-Order aPhone 8'
-    expect(page).to have_text 'by Apricot'
-    expect(page).to have_text cur+' 100'+sep+'00'
-    expect(page).to have_text cur+' 0'+sep+'00'
-    expect(page).to have_button 'Add To Cart'
   end
 end
