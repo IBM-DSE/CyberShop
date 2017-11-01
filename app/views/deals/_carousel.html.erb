@@ -1,12 +1,10 @@
-<div id="carousel" class="row">
-  <div class="col-md-7"><%= image_tag @deal.src.image.url %></div>
-  <div class="col-md-5 vertical-align">
-    <div class="carousel-description trade-gothic">
-      <h1><%= @deal.src.name %></h1>
-      <div class="vert-sep"></div>
-      <h3><%= render_description @deal.description %></h3>
-      <div class="vert-sep"></div>
-      <p><%= render partial: 'products/details_button', locals: {product: @deal.src} %></p>
-    </div>
+<div id="main-deal" class="flex">
+  <div id="img-container"><%= image_tag @deal.src.image.url %></div>
+  <div id="carousel-description" class="trade-gothic">
+    <h1><%= @deal.src.name %></h1>
+    <h2><%= render_description @deal.description %></h2>
+    <h2><%= decimal_to_euros @deal.src.price %></h2>
+    <div class="vert-sep"></div>
+    <p><%= render partial: 'products/details_button', locals: {product: @deal.src} %></p>
   </div>
 </div>

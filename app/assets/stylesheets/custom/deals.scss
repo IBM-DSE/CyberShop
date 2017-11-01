@@ -8,8 +8,7 @@
   margin-top: 30px;
   padding-left: 48px;
   padding-right: 48px;
-  @extend .grey-border;
-  background-color: #FFFFFF;
+  background-color: #fbfbfb;
   
   #description {
     font-weight: 500;
@@ -17,6 +16,8 @@
   }
   
   img {
+    max-height: inherit;
+    min-height: inherit;
     max-width: 100%;
   }
   
@@ -30,14 +31,28 @@
     img {
       max-height: 10em;
     }
+    h3 > a{
+      color: #1e2226;
+    }
+    h4 {
+      color: #c6c6c6;
+    }
   }
   
   .plus {
     padding:1em;
-    font-size: 30px;
+    font-size: 50px;
   }
   
-  .horizontal {
+  #products {
     text-align: left;
   }
+  
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }

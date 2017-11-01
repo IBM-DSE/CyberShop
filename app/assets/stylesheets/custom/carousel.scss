@@ -1,32 +1,31 @@
 
-/* CUSTOMIZE THE CAROUSEL
-from https://getbootstrap.com/examples/carousel/
--------------------------------------------------- */
-$carousel-height: 600px;
-
 /* Carousel base class */
-#carousel {
-  @extend .grey-border;
+#main-deal {
+  background-color: #fbfbfb;
+  width: 100%;
   
-  background-color: #FFFFFF;
-
-  img {
-    width: 100%;
-    min-width: 100px;
+  > div {
+    max-height: 400px;
+  }
+  
+  #img-container {
+  
+    text-align: center;
+  
+    img {
+      max-height: inherit;
+      max-width: 100%;
+    }
   }
 
-  .carousel-description {
+  #carousel-description {
     h1 {
-      font-size: 67.2px;
+      font-size: 60px;
       color: #1e2226;
     }
-
+  
     .vert-sep {
       height: 35px;
     }
   }
-}
-
-.vertical-align {
-  padding: 5%;
 }

@@ -61,8 +61,11 @@ $main-navbar-height: 93px;
     }
   }
   
-  .open > a {
+  .dropdown:hover {
     background-color: #65c95f;
+  }
+  .open > a {
+    background-color: #60ed57;
   }
   
   > * {
@@ -79,12 +82,12 @@ $main-navbar-height: 93px;
     line-height: $main-navbar-height;
     
     .company-name {
-      font-family: 'Open Sans';
+      font-family: 'Montserrat';
       font-size: 36px;
-      font-weight: 800;
+      font-weight: bold;
       font-style: italic;
       color: #ffffff;
-      letter-spacing: 0.5px;
+      letter-spacing: 1.5px;
     }
   }
 }
