@@ -1,50 +1,17 @@
 /** TOP NAVBAR */
-$top-navbar-height: 40px;
 
-.top-navbar {
-  height: $top-navbar-height !important;
-  .navbar-collapse {
-    height: $top-navbar-height !important;
-  }
-  .nav > * > * {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  
-  .login {
-    font-size: 12px;
-    letter-spacing: 0.8px;
-    color: #737373;
-  }
-  
-  .cart-count {
-    width: 17px;
-    height: 17px;
-    margin-right: 15px;
-    border-radius: 17px;
-    background-color: #ffffff;
-    font-size: 8px;
-    letter-spacing: 0.5px;
-    color: #737373;
-    float: left;
-    vertical-align: middle;
-    text-align: center;
-  }
-  
-  .cart-price {
-    line-height: 20px;
-    letter-spacing: 0.8px;
-    color: #737373;
-  }
-  
-  .cart-button {
-    height: $top-navbar-height;
-    background-color: #dedede;
+.navbar-default {
+  .dropdown:hover, .dropup:hover {
+    background-color: #65c95f;
   }
 }
 
+.top-navbar {
+  background-color: #1e2226;
+}
+
 /** MAIN NAVBAR */
-$main-navbar-height: 93px;
+$main-navbar-height: 100px;
 
 #main-navbar {
   height: $main-navbar-height !important;
@@ -62,7 +29,7 @@ $main-navbar-height: 93px;
   }
   
   .open > a {
-    background-color: #65c95f;
+    background-color: #60ed57;
   }
   
   > * {
@@ -79,12 +46,16 @@ $main-navbar-height: 93px;
     line-height: $main-navbar-height;
     
     .company-name {
-      font-family: 'Open Sans';
+      font-family: 'Montserrat';
       font-size: 36px;
-      font-weight: 800;
+      font-weight: bold;
       font-style: italic;
       color: #ffffff;
-      letter-spacing: 0.5px;
+      letter-spacing: 1.5px;
     }
   }
+}
+
+.navbar-form {
+  margin: 0;
 }

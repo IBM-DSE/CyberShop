@@ -1,16 +1,21 @@
 .product-panel {
-  display: table;
+  @extend .flex;
   margin-top: 2em;
   
-  > .product-image, .product-info {
-    display: table-cell;
+  .product-image {
+    flex: 1;
+    img {
+      max-height: 500px;
+    }
   }
-  > .product-info {
+  .product-info {
+    flex: 1;
     height: 100%;
     width: 100%;
     vertical-align: middle;
+    margin-left: 40px;
     > div {
-      margin-left: 40px;
+      
       > .product-name {
         @extend .trade-gothic;
         color: #1e2226;
@@ -41,7 +46,6 @@
     }
     
     .option {
-      //border: solid 0.9px #e4e4e5;
       margin: 10px;
       font-size: 10.8px;
       font-weight: bold;
@@ -50,7 +54,6 @@
     }
   
     .option {
-      //color: #333;
       background-color: #e6e6e6;
       border-color: #adadad;
     }

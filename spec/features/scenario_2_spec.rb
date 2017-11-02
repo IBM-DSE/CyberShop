@@ -14,7 +14,7 @@ feature 'Scenario 2', js: true do
     # visits CyberShop and logs in
     visit root_path
     expect(page).to have_text 'CYBERSHOP'
-    click_link 'LOGIN'
+    click_link 'Login'
     expect(page).to have_text 'Log in'
     page.fill_in 'Email', with: 'david@example.com'
     page.fill_in 'Password', with: 'password'
@@ -22,11 +22,7 @@ feature 'Scenario 2', js: true do
 
     # sees home page
     expect(page).to have_text 'Signed in successfully.'
-    within '#top-navbar' do
-      expect(page).to have_text 'USA'
-      expect(page).to have_text 'David'
-      expect(page).to have_text cur+' 0'+sep+'00'
-    end
+    expect(page).to have_text 'David'
 
     # navigate to Smartphones page
     within '#main-navbar' do
