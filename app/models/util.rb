@@ -1,17 +1,15 @@
 
 class Util
-  def self.handle_score_error(input)
-    puts
-    p 'Backup...'
-    if input.is_a?(Customer) && input.name == 'Matt'
+  def self.initialize_score(customer)
+    if customer.is_a?(Customer) && customer.name == 'Matt'
       MATT_SCORE
-    elsif input.is_a?(Customer) && input.name == 'David'
+    elsif customer.is_a?(Customer) && customer.name == 'David'
       DAVID_SCORE
     end
   end
   
-  def self.extract(score, cloud=false)
-    key = cloud ? 'values' : 'records'
+  def self.extract(score)
+    key = score.has_key?('values') ? 'values' : 'records'
     {
       probability: score[key][0][score['fields'].index('probability')][1],
       prediction: score[key][0][score['fields'].index('prediction')]

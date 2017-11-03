@@ -11,32 +11,33 @@ class Deployment < ActiveRecord::Base
     model_result['entity']['input_data_schema']['fields']
   end
 
-  def get_score(input)
+  def get_score(customer)
     puts
-    puts "Getting #{product.name} prediction for Customer:"
-    p input
-    data = input_data(input)
+    puts "Getting #{product.name} prediction for #{customer.name}"
+    data = input_data(customer)
     if data.values.any?
-      puts
-      puts "Scoring against #{guid} :"
+      puts "Scoring against #{guid}"
       puts 'Scoring Input:'
       puts JSON.pretty_unparse(data)
+      result = Util.initialize_score(customer)
       begin
-        if machine_learning_service.is_cloud?
-          result = machine_learning_service.get_score guid, data, model_id
-        else 
-          result = machine_learning_service.get_score guid, data
+        Timeout::timeout(1) do
+          if machine_learning_service.is_cloud?
+            result = machine_learning_service.get_score guid, data, model_id
+          else
+            result = machine_learning_service.get_score guid, data
+          end
         end
-        puts
         puts 'Scoring Successful!'
       rescue Exception => e
         STDERR.puts "#{e.class}: #{e.message}"
-        result = Util.handle_score_error(input)
+        puts
+        puts 'Backup...'
       end
       puts
       puts 'Scoring Output:'
       p result
-      probability = Util.extract(result, machine_learning_service.is_cloud?)[:probability]
+      probability = Util.extract(result)[:probability]
       puts "Probability = #{probability}"
       return probability
     end
