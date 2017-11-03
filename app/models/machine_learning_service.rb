@@ -1,7 +1,5 @@
 class MachineLearningService < ActiveRecord::Base
   has_many :deployments, dependent: :destroy
-  validates :username, presence: true
-  validates :password, presence: true
   validate :get_deployments
 
   def get_deployments
@@ -43,7 +41,7 @@ class MachineLearningService < ActiveRecord::Base
   end
   
   def is_cloud?
-    hostname.empty? or hostname == 'ibm-watson-ml.mybluemix.net'
+    hostname == 'ibm-watson-ml.mybluemix.net'
   end
   
   private

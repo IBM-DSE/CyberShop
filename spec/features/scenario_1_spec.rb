@@ -2,7 +2,7 @@ require 'rails_helper'
 
 SPECIAL_OFFER_MESSAGE = 'Good news Matt! We have a SPECIAL OFFER just for you:We will waive the regular $100 deposit for the aPhone 8 Pre-Order!Order now, and get it on the day of launch, guaranteed!'
 
-feature 'Scenario 1' do
+feature "Scenario 1: Matt the father is looking for a laptop for his son's graduation" do
 
   background do
     visit root_path
@@ -10,13 +10,13 @@ feature 'Scenario 1' do
     expect(page).to have_link 'USA', class: 'dropdown-toggle'
   end
 
-  scenario "In Dollars: Matt the father is looking for a laptop for his son's graduation" do
+  scenario 'In Dollars' do
 
     scenario1('$', ',', '.')
     
   end
 
-  scenario "In Euros: Matt the father is looking for a laptop for his son's graduation" do
+  scenario 'In Euros' do
 
     # switch to Euros
     click_link 'USA', class: 'dropdown-toggle'
