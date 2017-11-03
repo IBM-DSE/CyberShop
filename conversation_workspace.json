@@ -1,0 +1,459 @@
+{
+  "name": "CyberShop",
+  "created": "2017-06-05T18:56:06.524Z",
+  "intents": [
+    {
+      "intent": "negative",
+      "created": "2017-06-06T17:25:37.416Z",
+      "updated": "2017-06-06T17:25:45.394Z",
+      "examples": [
+        {
+          "text": "no",
+          "created": "2017-06-06T17:25:39.547Z",
+          "updated": "2017-06-06T17:25:39.547Z"
+        },
+        {
+          "text": "nope",
+          "created": "2017-06-06T17:25:40.642Z",
+          "updated": "2017-06-06T17:25:40.642Z"
+        },
+        {
+          "text": "nah",
+          "created": "2017-06-06T17:25:41.800Z",
+          "updated": "2017-06-06T17:25:41.800Z"
+        },
+        {
+          "text": "negative",
+          "created": "2017-06-06T17:25:43.211Z",
+          "updated": "2017-06-06T17:25:43.211Z"
+        },
+        {
+          "text": "never",
+          "created": "2017-06-06T17:25:45.394Z",
+          "updated": "2017-06-06T17:25:45.394Z"
+        }
+      ],
+      "description": null
+    },
+    {
+      "intent": "affirmative",
+      "created": "2017-06-06T17:25:08.680Z",
+      "updated": "2017-06-06T19:08:45.041Z",
+      "examples": [
+        {
+          "text": "yes",
+          "created": "2017-06-06T17:25:18.569Z",
+          "updated": "2017-06-06T17:25:18.569Z"
+        },
+        {
+          "text": "definitely",
+          "created": "2017-06-06T17:25:22.774Z",
+          "updated": "2017-06-06T17:25:22.774Z"
+        },
+        {
+          "text": "absolutely",
+          "created": "2017-06-06T17:25:25.034Z",
+          "updated": "2017-06-06T17:25:25.034Z"
+        },
+        {
+          "text": "sure",
+          "created": "2017-06-06T17:25:27.399Z",
+          "updated": "2017-06-06T17:25:27.399Z"
+        },
+        {
+          "text": "indeed",
+          "created": "2017-06-06T17:25:28.697Z",
+          "updated": "2017-06-06T17:25:28.697Z"
+        },
+        {
+          "text": "okay",
+          "created": "2017-06-06T19:08:39.609Z",
+          "updated": "2017-06-06T19:08:39.609Z"
+        },
+        {
+          "text": "fine",
+          "created": "2017-06-06T19:08:42.238Z",
+          "updated": "2017-06-06T19:08:42.238Z"
+        },
+        {
+          "text": "yeah",
+          "created": "2017-06-06T19:08:45.041Z",
+          "updated": "2017-06-06T19:08:45.041Z"
+        }
+      ],
+      "description": null
+    }
+  ],
+  "updated": "2017-11-03T14:41:35.261Z",
+  "entities": [
+    {
+      "entity": "permission",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "full",
+          "created": "2017-06-06T17:27:36.297Z",
+          "updated": "2017-06-06T17:27:36.297Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "none",
+          "created": "2017-06-06T17:27:39.444Z",
+          "updated": "2017-06-06T17:27:39.444Z",
+          "metadata": null,
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "minimal",
+          "created": "2017-06-06T17:27:38.633Z",
+          "updated": "2017-06-06T17:27:38.633Z",
+          "metadata": null,
+          "synonyms": []
+        }
+      ],
+      "created": "2017-06-06T17:27:04.202Z",
+      "updated": "2017-06-06T17:27:39.444Z",
+      "metadata": null,
+      "description": null
+    }
+  ],
+  "language": "en",
+  "metadata": {
+    "api_version": {
+      "major_version": "v1",
+      "minor_version": "2017-05-26"
+    }
+  },
+  "description": "",
+  "dialog_nodes": [
+    {
+      "title": null,
+      "output": {
+        "text": {
+          "values": [
+            "Okay, just let me know if you need any more help!"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "No Consent",
+      "context": null,
+      "created": "2017-06-06T17:36:06.244Z",
+      "updated": "2017-06-06T17:36:12.564Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "true",
+      "description": null,
+      "dialog_node": "node_12_1496770565628",
+      "previous_sibling": "node_5_1496770130641"
+    },
+    {
+      "title": null,
+      "output": {
+        "text": {
+          "values": [
+            "<p><a href=\"/products/aphone-7-green?locale=$locale\"><img src=\"/images/aPhone7GREEN.png\"></a></p> A portion of the proceeds from each phone is donated to help fight HIV/AIDS. Just click the image above for more information!"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "No Consent",
+      "context": null,
+      "created": "2017-06-06T17:28:51.258Z",
+      "updated": "2017-11-03T14:34:41.780Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "#affirmative",
+      "description": null,
+      "dialog_node": "node_5_1496770130641",
+      "previous_sibling": null
+    },
+    {
+      "title": null,
+      "output": {
+        "text": {
+          "values": [
+            "Okay, just let me know if you need any more help!"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Full Consent",
+      "context": null,
+      "created": "2017-06-06T17:34:09.573Z",
+      "updated": "2017-06-06T19:35:00.683Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "true",
+      "description": null,
+      "dialog_node": "node_10_1496770448938",
+      "previous_sibling": "node_9_1496770419261"
+    },
+    {
+      "title": null,
+      "output": {
+        "text": {
+          "values": [
+            "The S-phone Model 8 is a good choice. <a href=\"/products/sphone-8?locale=$locale\"><img src=\"/images/sPhone8.jpg\"></a> It allows you to point your phone camera at foreign language text and it will give you a real-time translation.<br>Just click the image for more details!"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Full Consent",
+      "context": null,
+      "created": "2017-06-06T17:33:39.902Z",
+      "updated": "2017-11-03T14:41:35.261Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "#affirmative",
+      "description": null,
+      "dialog_node": "node_9_1496770419261",
+      "previous_sibling": null
+    },
+    {
+      "title": "Full Consent",
+      "output": {
+        "text": {
+          "values": [
+            "I see you have tweeted about phone features such as translation.  Can I tell you more?"
+          ],
+          "selection_policy": "sequential"
+        },
+        "action": "full_consent"
+      },
+      "parent": "Yes",
+      "context": null,
+      "created": "2017-06-06T17:32:50.575Z",
+      "updated": "2017-06-19T11:10:54.924Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "@permission:full || #affirmative",
+      "description": null,
+      "dialog_node": "Full Consent",
+      "previous_sibling": "No Consent"
+    },
+    {
+      "title": "Absent",
+      "output": {
+        "text": {
+          "values": [
+            "I'm sorry, I didn't detect a permission level in your response. Please include either \"full\" or \"none\"."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Yes",
+      "context": null,
+      "created": "2017-06-06T17:34:34.534Z",
+      "updated": "2017-06-19T11:09:30.311Z",
+      "metadata": null,
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "No Consent"
+      },
+      "conditions": "anything_else",
+      "description": null,
+      "dialog_node": "Absent",
+      "previous_sibling": "Full Consent"
+    },
+    {
+      "title": "No Consent",
+      "output": {
+        "text": {
+          "values": [
+            "The A-phone Model GREEN has been popular on social media over the past few weeks. Can I tell you more?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Yes",
+      "context": null,
+      "created": "2017-06-06T17:28:13.231Z",
+      "updated": "2017-06-19T11:12:21.412Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "@permission:none || #negative",
+      "description": null,
+      "dialog_node": "No Consent",
+      "previous_sibling": null
+    },
+    {
+      "title": null,
+      "output": {
+        "text": {
+          "values": [
+            "Click on this link for more information ->  http://largemart.com/phones/xxxx"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_5_1496770130641",
+      "context": null,
+      "created": "2017-06-06T17:29:52.764Z",
+      "updated": "2017-06-06T17:32:01.093Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": null,
+      "description": null,
+      "dialog_node": "node_6_1496770192120",
+      "previous_sibling": null
+    },
+    {
+      "title": "No",
+      "output": {
+        "text": {
+          "values": [
+            "Okay, just let me know if you need help!"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Welcome",
+      "context": null,
+      "created": "2017-06-06T17:25:54.445Z",
+      "updated": "2017-06-19T11:03:10.441Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "#negative",
+      "description": null,
+      "dialog_node": "No",
+      "previous_sibling": "Yes"
+    },
+    {
+      "title": "Other",
+      "output": {
+        "text": {
+          "values": [
+            "I'm sorry, I did not understand... Can I help you today?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Welcome",
+      "context": null,
+      "created": "2017-06-19T11:03:14.480Z",
+      "updated": "2017-06-19T11:03:51.005Z",
+      "metadata": null,
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "Yes"
+      },
+      "conditions": "true",
+      "description": null,
+      "dialog_node": "Other",
+      "previous_sibling": "No"
+    },
+    {
+      "title": "Yes",
+      "output": {
+        "text": {
+          "values": [
+            "Before we start may I use your personal data including your tweets to make product recommendations or special offers?<br>Please answer full or none."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Welcome",
+      "context": null,
+      "created": "2017-06-06T17:24:55.546Z",
+      "updated": "2017-06-19T15:25:01.511Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "#affirmative",
+      "description": null,
+      "dialog_node": "Yes",
+      "previous_sibling": null
+    },
+    {
+      "title": "Anything else - Root",
+      "output": {
+        "text": {
+          "values": [
+            "I didn't understand. You can try rephrasing.",
+            "Can you reword your statement? I'm not understanding.",
+            "I didn't get your meaning."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": null,
+      "context": null,
+      "created": "2017-06-05T18:56:14.095Z",
+      "updated": "2017-06-19T11:17:38.396Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "anything_else",
+      "description": null,
+      "dialog_node": "Anything else - Root",
+      "previous_sibling": "node_15_1496776226134"
+    },
+    {
+      "title": null,
+      "output": {
+        "text": {
+          "values": [
+            "Okay, let me know if you need any help!"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": null,
+      "context": null,
+      "created": "2017-06-06T19:10:26.298Z",
+      "updated": "2017-06-06T19:10:47.655Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "#negative",
+      "description": null,
+      "dialog_node": "node_15_1496776226134",
+      "previous_sibling": "Yes - Root"
+    },
+    {
+      "title": "Yes - Root",
+      "output": {},
+      "parent": null,
+      "context": null,
+      "created": "2017-06-06T19:10:00.869Z",
+      "updated": "2017-06-19T11:17:30.888Z",
+      "metadata": null,
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "Yes"
+      },
+      "conditions": "#affirmative",
+      "description": null,
+      "dialog_node": "Yes - Root",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "title": "Welcome",
+      "output": {
+        "text": {
+          "values": [
+            "$name, it looks you have been looking at $interest.  Can I help you?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": null,
+      "context": null,
+      "created": "2017-06-05T18:56:14.095Z",
+      "updated": "2017-06-10T19:16:00.967Z",
+      "metadata": null,
+      "next_step": null,
+      "conditions": "welcome",
+      "description": null,
+      "dialog_node": "Welcome",
+      "previous_sibling": null
+    }
+  ],
+  "workspace_id": "02b3d52f-e2d3-4937-8c5c-cf5a8cb5d48f",
+  "counterexamples": [],
+  "learning_opt_out": false
+}
