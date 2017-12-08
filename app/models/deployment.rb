@@ -14,19 +14,13 @@ class Deployment < ActiveRecord::Base
   def get_score(customer)
     puts
     puts "Getting #{product.name} prediction for #{customer.name}"
+    result = Util.initialize_score(customer)
+    
     data = input_data(customer)
     if data.values.any?
-      puts "Scoring against #{guid}"
-      puts 'Scoring Input:'
-      puts JSON.pretty_unparse(data)
-      result = Util.initialize_score(customer)
       begin
         Timeout::timeout(1) do
-          if machine_learning_service.is_cloud?
-            result = machine_learning_service.get_score guid, data, model_id
-          else
-            result = machine_learning_service.get_score guid, data
-          end
+          result = score(data)
         end
         puts 'Scoring Successful!'
       rescue Exception => e
@@ -42,6 +36,17 @@ class Deployment < ActiveRecord::Base
       return probability
     end
     0
+  end
+  
+  def score(data)
+    puts "Scoring against #{guid}"
+    puts 'Scoring Input:'
+    puts JSON.pretty_unparse(data)
+    if machine_learning_service.is_cloud?
+      machine_learning_service.get_score guid, data, model_id
+    else
+      machine_learning_service.get_score guid, data
+    end
   end
   
   def input_data(input)
