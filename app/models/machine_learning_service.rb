@@ -27,16 +27,15 @@ class MachineLearningService < ActiveRecord::Base
 
   def get_model(model_id)
     init_service
-    @service.get_model model_id
+    @service.model model_id
   end
 
   def get_score(deployment_id, data, model_id=nil)
     init_service
     if @service.class == IBM::ML::Local
-      @service.get_score deployment_id,data
+      @service.score deployment_id,data
     elsif @service.class == IBM::ML::Cloud
-      model_id = Deployment.find_by_guid(deployment_id).model_id unless model_id
-      @service.get_score model_id, deployment_id, data.values
+      @service.score deployment_id, data
     end
   end
   

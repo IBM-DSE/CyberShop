@@ -78,4 +78,4 @@ gem 'paperclip', '~> 5.0.0'
 gem 'rest-client'
 
 # APIs
-gem 'ibm-ml', git: 'https://github.com/IBM-ATAT/ibm-ml-ruby.git', branch: 'master'
+gem 'ibm-ml'
