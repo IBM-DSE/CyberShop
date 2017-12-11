@@ -1,13 +1,13 @@
-admin_password =  ENV['ADMIN_PASSWORD'] || 'password'
+admin_password = ENV['ADMIN_PASSWORD'] || 'password'
 AdminUser.create! email: 'admin@example.com', password: admin_password, password_confirmation: admin_password
 
-%w(Smartphones Tablets Laptops Headphones).each {|name| Category.create! name: name}
-%w(Apricot Gazillion Singsong).each {|name| Brand.create! name: name}
+%w(Smartphones Tablets Laptops Headphones).each { |name| Category.create! name: name }
+%w(Apricot Gazillion Singsong).each { |name| Brand.create! name: name }
 
 Customer.create! name:   'Matt', email: 'matt@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops',
                  gender: 'M', age_group: '45-54', education: 'Doctorate', profession: 'Executive', income: 200000, switcher: 0, last_purchase: 3, annual_spend: 1200
 Customer.create! name: 'David', email: 'david@example.com', password: 'password', password_confirmation: 'password', interest: 'smartphones'
-                 # gender: 'M', age_group: '25-34', education: 'Masters', profession: 'Programmer', income: 40000, switcher: 1, last_purchase: 5, annual_spend: 200
+# gender: 'M', age_group: '25-34', education: 'Masters', profession: 'Programmer', income: 40000, switcher: 1, last_purchase: 5, annual_spend: 200
 Customer.create! name: 'Keith', email: 'keith@example.com', password: 'password', password_confirmation: 'password', interest: 'laptops'
 
 
@@ -42,10 +42,10 @@ Product.create name:     'aBook Air',
                price:    1499.00
 
 Product.create name:     'Goya',
-                             category: Category.find_by_name('Laptops'),
-                             brand:    Brand.find_by_name('Gazillion'),
-                             image:    File.new(Rails.root.join('public', 'images', 'Goya.jpg'), 'r'),
-                             price:    1499.00
+               category: Category.find_by_name('Laptops'),
+               brand:    Brand.find_by_name('Gazillion'),
+               image:    File.new(Rails.root.join('public', 'images', 'Goya.jpg'), 'r'),
+               price:    1499.00
 
 
 # SMARTPHONES
@@ -140,19 +140,30 @@ CSV.foreach('db/seed_data/WEX_output.csv', headers: true) do |row|
   TrendingTopic.create! data
 end
 
-customer_interest_ml = MachineLearningService.create name:     'Customer Interest',
-                                                     hostname: ENV['HOSTNAME'],
-                                                     username: ENV['USERNAME'],
-                                                     password: ENV['PASSWORD']
+customer_interest_ml = MachineLearningService.create name: 'Customer Interest',
+                                                     hostname: ENV['CUSTOMER_HOSTNAME'],
+                                                     username: ENV['CUSTOMER_USERNAME'],
+                                                     password: ENV['CUSTOMER_PASSWORD']
 
 if customer_interest_ml.hostname == 'ibm-watson-ml.mybluemix.net' and customer_interest_ml.deployments.find_by_guid(ENV['APHONE_DEPLOYMENT'])
   customer_interest_ml.deployments.find_by_guid(ENV['APHONE_DEPLOYMENT']).update product: aphone8
   customer_interest_ml.deployments.find_by_guid(ENV['SPHONE_DEPLOYMENT']).update product: sphone8
 else
   customer_interest_ml.deployments.build product: aphone8,
-                                         guid: ENV['APHONE_DEPLOYMENT']
+                                         guid:    ENV['APHONE_DEPLOYMENT']
   customer_interest_ml.deployments.build product: sphone8,
-                                         guid: ENV['SPHONE_DEPLOYMENT']
+                                         guid:    ENV['SPHONE_DEPLOYMENT']
 end
 
 customer_interest_ml.save
+
+if ENV['SHIPPING_USERNAME'] and ENV['SHIPPING_PASSWORD']
+  
+  MachineLearningService.create! name:     'Supply Chain',
+                                 hostname: 'ibm-watson-ml.mybluemix.net',
+                                 username: ENV['SHIPPING_USERNAME'],
+                                 password: ENV['SHIPPING_PASSWORD']
+  
+  MlScoringParam.import File.new('db/seed_data/shipment-delay-model_param_options.csv'), 'on'
+
+end

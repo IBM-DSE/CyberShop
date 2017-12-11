@@ -1,0 +1,67 @@
+totalCases,totalWeight,distance,shipFrom,shipFromState,shipTo,shipToState,destWeatherConds
+Total Items,Total Weight (kg),Distance (km),Ship From (Country),Ship From (State),Ship To (Country),Ship To (State),Weather condition at destination
+,,,AUSTRALIA,NA,ABU DHABI,NA,unknown
+,,,HUNGARY,AZ,ARGENTINA,AB,Clear
+,,,INDONESIA,CA,AUSTRALIA,ACT,Drizzle
+,,,IRELAND,DB,AUSTRIA,AK,Fog
+,,,MALAYSIA,JA,BELGIUM,AL,Haze
+,,,MEXICO,MN,BRAZIL,AR,Heavy Rain
+,,,NEW ZEALAND,NY,CANADA,AZ,Light Drizzle
+,,,PHILLIPINES,,CHILE,BC,Light Freezing Fog
+,,,SINGAPORE,,CHINA,CA,Light Rain
+,,,TAIWAN,,COLOMBIA,CO,Light Rain Showers
+,,,UNITED STATES,,CROATIA,CT,Light Snow
+,,,,,CYPRUS,DC,Light Thunderstorms and Rain
+,,,,,CZECH REPUBLIC,DE,Mostly Cloudy
+,,,,,DENMARK,FL,Overcast
+,,,,,ECUADOR,GA,Partly Cloudy
+,,,,,EGYPT,GP,Patches of Fog
+,,,,,FRANCE,HI,Rain
+,,,,,GERMANY,IA,Scattered Clouds
+,,,,,GREECE,ID,Smoke
+,,,,,HUNGARY,IL,
+,,,,,INDIA,IN,
+,,,,,INDONESIA,JA,
+,,,,,ISRAEL,JAL,
+,,,,,ITALY,KS,
+,,,,,JAMAICA,KY,
+,,,,,JAPAN,LA,
+,,,,,KUWAIT,MA,
+,,,,,MALAYSIA,MD,
+,,,,,MEXICO,ME,
+,,,,,MOROCCO,MI,
+,,,,,NETHERLANDS,MN,
+,,,,,NEW ZEALAND,MO,
+,,,,,NORWAY,MS,
+,,,,,PAKISTAN,NC,
+,,,,,PHILLIPINES,ND,
+,,,,,POLAND,NE,
+,,,,,PORTUGAL,NH,
+,,,,,ROMANIA,NJ,
+,,,,,SAUDI ARABIA,NM,
+,,,,,SINGAPORE,NSW,
+,,,,,SLOVAKIA,NV,
+,,,,,SLOVENIA,NY,
+,,,,,SOUTH AFRICA,OH,
+,,,,,SOUTH KOREA,OK,
+,,,,,SPAIN,ON,
+,,,,,SWEDEN,OR,
+,,,,,SWITZERLAND,PA,
+,,,,,TAIWAN,PR,
+,,,,,THAILAND,QC,
+,,,,,TURKEY,RI,
+,,,,,UNITED ARAB EMIRATES,RM,
+,,,,,UNITED KINGDOM,SC,
+,,,,,UNITED STATES,SD,
+,,,,,VIETNAM,TAM,
+,,,,,,TN,
+,,,,,,TX,
+,,,,,,UT,
+,,,,,,VA,
+,,,,,,VIC,
+,,,,,,VT,
+,,,,,,WA,
+,,,,,,WI,
+,,,,,,WV,
+,,,,,,WY,
+,,,,,,ZH,

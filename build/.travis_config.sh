@@ -14,6 +14,5 @@ if [ ! -z "$APP_URL" ]; then
     export APP_URL
 else
     APP_URL=localhost
-    rake db:migrate RAILS_ENV=test
 fi
 echo Testing Target: $APP_URL
