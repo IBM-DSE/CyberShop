@@ -140,10 +140,10 @@ CSV.foreach('db/seed_data/WEX_output.csv', headers: true) do |row|
   TrendingTopic.create! data
 end
 
-customer_interest_ml = MachineLearningService.create name:     'Customer Interest',
-                                                     hostname: ENV['HOSTNAME'],
-                                                     username: ENV['USERNAME'],
-                                                     password: ENV['PASSWORD']
+customer_interest_ml = MachineLearningService.create name: 'Customer Interest',
+                                                     hostname: ENV['CUSTOMER_HOSTNAME'],
+                                                     username: ENV['CUSTOMER_USERNAME'],
+                                                     password: ENV['CUSTOMER_PASSWORD']
 
 if customer_interest_ml.hostname == 'ibm-watson-ml.mybluemix.net' and customer_interest_ml.deployments.find_by_guid(ENV['APHONE_DEPLOYMENT'])
   customer_interest_ml.deployments.find_by_guid(ENV['APHONE_DEPLOYMENT']).update product: aphone8
