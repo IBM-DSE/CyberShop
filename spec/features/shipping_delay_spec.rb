@@ -20,8 +20,9 @@ RSpec.feature 'Shipping Delay', type: :feature do
     expect(page).to have_text 'Hostname ibm-watson-ml.mybluemix.net'
     
     expect(page).to have_text 'Test Scoring'
+    expect(page).to have_text 'Ship from (country)'
     
-    within(page.first('form')) do
+    within(page.first('form', text: 'Ship from (country)')) do
   
       expect(page).to have_text 'Total items'
       expect(page).to have_text 'Total weight (kg)'
