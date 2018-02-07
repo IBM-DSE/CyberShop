@@ -1,6 +1,6 @@
 ---
 applications:
 - name: CyberShop
-  buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
+  buildpack: https://github.com/cloudfoundry/ruby-buildpack.git#v1.7.8
   memory: 256MB
   command: bundle exec rake db:setup && bundle exec rails s -p $PORT
