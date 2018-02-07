@@ -1,4 +1,4 @@
-FROM ruby:2.3.4
+FROM ruby:2.3.5
 ARG RAILS_ENV=development
 ENV RAILS_ENV $RAILS_ENV
 

@@ -26,7 +26,6 @@ manifest.yml
 
 # Build files
 build/*
-Dockerfile
 docker-compose.yml
 
 # Ignore other ignore files
