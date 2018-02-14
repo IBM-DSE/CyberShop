@@ -1,0 +1,15 @@
+<div id="shipping-input-container">
+  <div id="shipping-input">
+    <br><br><br>
+    <h1>Shipping Delay Predictor</h1>
+    <br><br><br>
+    <table id="shipping-input-table" class="table">
+      <% @ml_scoring_params.each do |hash, record| %>
+        <tr>
+          <th><%= label_tag record&.alias ? record.alias : hash['name']%></th>
+          <td><%= scoring_input hash, record %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
