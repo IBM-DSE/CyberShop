@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'shipping/test'
+  get 'shipping', to: 'shipping#test'
   post 'shipping/score'
 
   get 'status', to: 'status#status'

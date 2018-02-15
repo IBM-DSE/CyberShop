@@ -3,7 +3,7 @@ class ShippingController < ApplicationController
   @@deployment = Deployment.where("name like ?", "%delay%").first
 
   # get a mapping of input schema param name to type
-  @@schema_params = @@deployment.get_input_schema.map { |param|
+  @@schema_params = @@deployment&.get_input_schema&.map { |param|
     rec = MlScoringParam.find_by_name(param['name'])
     [param['name'], {
       type: param['metadata']['columnInfo']['columnTypeName'],
@@ -15,7 +15,6 @@ class ShippingController < ApplicationController
   def test
     @schema_params = @@schema_params
     @shipment = session[:shipment]
-    p @shipment
   end
   
   def score
@@ -33,26 +32,31 @@ class ShippingController < ApplicationController
                               end
     end
     
-    # get the score
-    score = @@deployment.score @input
-    session[:shipment] = @input.dup
-    
-    # generate view variables
-    @input.transform_keys! do |key|
-      rec = MlScoringParam.find_by_name(key)
-      rec&.alias ? rec.alias : key
+    if @@deployment
+      # get the score
+      score = @@deployment.score @input
+      session[:shipment] = @input.dup
+  
+      # generate view variables
+      @input.transform_keys! do |key|
+        rec = MlScoringParam.find_by_name(key)
+        rec&.alias ? rec.alias : key
+      end
+      @output     = score.except(*@input.keys)
+      @prediction = @output['values'][0].last
+  
+      @color = case
+                 when @prediction < 1 then
+                   'green'
+                 when @prediction < 2 then
+                   'gold'
+                 else
+                   'red'
+               end
+      
+    else
+      redirect_to :shipping_test, flash: { error: 'ERROR: There is no available model for predicting shipping delay' }
     end
-    @output     = score.except(*@input.keys)
-    @prediction = @output['values'][0].last
-    
-    @color = case
-               when @prediction < 1 then
-                 'green'
-               when @prediction < 2 then
-                 'gold'
-               else
-                 'red'
-             end
     
   end
   
