@@ -1,5 +1,6 @@
 <div id="footer">
   
+  <% unless controller_path == 'shipping' %>
   <div class="links">
     <div>
       <div>PRIVACY & COOKIES</div>
@@ -14,5 +15,6 @@
   </div>
 
   <%= render 'application/top_navbar' %>
+  <% end %>
   
 </div>

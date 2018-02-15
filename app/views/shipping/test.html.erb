@@ -1,0 +1,24 @@
+<div id="shipping-input-container">
+  <div id="shipping-input">
+    
+    <br><br><br>
+    <h1 class="bold">Shipping Delay Predictor</h1>
+    <br><br><br>
+    
+    <%= form_tag shipping_score_path do %>
+    <table id="shipping-input-table" class="table">
+      <% @schema_params.each do |param, hash| %>
+        <tr>
+          <th><%= label_tag param, hash[:name] %></th>
+          <td><%= shipping_input param, hash, @shipment&.fetch(param) %></td>
+        </tr>
+      <% end %>
+    </table>
+    <br><br>
+    <div class="center-container">
+      <%= submit_tag 'Predict Delay', class: 'btn btn-lg' %>
+    </div>
+    <% end %>
+    
+  </div>
+</div>

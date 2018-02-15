@@ -1,0 +1,56 @@
+// Place all the styles related to the shipping controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.center-container {
+  text-align:center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+#shipping-input-container {
+  height: 100%;
+}
+
+#shipping-input {
+  margin: auto;
+  max-width: 700px;
+}
+
+#shipping-input-table {
+  th {
+    padding: auto;
+    vertical-align: middle;
+    font-size: 18px;
+    > * {
+      margin: 0;
+    }
+  }
+  td {
+    padding: auto;
+    vertical-align: middle;
+    font-size: 16px;
+  }
+}
+
+#shipping-output {
+  margin: auto;
+  max-width: 1000px;
+}
+
+.input-col {
+  width: 300px!important;
+}
+
+#output-row {
+  height: 312px;
+  vertical-align: middle;
+}
+
+#output {
+  font-size: 40px;
+  vertical-align: middle;
+  padding-left: 2em;
+}
