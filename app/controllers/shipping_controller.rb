@@ -1,27 +1,29 @@
 class ShippingController < ApplicationController
   
+  @@deployment = Deployment.where("name like ?", "%delay%").first
+
+  # get a mapping of input schema param name to type
+  @@schema_params = @@deployment.get_input_schema.map { |param|
+    rec = MlScoringParam.find_by_name(param['name'])
+    [param['name'], {
+      type: param['metadata']['columnInfo']['columnTypeName'],
+      name: rec&.alias ? rec.alias : key,
+      record: rec
+    }]
+  }.to_h
+  
   def test
-    @deployment = Deployment.where("name like ?", "%delay%").first
-    @ml_scoring_params = @deployment.get_input_schema.map { |param|
-      [param, MlScoringParam.find_by_name(param['name'])]
-    }.to_h
+    @schema_params = @@schema_params
+    @shipment = session[:shipment]
+    p @shipment
   end
   
   def score
-    deployment = Deployment.find(params[:deployment_id])
-  
-    # get a mapping of input schema param name to type
-    schema_params = deployment.get_input_schema.map do |param|
-      [param['name'], param['metadata']['columnInfo']['columnTypeName']]
-    end.to_h
-  
-    # extract the valid parameters using the keys of this mapping
-    valid_params = scoring_params(schema_params.keys)
-  
+    
     # convert integer type params to integers
-    cleansed_values = {}
-    valid_params.each do |name, val|
-      cleansed_values[name] = case schema_params[name]
+    @input = {}
+    scoring_params.each do |param, val|
+      @input[param] = case @@schema_params[param][:type]
                                 when 'integer'
                                   val.to_i
                                 when 'decimal'
@@ -30,18 +32,19 @@ class ShippingController < ApplicationController
                                   val
                               end
     end
-  
+    
     # get the score
-    score = deployment.score cleansed_values
-  
-    @input = valid_params.to_h
+    score = @@deployment.score @input
+    session[:shipment] = @input.dup
+    
+    # generate view variables
     @input.transform_keys! do |key|
       rec = MlScoringParam.find_by_name(key)
       rec&.alias ? rec.alias : key
     end
     @output     = score.except(*@input.keys)
     @prediction = @output['values'][0].last
-  
+    
     @color = case
                when @prediction < 1 then
                  'green'
@@ -54,9 +57,9 @@ class ShippingController < ApplicationController
   end
   
   private
-
-  def scoring_params schema_params
-    params.permit(schema_params)
+  
+  def scoring_params
+    params.permit(@@schema_params.keys)
   end
   
 end
