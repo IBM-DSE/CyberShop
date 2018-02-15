@@ -65,16 +65,19 @@ RSpec.feature 'Shipping Delay', type: :feature do
 
 end
 
+# Assert correct order of shipping param names
 def expect_shipping_param_names
   
-  expect(page).to have_text 'Total Items'
-  expect(page).to have_text 'Total Weight (kg)'
-  expect(page).to have_text 'Distance (km)'
-  expect(page).to have_text 'Ship From (Country)'
-  expect(page).to have_text 'Ship To (Country)'
-  expect(page).to have_text 'Ship From (State)'
-  expect(page).to have_text 'Ship To (State)'
-  expect(page).to have_text 'Weather condition at destination'
+  expect(page).to have_css 'table', text: /
+    Total\sItems.+
+    Total\sWeight\s\(kg\).+
+    Ship\sFrom\s\(Country\).+
+    Ship\sFrom\s\(State\).+
+    Ship\sTo\s\(Country\).+
+    Ship\sTo\s\(State\).+
+    Distance\s\(km\).+
+    Weather\scondition\sat\sdestination
+  /x
 
 end
 
