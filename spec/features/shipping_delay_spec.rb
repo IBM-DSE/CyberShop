@@ -1,53 +1,102 @@
 require 'rails_helper'
 
 RSpec.feature 'Shipping Delay', type: :feature do
-
-  before do
-    visit '/admin/machine_learning_services/2'
-
-    expect(page).to have_text 'You need to sign in or sign up before continuing.'
-    expect(page).to have_text 'CyberShop Login'
-
-    page.fill_in 'Email*', with: 'admin@example.com'
-    page.fill_in 'Password*', with: ENV['ADMIN_PASSWORD'] || 'password'
-    click_button 'Login'
+  
+  scenario 'Predict Shipping Delay' do
+    
+    visit '/shipping'
+    
+    expect(page).to have_text 'Shipping Delay Predictor'
+    expect(page).to have_button 'Predict Delay'
+    
+    if ENV['APP_URL'] || ENV['SHIPPING_USERNAME'] && ENV['SHIPPING_PASSWORD']
+      
+      expect_shipping_param_names
+      expect_shipping_param_inputs
+      
+      fill_in 'totalCases', with: '2'
+      fill_in 'totalWeight', with: '10'
+      fill_in 'distance', with: '3000'
+      select 'UNITED STATES', from: 'shipFrom'
+      select 'CHINA', from: 'shipTo'
+      select 'CA', from: 'shipFromState'
+      select 'Clear', from: 'destWeatherConds'
+      
+      click_button 'Predict Delay'
+      
+      expect(page).to have_current_path shipping_score_path, ignore_query: true
+      expect(page).to have_text 'Shipping Prediction'
+      
+      expect(page).to have_text 'Input Values'
+      expect_shipping_param_names
+      expect(page).to have_text '2'
+      expect(page).to have_text '10.0'
+      expect(page).to have_text '3000.0'
+      expect(page).to have_text 'UNITED STATES'
+      expect(page).to have_text 'CHINA'
+      expect(page).to have_text 'CA'
+      expect(page).to have_text 'NA'
+      expect(page).to have_text 'Clear'
+      
+      expect(page).to have_text 'Prediction'
+      expect(page).to have_text 'Delay: 2.12 days'
+      
+      expect(page).to have_link 'New Prediction'
+      click_link 'New Prediction'
+      
+      expect_shipping_param_inputs 'Total Items' => 2 ,
+                                   'Total Weight (kg)' => 10.0,
+                                   'Distance (km)' => 3000.0,
+                                   'Ship From (Country)' => 'UNITED STATES',
+                                   'Ship To (Country)' => 'CHINA',
+                                   'Ship From (State)' => 'CA',
+                                   'Ship To (State)' => 'NA'
+      
+    else
+      
+      click_button 'Predict Delay'
+      
+      expect(page).to have_text 'ERROR: There is no available model for predicting shipping delay'
+      expect(page).to have_text 'Shipping Delay Predictor'
+      expect(page).to have_button 'Predict Delay'
+    
+    end
   end
 
-  scenario 'Predict Shipping Delay' do
+end
 
-    expect(page).to have_text 'Machine Learning Service Details'
-    expect(page).to have_text 'Name Supply Chain'
-    expect(page).to have_text 'Hostname ibm-watson-ml.mybluemix.net'
-    
-    expect(page).to have_text 'Test Scoring'
-    expect(page).to have_text 'Ship from (country)'
-    
-    within(page.first('form', text: 'Ship from (country)')) do
+def expect_shipping_param_names
   
-      expect(page).to have_text 'Total items'
-      expect(page).to have_text 'Total weight (kg)'
-      expect(page).to have_text 'Distance (km)'
-      expect(page).to have_text 'Ship from (country)'
-      expect(page).to have_select 'shipFrom', with_options: SHIP_FROM_COUNTRIES
-      expect(page).to have_text 'Ship to (country)'
-      expect(page).to have_select 'shipTo', with_options: SHIP_TO_COUNTRIES
-      expect(page).to have_text 'Ship from (state)'
-      expect(page).to have_select 'shipFromState', with_options: SHIP_FROM_STATES
-      expect(page).to have_text 'Ship to (state)'
-      expect(page).to have_select 'shipToState', with_options: SHIP_TO_STATES
-      expect(page).to have_text 'Weather condition at destination'
-      expect(page).to have_select 'destWeatherConds', with_options: WEATHER_CONDITIONS
+  expect(page).to have_text 'Total Items'
+  expect(page).to have_text 'Total Weight (kg)'
+  expect(page).to have_text 'Distance (km)'
+  expect(page).to have_text 'Ship From (Country)'
+  expect(page).to have_text 'Ship To (Country)'
+  expect(page).to have_text 'Ship From (State)'
+  expect(page).to have_text 'Ship To (State)'
+  expect(page).to have_text 'Weather condition at destination'
+
+end
+
+def expect_shipping_param_inputs(values=nil)
   
-      fill_in 'totalCases', with: '10'
-      fill_in 'totalWeight', with: '100'
-      fill_in 'distance', with: '1000'
-      select 'Clear', from: 'destWeatherConds'
-  
-      click_button 'Get Score'
+  FIELD_PARAMS.each do |param|
+    if values && values[param] 
+      expect(page).to have_field param, with: values[param]
+    else
+      expect(page).to have_field param
     end
   end
   
+  SELECT_PARAMS.each do |param, select_options|
+    options = {with_options: select_options}
+    options[:selected] = values[param] if values && values[param]
+    expect(page).to have_select param, options
+  end
+  
 end
+
+FIELD_PARAMS = ['Total Items', 'Total Weight (kg)', 'Distance (km)']
 
 SHIP_FROM_COUNTRIES = %w[AUSTRALIA HUNGARY INDONESIA IRELAND MALAYSIA MEXICO NEW ZEALAND PHILLIPINES SINGAPORE TAIWAN UNITED STATES]
 
@@ -58,3 +107,11 @@ SHIP_FROM_STATES = %w[NA AZ CA DB JA MN NY]
 SHIP_TO_STATES = %w[NA AB ACT AK AL AR AZ BC CA CO CT DC DE FL GA GP HI IA ID IL IN JA JAL KS KY LA MA MD ME MI MN MO MS NC ND NE NH NJ NM NSW NV NY OH OK ON OR PA PR QC RI RM SC SD TAM TN TX UT VA VIC VT WA WI WV WY ZH]
 
 WEATHER_CONDITIONS = %w[unknown Clear Drizzle Fog Haze Heavy Rain Light Drizzle Light Freezing Fog Light Rain Light Rain Showers Light Snow Light Thunderstorms and Rain Mostly Cloudy Overcast Partly Cloudy Patches of Fog Rain Scattered Clouds Smoke]
+
+SELECT_PARAMS = {
+  'Ship From (Country)' => SHIP_FROM_COUNTRIES,
+  'Ship To (Country)' => SHIP_TO_COUNTRIES,
+  'Ship From (State)' => SHIP_FROM_STATES,
+  'Ship To (State)' => SHIP_TO_STATES,
+  'Weather condition at destination' => WEATHER_CONDITIONS
+}

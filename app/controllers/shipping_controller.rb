@@ -55,7 +55,7 @@ class ShippingController < ApplicationController
                end
       
     else
-      redirect_to :shipping_test, flash: { error: 'ERROR: There is no available model for predicting shipping delay' }
+      redirect_to :shipping, flash: { error: 'ERROR: There is no available model for predicting shipping delay' }
     end
     
   end
