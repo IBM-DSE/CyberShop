@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'shipping/test'
+  post 'shipping/score'
 
   get 'status', to: 'status#status'
 

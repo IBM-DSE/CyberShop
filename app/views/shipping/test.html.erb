@@ -1,9 +1,13 @@
 <div id="shipping-input-container">
   <div id="shipping-input">
+    
     <br><br><br>
-    <h1>Shipping Delay Predictor</h1>
+    <h1 class="bold">Shipping Delay Predictor</h1>
     <br><br><br>
+    
+    <%= form_tag shipping_score_path do %>
     <table id="shipping-input-table" class="table">
+      <%= hidden_field_tag :deployment_id, @deployment.id %>
       <% @ml_scoring_params.each do |hash, record| %>
         <tr>
           <th><%= label_tag record&.alias ? record.alias : hash['name']%></th>
@@ -11,5 +15,11 @@
         </tr>
       <% end %>
     </table>
+    <br><br>
+    <div class="center-container">
+      <%= submit_tag 'Predict Delay', class: 'btn btn-lg' %>
+    </div>
+    <% end %>
+    
   </div>
 </div>

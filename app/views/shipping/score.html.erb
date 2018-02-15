@@ -1,0 +1,55 @@
+<div id="shipping-input-container">
+  <div id="shipping-output">
+  
+    <br><br>
+    <h1 class="bold">Shipping Prediction</h1>
+    <br><br>
+  
+    <table id="shipping-output-table" class="table">
+      <thead>
+      <tr>
+        <th>
+          <h2 class="center-container bold">Input Values</h2>
+        </th>
+        <th>
+          <h2 class="center-container bold">Prediction</h2>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td id="input-table">
+          <div class="attributes_table">
+            <table id="shipping-input-table" class="table">
+              <% @input.each do |k,v| %>
+                  <tr class="row">
+                    <th class="input-col"><%= k %></th><td><%= v %></td>
+                  </tr>
+              <% end %>
+            </table>
+          </div>
+        </td>
+        <td>
+          <div class="attributes_table">
+            <table>
+              <tr id="output-row" class="row">
+                <th id="output">Delay: <span style="color: <%= @color  %>;"><%= @prediction.round(2) %> days</span></th>
+              </tr>
+              <% if @output['probability'] %>
+                  <tr class="row"><th>PROBABILITY</th><td><%= @output['probability']['values'][1] %></td></tr>
+              <% end %>
+            </table>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    
+  </div>
+</div>
+<br>
+<p class="center-container">
+  <%= link_to :back, class: 'btn btn-lg' do %>
+    <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;New Prediction
+  <% end %>
+</p>
