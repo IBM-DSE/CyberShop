@@ -49,7 +49,7 @@ RSpec.feature 'Admin', type: :feature do
       expect(page).to have_select 'shipFromState', with_options: SHIP_FROM_STATES
       expect(page).to have_text 'Ship to (state)'
       expect(page).to have_select 'shipToState', with_options: SHIP_TO_STATES
-      expect(page).to have_text 'Weather condition at destination'
+      expect(page).to have_text 'Weather at destination'
       expect(page).to have_select 'destWeatherConds', with_options: WEATHER_CONDITIONS
     
       fill_in 'totalCases', with: '10'
