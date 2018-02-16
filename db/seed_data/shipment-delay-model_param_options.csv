@@ -1,5 +1,5 @@
 totalCases,totalWeight,distance,shipFrom,shipFromState,shipTo,shipToState,destWeatherConds
-Total Items,Total Weight (kg),Distance (km),Ship From (Country),Ship From (State),Ship To (Country),Ship To (State),Weather condition at destination
+Total Items,Total Weight (kg),Distance (km),Ship From (Country),Ship From (State),Ship To (Country),Ship To (State),Weather at destination
 ,,,AUSTRALIA,NA,ABU DHABI,NA,unknown
 ,,,HUNGARY,AZ,ARGENTINA,AB,Clear
 ,,,INDONESIA,CA,AUSTRALIA,ACT,Drizzle

@@ -1,3 +1,4 @@
+<% unless controller_path == 'shipping' %>
 <nav id="main-navbar" class="navbar-default">
   <div>
     <div>
@@ -11,7 +12,7 @@
         <%= content_tag :span, 'CYBERSHOP', class: 'company-name' %>
       <% end %>
     </div>
-    <% unless controller_path == 'shipping' %>
+    
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li id="categories" class="dropdown">
@@ -69,8 +70,8 @@
           <% end %>
         </li>
       </ul>
-      <% end %>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
 </nav>
+<% end %>

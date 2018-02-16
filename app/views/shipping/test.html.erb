@@ -1,21 +1,36 @@
 <div id="shipping-input-container">
   <div id="shipping-input">
     
-    <br><br><br>
-    <h1 class="bold">Shipping Delay Predictor</h1>
-    <br><br><br>
+    <%= render 'banner' %>
+    
+    <div class="flex header_margins">
+      <h1 class="bold">Supply Chain Predictor</h1>
+    </div>
+  
+    <br><br>
     
     <%= form_tag shipping_score_path do %>
     <table id="shipping-input-table" class="table">
       <% @schema_params.each do |param, hash| %>
-        <tr>
-          <th><%= label_tag param, hash[:name] %></th>
-          <td><%= shipping_input param, hash, @shipment&.fetch(param) %></td>
-        </tr>
+        <% if param.include? 'State' %>
+          <%= shipping_input param, hash, @shipment&.fetch(param) %>
+        <% else %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-md-2">
+              <%= label_tag param, hash[:name].split('(')[0] %>
+            </th>
+            <td class="col-md-5">
+              <div style="display: flex">
+                <%= shipping_input param, hash, @shipment&.fetch(param) %>
+                <%= spacing param %>
+        <% end %>
       <% end %>
     </table>
-    <br><br>
-    <div class="center-container">
+    
+    <div class="center-container" style="margin-top: 80px">
       <%= submit_tag 'Predict Delay', class: 'btn btn-lg' %>
     </div>
     <% end %>

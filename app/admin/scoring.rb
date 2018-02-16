@@ -35,13 +35,13 @@ ActiveAdmin.register_page 'Scoring' do
         rec = MlScoringParam.find_by_name(key)
         rec&.alias ? rec.alias : key
       end
-      @output     = score.except(*@input.keys)
-      @prediction = @output['values'][0].last
+      @output = score.except(*@input.keys)
+      @delay  = @output['values'][0].last
       
       @color = case
-                 when @prediction < 1 then
+                 when @delay < 1 then
                    'green'
-                 when @prediction < 2 then
+                 when @delay < 2 then
                    'gold'
                  else
                    'red'
