@@ -1,45 +1,43 @@
 <div id="shipping-input-container">
   <div id="shipping-output">
+  
+    <%= render 'banner' %>
     
-    <h1 class="center-container bold">Shipping Prediction&nbsp;&nbsp;<%= image_tag 'truck.png' %></h1>
+    <div class="flex header_margins">
+      <h1 class="bold">Supply Chain Prediction</h1>
+    </div>
+  
+    <br>
     
     <table id="shipping-output-table" class="table">
       <thead>
-      <tr>
-        <th>
-          <h2 class="center-container">Shipment Details</h2>
-        </th>
-        <th>
-          <h2 class="center-container">Arrival</h2>
-        </th>
+      <tr class="header_row">
+        <th>Shipment Details</th>
+        <th>Arrival</th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <td id="input-table">
+        <td>
           <table id="shipping-input-table" class="table">
             <% @input.each do |k,v| %>
-                <tr class="row">
-                  <th class="input-col"><%= k %></th><td><%= v %></td>
-                </tr>
+              <% unless k.include? 'State' %>
+              <tr>
+                <% comps = k.split(/[()]/) %>
+                <th class="input-col"><%= comps[0] %></th>
+                <td><%= v %> <%= addon comps[0], comps[1], @input %></td>
+              </tr>
+              <% end %>
             <% end %>
           </table>
         </td>
         <td id="output_table_container">
           <table id="output_table">
-            <tr class="row">
-              <th class="output">Predicted Delay:</th>
+            <tr>
+              <th>Predicted Delay:</th>
             </tr>
-            <tr class="row">
-              <th class="output"><span style="color: <%= @color  %>;"><%= @prediction.round(2) %> days</span></th>
-            </tr>
-            <tr><td>&nbsp;</td></tr>
-            <tr><td>&nbsp;</td></tr>
-            <tr class="row">
-              <th class="output">Estimated Arrival:</th>
-            </tr>
-            <tr class="row">
-              <th class="output"><span style="color: blue;"><%= @arrival_date.strftime('%a %d %b %Y') %></span></th>
+            <tr>
+              <th><span style="color: <%= @color  %>;"><%= @delay.round(2) %> days</span></th>
             </tr>
           </table>
         </td>
@@ -48,10 +46,12 @@
     </table>
     
   </div>
+  
+  <br>
+  <p class="center-container">
+    <%= link_to shipping_path, class: 'btn btn-lg' do %>
+      <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;New Prediction
+    <% end %>
+  </p>
+  
 </div>
-<br>
-<p class="center-container">
-  <%= link_to shipping_path, class: 'btn btn-lg' do %>
-    <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;New Prediction
-  <% end %>
-</p>

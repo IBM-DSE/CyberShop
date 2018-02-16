@@ -24,21 +24,21 @@ class ShippingController < ApplicationController
       # get the score
       score = @@deployment.score @input
       session[:shipment] = @input.dup
-  
+      
       # generate view variables
       @input = ShippingController.reorder(@input, SHIPPING_PARAMS_ORDER)
       @input.transform_keys! do |key|
         rec = MlScoringParam.find_by_name(key)
         rec&.alias ? rec.alias : key
       end
-      @prediction = score['values'][0].last
-      @arrival_date = Date.today + 1 + @input['Distance (km)'] / 1000 + @prediction.round(2)
-      p @arrival_date
-  
+      @delay        = score['values'][0].last
+      @normal_time  = 1 + @input['Distance (km)'] / 1000
+      @arrival_date = Date.today + @normal_time + @delay.round(2)
+      
       @color = case
-                 when @prediction < 1 then
+                 when @delay < 1 then
                    'green'
-                 when @prediction < 2 then
+                 when @delay < 2 then
                    'gold'
                  else
                    'red'
@@ -58,8 +58,7 @@ class ShippingController < ApplicationController
   
   @@deployment = Deployment.where("name like ?", "%delay%").first
   
-  SHIPPING_PARAMS_ORDER = ['totalCases', 'totalWeight', 'shipFrom', 'shipFromState',
-                           'shipTo', 'shipToState', 'distance', 'destWeatherConds']
+  SHIPPING_PARAMS_ORDER = %w(totalCases totalWeight shipFrom shipFromState shipTo shipToState distance destWeatherConds)
   
   def self.reorder(hash, order)
     new_hash = {}
@@ -70,7 +69,7 @@ class ShippingController < ApplicationController
   end
   
   # get a mapping of input schema param name to type
-
+  
   schema_params = @@deployment&.get_input_schema&.map { |param|
     rec = MlScoringParam.find_by_name(param['name'])
     [param['name'], {
@@ -79,7 +78,7 @@ class ShippingController < ApplicationController
       record: rec
     }]
   }.to_h
-
+  
   SCHEMA_PARAMS_ORDER = schema_params.keys
   
   SHIPPING_PARAMS = ShippingController.reorder(schema_params, SHIPPING_PARAMS_ORDER)
