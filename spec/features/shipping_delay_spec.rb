@@ -6,7 +6,7 @@ RSpec.feature 'Shipping Delay', type: :feature do
     
     visit '/shipping'
     
-    expect(page).to have_text 'Shipping Delay Predictor'
+    expect(page).to have_text 'Supply Chain Predictor'
     expect(page).to have_button 'Predict Delay'
     
     if ENV['APP_URL'] || ENV['SHIPPING_USERNAME'] && ENV['SHIPPING_PASSWORD']
@@ -14,20 +14,20 @@ RSpec.feature 'Shipping Delay', type: :feature do
       expect_shipping_param_names
       expect_shipping_param_inputs
       
-      fill_in 'totalCases', with: '2'
-      fill_in 'totalWeight', with: '10'
-      fill_in 'distance', with: '3000'
+      fill_in 'Total Items', with: '2'
+      fill_in 'Total Weight', with: '10'
       select 'UNITED STATES', from: 'shipFrom'
       select 'CHINA', from: 'shipTo'
       select 'CA', from: 'shipFromState'
-      select 'Clear', from: 'destWeatherConds'
+      fill_in 'Distance', with: '3000'
+      select 'Clear', from: 'Weather at destination'
       
       click_button 'Predict Delay'
       
       expect(page).to have_current_path shipping_score_path, ignore_query: true
-      expect(page).to have_text 'Shipping Prediction'
+      expect(page).to have_text 'Supply Chain Prediction'
       
-      expect(page).to have_text 'Input Values'
+      expect(page).to have_text 'Shipment Details'
       expect_shipping_param_names
       expect(page).to have_text '2'
       expect(page).to have_text '10.0'
@@ -45,12 +45,12 @@ RSpec.feature 'Shipping Delay', type: :feature do
       click_link 'New Prediction'
       
       expect_shipping_param_inputs 'Total Items' => 2 ,
-                                   'Total Weight (kg)' => 10.0,
-                                   'Distance (km)' => 3000.0,
-                                   'Ship From (Country)' => 'UNITED STATES',
-                                   'Ship To (Country)' => 'CHINA',
-                                   'Ship From (State)' => 'CA',
-                                   'Ship To (State)' => 'NA'
+                                   'Total Weight' => 10.0,
+                                   'Distance' => 3000.0,
+                                   'Ship From' => 'UNITED STATES',
+                                   'Ship To' => 'CHINA',
+                                   'shipFromState' => 'CA',
+                                   'shipToState' => 'NA'
       
     else
       
@@ -70,13 +70,11 @@ def expect_shipping_param_names
   
   expect(page).to have_css 'table', text: /
     Total\sItems.+
-    Total\sWeight\s\(kg\).+
-    Ship\sFrom\s\(Country\).+
-    Ship\sFrom\s\(State\).+
-    Ship\sTo\s\(Country\).+
-    Ship\sTo\s\(State\).+
-    Distance\s\(km\).+
-    Weather\scondition\sat\sdestination
+    Total\sWeight.+kg.+
+    Ship\sFrom\s.+
+    Ship\sTo\s.+
+    Distance.+km.+
+    Weather\sat\sdestination
   /x
 
 end
@@ -99,7 +97,7 @@ def expect_shipping_param_inputs(values=nil)
   
 end
 
-FIELD_PARAMS = ['Total Items', 'Total Weight (kg)', 'Distance (km)']
+FIELD_PARAMS = ['Total Items', 'Total Weight', 'Distance']
 
 SHIP_FROM_COUNTRIES = %w[AUSTRALIA HUNGARY INDONESIA IRELAND MALAYSIA MEXICO NEW ZEALAND PHILLIPINES SINGAPORE TAIWAN UNITED STATES]
 
@@ -112,9 +110,9 @@ SHIP_TO_STATES = %w[NA AB ACT AK AL AR AZ BC CA CO CT DC DE FL GA GP HI IA ID IL
 WEATHER_CONDITIONS = %w[unknown Clear Drizzle Fog Haze Heavy Rain Light Drizzle Light Freezing Fog Light Rain Light Rain Showers Light Snow Light Thunderstorms and Rain Mostly Cloudy Overcast Partly Cloudy Patches of Fog Rain Scattered Clouds Smoke]
 
 SELECT_PARAMS = {
-  'Ship From (Country)' => SHIP_FROM_COUNTRIES,
-  'Ship To (Country)' => SHIP_TO_COUNTRIES,
-  'Ship From (State)' => SHIP_FROM_STATES,
-  'Ship To (State)' => SHIP_TO_STATES,
-  'Weather condition at destination' => WEATHER_CONDITIONS
+  'Ship From' => SHIP_FROM_COUNTRIES,
+  'Ship To' => SHIP_TO_COUNTRIES,
+  'shipFromState' => SHIP_FROM_STATES,
+  'shipToState' => SHIP_TO_STATES,
+  'Weather at destination' => WEATHER_CONDITIONS
 }
