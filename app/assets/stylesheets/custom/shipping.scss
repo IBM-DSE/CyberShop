@@ -44,13 +44,16 @@
   width: 300px!important;
 }
 
-#output-row {
-  height: 312px;
+#output_table_container {
   vertical-align: middle;
 }
 
-#output {
+#output_table {
+  margin: auto;
+}
+
+.output {
   font-size: 40px;
   vertical-align: middle;
-  padding-left: 2em;
+  padding-left: 1em;
 }

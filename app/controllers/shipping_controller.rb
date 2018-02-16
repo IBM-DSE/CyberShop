@@ -31,8 +31,9 @@ class ShippingController < ApplicationController
         rec = MlScoringParam.find_by_name(key)
         rec&.alias ? rec.alias : key
       end
-      @output     = score.except(*@input.keys)
-      @prediction = @output['values'][0].last
+      @prediction = score['values'][0].last
+      @arrival_date = Date.today + 1 + @input['Distance (km)'] / 1000 + @prediction.round(2)
+      p @arrival_date
   
       @color = case
                  when @prediction < 1 then
