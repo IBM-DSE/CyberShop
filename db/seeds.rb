@@ -157,12 +157,13 @@ end
 
 customer_interest_ml.save
 
-if ENV['SHIPPING_USERNAME'] and ENV['SHIPPING_PASSWORD']
+if ENV['SHIPPING_USERNAME'] && ENV['SHIPPING_PASSWORD'] && ENV['SHIPPING_INSTANCE_ID']
   
   MachineLearningService.create! name:     'Supply Chain',
                                  hostname: 'ibm-watson-ml.mybluemix.net',
                                  username: ENV['SHIPPING_USERNAME'],
-                                 password: ENV['SHIPPING_PASSWORD']
+                                 password: ENV['SHIPPING_PASSWORD'],
+                                 instance_id: ENV['SHIPPING_INSTANCE_ID']
   
   MlScoringParam.import File.new('db/seed_data/shipment-delay-model_param_options.csv'), 'on'
 
