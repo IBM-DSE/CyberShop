@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726161843) do
+ActiveRecord::Schema.define(version: 20180328181419) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -133,12 +133,13 @@ ActiveRecord::Schema.define(version: 20170726161843) do
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "machine_learning_services", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name",        limit: 255
     t.string   "hostname"
-    t.string   "username",   limit: 255
-    t.string   "password",   limit: 255
+    t.string   "username",    limit: 255
+    t.string   "password",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "instance_id"
   end
 
   create_table "ml_scoring_param_options", force: :cascade do |t|

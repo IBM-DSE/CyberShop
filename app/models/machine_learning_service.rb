@@ -47,7 +47,7 @@ class MachineLearningService < ActiveRecord::Base
   
   def init_service
     if is_cloud?
-      @service = IBM::ML::Cloud.new username, password
+      @service = IBM::ML::Cloud.new username, password, instance_id
     else
       @service = IBM::ML::Local.new hostname, username, password
     end
