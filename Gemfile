@@ -78,4 +78,4 @@ gem 'rest-client'
 # APIs
 gem 'ibm-ml'
 
-gem 'ffi', '1.9.18'
+gem 'ffi', '~> 1.9.18'
